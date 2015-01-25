@@ -1,0 +1,20 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+*.class
+*.pyc
+*.pyo
+
+# Configuration files
+/config/cloudinary.yml
+/config/database.yml
+
+/script
