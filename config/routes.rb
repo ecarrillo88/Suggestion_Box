@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'suggestion_box/index'
+
   resources :suggestions
 
   # The priority is based upon order of creation: first created -> highest priority.
