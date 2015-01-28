@@ -2,13 +2,38 @@
 <html>
 <head>
   <title>SuggestionBox</title>
+  <%= favicon_link_tag 'favicon.png' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
+<%= render 'layouts/header' %>
 
-<%= yield %>
+<div class="container-fluid">
+  
+  <!--left-->
+  <div class="col-sm-3">
+  <%= render 'layouts/left_sidebar' %>
+  </div>
+  <!--/left-->
+  
+  <!--center-->
+  <div class="col-sm-6">
+  <%= yield %>
+  </div>
+  <!--/center-->
 
+  <!--right-->
+  <div class="col-sm-3">
+  <%= render 'layouts/right_sidebar' %>
+  </div>
+  <!--/right-->
+  <hr>
+</div>
+<!--/container-fluid-->
+
+<%= render 'layouts/footer' %>
 </body>
 </html>
