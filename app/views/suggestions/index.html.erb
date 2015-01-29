@@ -1,18 +1,16 @@
-    <p id="notice"><%= notice %></p>
-    <% @suggestions.each do |suggestion| %>
-    <div class="row">
-      <div class="col-xs-12">
-        <h2><%= suggestion.title %></h2>
-        <p><%= suggestion.comment %></p>
-        <p class="lead"><%= link_to "Read More <span class='glyphicon glyphicon-chevron-right'></span>".html_safe, suggestion, class: "btn btn-default" %></p>
-        <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>
-        <ul class="list-inline">
-          <li><a href="#"><i class="glyphicon glyphicon-user"></i> <%= suggestion.author %></a></li>
-          <li><a href="#"><i class="glyphicon glyphicon-calendar"></i> <%= suggestion.created_at.to_formatted_s(:long) %></a></li>
-          <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 2 Comments</a></li>
-          <li><a href="#"><i class="glyphicon glyphicon-share"></i> 14 Shares</a></li>
-        </ul>
-      </div>
-    </div>
-    <hr>
-    <% end %>
+<p id="notice"><%= notice %></p>
+<% @suggestions.each do |suggestion| %>
+<div class="row">
+  <div class="col-xs-12">
+    <h2><%= link_to suggestion.title, suggestion %></h2>
+    <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>
+    <ul class="list-inline">
+      <li><i class="glyphicon glyphicon-user"></i> <%= suggestion.author %></li>
+      <li><i class="glyphicon glyphicon-calendar"></i> <%= suggestion.created_at.to_formatted_s(:long) %></li>
+      <li><i class="glyphicon glyphicon-comment"></i> 2 Comments</li>
+      <li><i class="glyphicon glyphicon-share"></i> 14 Shares</li>
+    </ul>
+  </div>
+</div>
+<hr>
+<% end %>

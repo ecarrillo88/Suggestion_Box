@@ -1,24 +1,15 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @suggestion.title %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @suggestion.author %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @suggestion.email %>
-</p>
-
-<p>
-  <strong>Comment:</strong>
-  <%= @suggestion.comment %>
-</p>
-
-<%= link_to 'Edit', edit_suggestion_path(@suggestion) %> |
-<%= link_to 'Back', suggestions_path %>
+<div class="row">
+  <div class="col-xs-12">
+    <h2><%= @suggestion.title %></h2>
+    <ul class="list-inline">
+      <li><i class="glyphicon glyphicon-user"></i> <%= @suggestion.author %></li>
+      <li><i class="glyphicon glyphicon-calendar"></i> <%= @suggestion.created_at.to_formatted_s(:long) %></li>
+      <li><i class="glyphicon glyphicon-comment"></i> 2 Comments</li>
+      <li><i class="glyphicon glyphicon-share"></i> 14 Shares</li>
+    </ul>
+    <p><%= @suggestion.comment %></p>
+    <%= link_to 'Edit', edit_suggestion_path(@suggestion), class: "btn btn-default" %>
+    <%= link_to 'Back', suggestions_path, class: "btn btn-default" %>
+  </div>
+</div>
+<hr>
