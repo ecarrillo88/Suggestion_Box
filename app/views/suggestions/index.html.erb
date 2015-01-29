@@ -1,33 +1,18 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Suggestions</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Email</th>
-      <th>Comment</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+    <p id="notice"><%= notice %></p>
     <% @suggestions.each do |suggestion| %>
-      <tr>
-        <td><%= suggestion.title %></td>
-        <td><%= suggestion.author %></td>
-        <td><%= suggestion.email %></td>
-        <td><%= suggestion.comment %></td>
-        <td><%= link_to 'Show', suggestion %></td>
-        <td><%= link_to 'Edit', edit_suggestion_path(suggestion) %></td>
-        <td><%= link_to 'Destroy', suggestion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2><%= suggestion.title %></h2>
+        <p><%= suggestion.comment %></p>
+        <p class="lead"><%= link_to "Read More <span class='glyphicon glyphicon-chevron-right'></span>".html_safe, suggestion, class: "btn btn-default" %></p>
+        <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>
+        <ul class="list-inline">
+          <li><a href="#"><i class="glyphicon glyphicon-user"></i> <%= suggestion.author %></a></li>
+          <li><a href="#"><i class="glyphicon glyphicon-calendar"></i> <%= suggestion.created_at.to_formatted_s(:long) %></a></li>
+          <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 2 Comments</a></li>
+          <li><a href="#"><i class="glyphicon glyphicon-share"></i> 14 Shares</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Suggestion', new_suggestion_path %>
