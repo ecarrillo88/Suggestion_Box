@@ -8,8 +8,25 @@
       <li><i class="glyphicon glyphicon-share"></i> 14 Shares</li>
     </ul>
     <p><%= @suggestion.comment %></p>
+    <br>
+    
+    <% if !@suggestion.latitude.nil? && !@suggestion.longitude.nil? %>
+    <h3>Geolocation</h3>
+    <div id="map-canvas" style='width: 100%; height: 400px;'></div>
+    <% end %>
+    <br>
     <%= link_to 'Edit', edit_suggestion_path(@suggestion), class: "btn btn-default" %>
     <%= link_to 'Back', suggestions_path, class: "btn btn-default" %>
   </div>
 </div>
 <hr>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var lat = <%= @suggestion.latitude || -1 %>
+    var lng = <%= @suggestion.longitude || -1 %>
+    if((lat != -1) && (lng != -1)){
+      initializeMapShow(lat, lng);
+    }
+  });
+</script>

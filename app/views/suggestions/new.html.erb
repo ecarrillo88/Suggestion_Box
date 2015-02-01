@@ -1,6 +1,55 @@
-<h2>New Suggestion</h2>
-<br>
+<div class="row">
+  <div class="col-xs-12">
+    <h2>New Suggestion</h2>
+    <br>
+    <%= form_for(@suggestion) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
 
-<%= render 'form' %>
-<br>
-<%= link_to 'Back', suggestions_path %>
+      <div class="field">
+        <%= f.label :title %><br>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :author %><br>
+        <%= f.text_field :author, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :email %><br>
+        <%= f.text_field :email, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :comment %><br>
+        <%= f.text_area :comment, class: "form-control" %>
+      </div>
+      <%= f.hidden_field :latitude  %>
+      <%= f.hidden_field :longitude %>
+      <br>
+
+      <h3>Geolocate the suggestion</h3>
+      <p>Put a marker by clicking on the map or search address to geolocate the suggestion. If you do not want to geolocate the suggestion remove the map marker.</p>
+    
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="address" id="address">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="button" onclick="searchByAddress()"><i class="glyphicon glyphicon-search"></i></button>
+          <input class="btn btn-default" type="button" value="Clear Marker" onclick="clearMarker()">
+        </div>
+      </div>
+
+      <div id="map-canvas" style='width: 100%; height: 400px;'></div>
+    
+      <br>
+      <div class="actions">
+        <%= f.submit class: "btn btn-default"%>
+        <%= button_to 'Back', suggestions_path, class: "btn btn-default" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<hr>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    initializeMapEdit();
+  });
+</script>
