@@ -38,4 +38,6 @@ end
 group :production do
   # Use PostgreSQL as the database for Active Record
   gem 'pg'
+  # Run Rails the 12factor way
+  gem 'rails_12factor'
 end
