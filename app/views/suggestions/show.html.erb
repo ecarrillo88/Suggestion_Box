@@ -7,7 +7,7 @@
       <li><i class="glyphicon glyphicon-comment"></i> 2 Comments</li>
       <li><i class="glyphicon glyphicon-share"></i> 14 Shares</li>
     </ul>
-    <p><%= @suggestion.comment %></p>
+    <p><%= simple_format(@suggestion.comment) %></p>
     
     <% unless @suggestion.image1_id.nil? && @suggestion.image2_id.nil? %>
       <h3>Images</h3>
