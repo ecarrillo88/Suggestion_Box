@@ -9,6 +9,7 @@ class SuggestionsController < ApplicationController
   end
 
   def show
+    @comments = Suggestion.find(params[:id]).comments
   end
 
   def new

@@ -1,0 +1,11 @@
+<!-- Comment -->
+<div class="comment">
+  <h4><%= comment.author %> <small><%= comment.created_at.to_formatted_s(:long) %></small></h4>
+  <%= simple_format(comment.text) %>
+  <p>
+    <%= link_to 'Delete Comment', [comment.suggestion, comment],
+                 method: :delete,
+                 data: { confirm: 'Are you sure?' } %>
+  </p>
+  <hr>
+</div>

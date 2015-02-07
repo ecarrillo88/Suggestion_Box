@@ -7,7 +7,7 @@
     <ul class="list-inline">
       <li><i class="glyphicon glyphicon-user"></i> <%= suggestion.author %></li>
       <li><i class="glyphicon glyphicon-calendar"></i> <%= suggestion.created_at.to_formatted_s(:long) %></li>
-      <li><i class="glyphicon glyphicon-comment"></i> 2 Comments</li>
+      <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(suggestion.comments.size, 'Comment') %></li>
       <li><i class="glyphicon glyphicon-share"></i> 14 Shares</li>
     </ul>
   </div>

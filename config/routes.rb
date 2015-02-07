@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :suggestions
-
+  resources :suggestions do
+    resources :comments
+  end
+  
   root to: 'suggestions#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
