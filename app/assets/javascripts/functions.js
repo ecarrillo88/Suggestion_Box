@@ -12,3 +12,17 @@ function fontSizer(element, action) {
     $(this).css('font-size',newFontSize+'px');
   });
 }
+
+function imageValidation(file) {
+  var type = file.name.split('.').pop().toLowerCase();
+  if ($.inArray(type, ['gif','png','jpg','jpeg']) == -1) {
+    alert('Invalid file type.\nPlease select an image.');
+    return false;
+  }	
+  var sizeKB = file.size / 1024;
+  if (sizeKB > 5120){
+    alert('The maximum image size is 5 MB.\nPlease select a smaller image.');
+    return false;
+  }
+  return true;
+}

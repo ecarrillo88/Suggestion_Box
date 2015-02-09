@@ -69,5 +69,16 @@
 <script type="text/javascript">
   $(document).ready(function(){
     initializeMapEdit();
+    
+    $('input[id=image1_id], input[id=image2_id]').change(function(event){
+      var file = event.target.files[0];
+      if (file != undefined) {
+        if (!imageValidation(file)){
+          // Stops the rest of handlers associated with the input file
+          event.stopImmediatePropagation();
+        }
+      }
+    });
+    
   });
 </script>
