@@ -6,8 +6,17 @@
       <li><i class="glyphicon glyphicon-calendar"></i> <%= @suggestion.created_at.to_formatted_s(:long) %></li>
       <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(@suggestion.comments.count, 'Comment') %></li>
       <li><i class="glyphicon glyphicon-share"></i> 14 Shares</li>
+      <li class="pull-right">
+        <ul class="list-inline">
+          <li>Text size</li>
+          <li><a href="#" id="decrease_text_size"><i class="glyphicon glyphicon-zoom-out"></i></a></li>
+          <li><a href="#" id="increase_text_size"><i class="glyphicon glyphicon-zoom-in"></i></a></li>
+        </ul>
+      </li>
     </ul>
-    <p><%= simple_format(@suggestion.comment) %></p>
+    <div id="SuggestionComent">
+      <p><%= simple_format(@suggestion.comment) %></p>
+    </div>
     
     <% unless @suggestion.image1_id.nil? && @suggestion.image2_id.nil? %>
       <h3>Images</h3>
@@ -51,5 +60,13 @@
     if((lat != false) && (lng != false)) {
       initializeMapShow(lat, lng);
     }
+    
+    $("#increase_text_size").click(function(){
+      fontSizer("#SuggestionComent", "up");
+    });
+  
+    $("#decrease_text_size").click(function(){
+      fontSizer("#SuggestionComent", "down");
+    });
   });
 </script>
