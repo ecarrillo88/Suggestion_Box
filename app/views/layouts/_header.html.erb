@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="navbar-header">
     <a class="navbar-brand" rel="home" href="/">Suggestion Box</a>
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,3 +24,10 @@
     </div>
   </div>
 </nav>
+<div class="jumbotron masthead">
+  <div class="container">
+    <h1><b>Suggestion Box</b></h1>
+    <p>Drop your comments, questions, requests and complaints</p>
+    <p><%= link_to 'Create a new Suggestion', new_suggestion_path, class: 'btn btn-primary btn-lg' %></p>	
+  </div>
+</div>
