@@ -3,7 +3,12 @@ class SuggestionMailer < ApplicationMailer
  
   def suggestion_validation_email(suggestion)
     @suggestion = suggestion
-    @url  = "http://localhost:3000/suggestions/validation/#{@suggestion.token_validation}"
+    if Rails.env == "production"
+      host = "https://tfg-suggestion-box.herokuapp.com/"
+    else
+      host  = "http://localhost:3000/"
+    end
+    @url  = host + "suggestions/validation/#{@suggestion.token_validation}"
     mail(to: @suggestion.email, subject: 'Suggestion Box - Suggestion validation')
   end
 end
