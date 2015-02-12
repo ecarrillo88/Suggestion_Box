@@ -5,7 +5,7 @@ class SuggestionsController < ApplicationController
   before_action :new_imageManager_filter, only: [:show, :edit, :create]
 
   def index
-    @suggestions = Suggestion.all.order(created_at: :desc)
+    @suggestions = Suggestion.where(visible: true).order(created_at: :desc)
   end
 
   def show
@@ -30,7 +30,10 @@ class SuggestionsController < ApplicationController
     
     @suggestion = Suggestion.new(sp)
     if @suggestion.save
-      flash[:success] = 'Suggestion was successfully created'
+      token_MD5 = Digest::MD5.hexdigest(@suggestion.id.to_s + @suggestion.email)
+      @suggestion.update(token_validation: token_MD5)
+      SuggestionMailer.suggestion_validation_email(@suggestion).deliver_later
+      flash[:info] = 'In a few moments you will receive an email to confirm the suggestion.'
       redirect_to @suggestion
     else
       render :new
@@ -50,6 +53,16 @@ class SuggestionsController < ApplicationController
     @suggestion.destroy
     flash[:info] = 'Suggestion was successfully destroyed'
     redirect_to suggestions_url
+  end
+  
+  def validation
+    @suggestion = Suggestion.find_by(token_validation: params[:token])
+    unless @suggestion.nil?
+      @suggestion.update(visible: true)
+      render 'suggestions/validation'
+    else
+      render 'suggestions/fail'
+    end
   end
 
   private

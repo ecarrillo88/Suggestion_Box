@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207113907) do
+ActiveRecord::Schema.define(version: 20150212160304) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "author"
@@ -28,12 +28,14 @@ ActiveRecord::Schema.define(version: 20150207113907) do
     t.string   "author"
     t.string   "email"
     t.text     "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.float    "latitude"
     t.float    "longitude"
     t.string   "image1_id"
     t.string   "image2_id"
+    t.string   "token_validation"
+    t.boolean  "visible",          default: false
   end
 
 end

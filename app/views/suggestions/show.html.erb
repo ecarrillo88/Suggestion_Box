@@ -42,13 +42,15 @@
     <hr>
     
     <!-- Comments form -->
-    <h3>Add a comment:</h3>
-    <%= render 'comments/form' %>
-    <hr>
-    
-    <!-- Show comments -->
-    <h3>Comments</h3>
-    <%= render @comments %>
+    <% if @suggestion.visible %>
+      <h3>Add a comment:</h3>
+      <%= render 'comments/form' %>
+      <hr>
+         
+      <!-- Show comments -->
+      <h3>Comments</h3>
+      <%= render @comments %>
+    <% end %>
     
   </div>
 </div>

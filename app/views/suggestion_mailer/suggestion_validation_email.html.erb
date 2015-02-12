@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Suggestion Box, <%= @suggestion.author %></h1>
+    <p>You have successfully created a suggestion. To activate it, just follow this link:</p>
+    <%= link_to 'validation link', @url %>
+    <p>Thanks for using the Suggestion Box</p>
+  </body>
+</html>
