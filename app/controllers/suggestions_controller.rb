@@ -30,10 +30,15 @@ class SuggestionsController < ApplicationController
     
     @suggestion = Suggestion.new(sp)
     if @suggestion.save
-      token_MD5 = Digest::MD5.hexdigest(@suggestion.id.to_s + @suggestion.email)
-      @suggestion.update(token_validation: token_MD5)
-      SuggestionMailer.suggestion_validation_email(@suggestion).deliver_later
-      flash[:info] = 'In a few moments you will receive an email to confirm the suggestion.'
+      if WhiteListEmail.find_by(email: suggestion_params[:email]).nil?
+        token_MD5 = Digest::MD5.hexdigest(@suggestion.id.to_s + @suggestion.email)
+        @suggestion.update(token_validation: token_MD5)
+        SuggestionMailer.suggestion_validation_email(@suggestion).deliver_later
+        flash[:info] = 'In a few moments you will receive an email to confirm the suggestion.'
+      else
+        @suggestion.update(visible: true)
+        flash[:success] = 'Suggestion was successfully published'
+      end
       redirect_to @suggestion
     else
       render :new
@@ -59,6 +64,10 @@ class SuggestionsController < ApplicationController
     @suggestion = Suggestion.find_by(token_validation: params[:token])
     unless @suggestion.nil?
       @suggestion.update(visible: true)
+      # Add email to white list
+      if WhiteListEmail.find_by(email: @suggestion.email).nil?
+        WhiteListEmail.new(email: @suggestion.email).save
+      end
       render 'suggestions/validation'
     else
       render 'suggestions/fail'
