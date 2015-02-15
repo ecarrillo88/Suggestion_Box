@@ -11,14 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212160304) do
+ActiveRecord::Schema.define(version: 20150215092927) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "author"
     t.text     "text"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "suggestion_id"
+    t.string   "email"
+    t.boolean  "visible",       default: false
   end
 
   add_index "comments", ["suggestion_id"], name: "index_comments_on_suggestion_id"
@@ -36,6 +38,12 @@ ActiveRecord::Schema.define(version: 20150212160304) do
     t.string   "image2_id"
     t.string   "token_validation"
     t.boolean  "visible",          default: false
+  end
+
+  create_table "white_list_emails", force: :cascade do |t|
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

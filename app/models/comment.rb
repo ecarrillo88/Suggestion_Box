@@ -3,5 +3,6 @@ class Comment < ActiveRecord::Base
 
   validates :author, presence: true,
                      length: { maximum: 25 }
+  validates :email, presence: :true
   validates :text, presence: :true
 end
