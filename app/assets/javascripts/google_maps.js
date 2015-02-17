@@ -8,7 +8,7 @@ function initializeMapShow(lat, lng) {
     zoom: 17,
     center: new google.maps.LatLng(lat, lng)
   };
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  map = new google.maps.Map(document.getElementById('map-canvas-show'), mapOptions);
   var location = new google.maps.LatLng(lat, lng);
   placeMarker(location);
   infowindow = new google.maps.InfoWindow();
@@ -25,7 +25,7 @@ function initializeMapEdit() {
   var mapOptions = {
     zoom: 14
   };
-  map = new google.maps.Map(document.getElementById('map-canvas'),
+  map = new google.maps.Map(document.getElementById('map-canvas-edit'),
       mapOptions);
 
   // Try HTML5 geolocation

@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'suggestions.js', 'data-turbolinks-track' => true %>
 <div class="row">
   <div class="col-xs-12">
     <h2>New Suggestion</h2>
@@ -49,12 +50,12 @@
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search" name="address" id="address">
         <div class="input-group-btn">
-          <button class="btn btn-default" type="button" onclick="searchByAddress()"><i class="glyphicon glyphicon-search"></i></button>
-          <input class="btn btn-default" type="button" value="Clear Marker" onclick="clearMarker()">
+          <button id="search-address" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+          <input id="clear-marker" class="btn btn-default" type="button" value="Clear Marker">
         </div>
       </div>
 
-      <div id="map-canvas" style='width: 100%; height: 400px;'></div>
+      <div id="map-canvas-edit" style='width: 100%; height: 400px;'></div>
     
       <br>
       <div class="actions">
@@ -65,20 +66,3 @@
   </div>
 </div>
 <hr>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    initializeMapEdit();
-    
-    $('input[id=image1_id], input[id=image2_id]').change(function(event){
-      var file = event.target.files[0];
-      if (file != undefined) {
-        if (!imageValidation(file)){
-          // Stops the rest of handlers associated with the input file
-          event.stopImmediatePropagation();
-        }
-      }
-    });
-    
-  });
-</script>

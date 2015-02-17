@@ -1,10 +1,11 @@
+<%= javascript_include_tag 'suggestions.js', 'data-turbolinks-track' => true %>
 <div class="row">
   <div class="col-xs-12">
     <h2><%= @suggestion.title %></h2>
     <ul class="list-inline">
       <li><i class="glyphicon glyphicon-user"></i> <%= @suggestion.author %></li>
       <li><i class="glyphicon glyphicon-calendar"></i> <%= @suggestion.created_at.to_formatted_s(:long) %></li>
-      <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(@suggestion.comments.count, 'Comment') %></li>
+      <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(@comments.size, 'Comment') %></li>
       <li><i class="glyphicon glyphicon-share"></i> 14 Shares</li>
       <li class="pull-right">
         <ul class="list-inline">
@@ -33,7 +34,7 @@
     
     <% if !@suggestion.latitude.nil? && !@suggestion.longitude.nil? %>
       <h3>Geolocation</h3>
-      <div id="map-canvas" style='width: 100%; height: 400px;'></div>
+      <div id="map-canvas-show" data-lat="<%= @suggestion.latitude %>", data-lng="<%= @suggestion.longitude %>" style="width: 100%; height: 400px;"></div>
       <br>
     <% end %>
     
@@ -54,21 +55,3 @@
     
   </div>
 </div>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    var lat = <%= @suggestion.latitude || false %>
-    var lng = <%= @suggestion.longitude || false %>
-    if((lat != false) && (lng != false)) {
-      initializeMapShow(lat, lng);
-    }
-    
-    $("#increase_text_size").click(function(){
-      fontSizer("#SuggestionComent", "up");
-    });
-  
-    $("#decrease_text_size").click(function(){
-      fontSizer("#SuggestionComent", "down");
-    });
-  });
-</script>
