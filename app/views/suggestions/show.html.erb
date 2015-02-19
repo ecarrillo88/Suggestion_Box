@@ -23,12 +23,12 @@
       <h3>Images</h3>
     <% end %>
     <% unless @suggestion.image1_id.nil? %>
-      <% image_url = @imageManager.get_image_url(@suggestion.image1_id) %>
-      <%= link_to image_tag(image_url, width: 200, height: 150), image_url.to_s %>
+      <% image_url = @imageManager.get_image_url(@suggestion.image1_id, 800, 600) %>
+      <%= link_to cl_image_tag(@suggestion.image1_id, width: 200, height: 150), image_url.to_s, class: 'fancybox', rel: 'group' %>
     <% end %>
     <% unless @suggestion.image2_id.nil? %>
-      <% image_url = @imageManager.get_image_url(@suggestion.image2_id) %>
-      <%= link_to image_tag(image_url, width: 200, height: 150), image_url.to_s %>
+      <% image_url = @imageManager.get_image_url(@suggestion.image2_id, 800, 600) %>
+      <%= link_to cl_image_tag(@suggestion.image2_id, width: 200, height: 150), image_url.to_s, class: 'fancybox', rel: 'group' %>
     <% end %>
     <br>
     

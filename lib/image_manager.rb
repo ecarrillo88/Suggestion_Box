@@ -1,8 +1,8 @@
 require "net/http"
 
 class ImageManager
-  def get_image_url(image_id)
-    uri = URI.parse("http://res.cloudinary.com/suggestion-box/image/upload/#{image_id}")
+  def get_image_url(image_id, width, height)
+    uri = URI.parse("http://res.cloudinary.com/suggestion-box/image/upload/w_#{width},h_#{height}/#{image_id}")
     request = Net::HTTP.new uri.host
     response = request.request_head uri.path
     if response.code.to_i == 200

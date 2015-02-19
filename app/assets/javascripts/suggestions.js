@@ -16,7 +16,13 @@ $(document).ready(function(){
   	event.preventDefault();
     fontSizer("#SuggestionComent", "down");
   });
-
+  
+  $(".fancybox").fancybox({
+    openEffect  : 'none',
+    closeEffect : 'none',
+    type        : 'image'
+  });
+  
   //New
   $('input[id=image1_id], input[id=image2_id]').change(function(event){
     var file = event.target.files[0];
@@ -77,3 +83,4 @@ function imageValidation(file) {
   }
   return true;
 }
+
