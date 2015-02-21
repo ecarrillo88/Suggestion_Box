@@ -2,7 +2,7 @@ require 'image_manager.rb'
 
 class SuggestionsController < ApplicationController
   before_action :set_suggestion, only: [:show, :edit, :update, :destroy]
-  before_action :new_imageManager_filter, only: [:show, :edit, :create]
+  before_action :new_imageManager_filter, only: [:show, :edit]
 
   def index
     @suggestions = Suggestion.where(visible: true).order(created_at: :desc)
@@ -20,25 +20,11 @@ class SuggestionsController < ApplicationController
   end
 
   def create
-    sp = suggestion_params
-    unless params[:image1_id].nil?
-      sp[:image1_id] = uploadImageToCloudinary(params[:image1_id])
-    end
-    unless params[:image2_id].nil?
-      sp[:image2_id] = uploadImageToCloudinary(params[:image2_id])
-    end
-    
-    @suggestion = Suggestion.new(sp)
-    if @suggestion.save
-      if WhiteListEmail.find_by(email: suggestion_params[:email]).nil?
-        token_MD5 = Digest::MD5.hexdigest(@suggestion.id.to_s + @suggestion.email)
-        @suggestion.update(token_validation: token_MD5)
-        SuggestionMailer.suggestion_validation_email(@suggestion).deliver_later
-        flash[:info] = 'In a few moments you will receive an email to confirm the suggestion.'
-      else
-        @suggestion.update(visible: true)
-        flash[:success] = 'Suggestion was successfully published'
-      end
+    suggestion_builder = SuggestionBuilder.new
+    suggestion_hash = suggestion_builder.create(suggestion_params, params[:image1_id], params[:image2_id])
+    @suggestion = suggestion_hash[:suggestion]
+    if suggestion_hash[:save]
+      flash[:info] = suggestion_hash[:msg]
       redirect_to @suggestion
     else
       render :new
@@ -81,11 +67,6 @@ class SuggestionsController < ApplicationController
     
     def new_imageManager_filter
       @imageManager = ImageManager.new
-    end
-    
-    def uploadImageToCloudinary(image_param)
-      image_hash = @imageManager.upload_image(image_param)
-      return image_hash['public_id']
     end
 
     def suggestion_params
