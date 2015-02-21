@@ -23,6 +23,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'cloudinary'
 # Twitter's Bootstrap, converted to Sass and ready to drop into Rails or Compass
 gem 'bootstrap-sass', '3.3.3'
+# This gem integrates the Twitter Bootstrap pagination component with the will_paginate pagination gem
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

@@ -5,7 +5,7 @@ class SuggestionsController < ApplicationController
   before_action :new_imageManager_filter, only: [:show, :edit]
 
   def index
-    @suggestions = Suggestion.where(visible: true).order(created_at: :desc)
+    @suggestions = Suggestion.where(visible: true).paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
   end
 
   def show
