@@ -36,6 +36,18 @@ body {
   }
 }
 
+.comment {
+  .header {
+    .author {
+      font-size: 18px;
+    }
+    .date {
+      font-size: 13px;
+      color: #9b9f9f;
+    }
+  }
+}
+
 textarea.form-control {
   height: 150px;
 }
