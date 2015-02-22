@@ -1,4 +1,9 @@
 <%= javascript_include_tag 'suggestions.js', 'data-turbolinks-track' => true %>
+
+<% content_for :header_title, '<h2>New Suggestion</h2>'.html_safe %>
+<% content_for :header_description, 'Create a new suggestion about a problem, a question, a request... or anything you think is important for your city' %>
+<% content_for :header_button, 'no' %>
+
 <div class="row">
   <div class="col-xs-12">
     <h2>New Suggestion</h2>

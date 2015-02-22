@@ -1,6 +1,15 @@
-<h1>Editing Suggestion</h1>
+<% content_for :header_title, '<h2>Editing Suggestion</h2>'.html_safe %>
+<% content_for :header_description, 'Just edit your suggestion' %>
+<% content_for :header_button, 'no' %>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Editing Suggestion</h1>
 
-<%= link_to 'Show', @suggestion %> |
-<%= link_to 'Back', suggestions_path %>
+    <%= render 'form' %>
+
+    <%= link_to 'Show', @suggestion %> |
+    <%= link_to 'Back', suggestions_path %>
+  </div>
+</div>
+<hr>

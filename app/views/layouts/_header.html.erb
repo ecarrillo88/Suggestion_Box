@@ -26,8 +26,8 @@
 </nav>
 <div class="jumbotron masthead">
   <div class="container">
-    <h1><b>Suggestion Box</b></h1>
-    <p>Drop your comments, questions, requests and complaints</p>
-    <p><%= link_to 'Create a new Suggestion', new_suggestion_path, class: 'btn btn-primary btn-lg' %></p>	
+    <p><%= set_header_title yield(:header_title) %></p>
+    <p><%= set_header_description yield(:header_description) %></p>
+    <p><%= set_header_button yield(:header_button) %></p>
   </div>
 </div>

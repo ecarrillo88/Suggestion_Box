@@ -1,4 +1,9 @@
 <%= javascript_include_tag 'suggestions.js', 'data-turbolinks-track' => true %>
+
+<% content_for :header_title, '<h2>Showing Suggestion</h2>'.html_safe %>
+<% content_for :header_description, 'If you think the suggestion is important, you can leave a comment or support it' %>
+<% content_for :header_button, 'no' %>
+
 <% presenter @suggestion do |suggestion_presenter| %>
 <div class="row">
   <div class="col-xs-12">
