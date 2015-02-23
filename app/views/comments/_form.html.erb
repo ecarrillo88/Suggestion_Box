@@ -5,18 +5,17 @@
   <% end %>
   
   <div class="field">
-    <%= f.label :author %><br>
-    <%= f.text_field :author, class: "form-control" %>
+    <%= f.text_field :author, placeholder: "Name", class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, class: "form-control" %>
+    <%= f.text_field :email, placeholder: "email", class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :text %><br>
-    <%= f.text_area :text, class: "form-control" %>
+  	<br>
+    <%= f.text_area :text, placeholder: "Comment", class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+  	<br>
+    <%= f.submit class: "form-control btn btn-default" %>
   </div>
 <% end %>

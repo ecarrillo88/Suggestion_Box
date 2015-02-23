@@ -3,6 +3,7 @@
 
 body {
   //padding-top: 70px;
+  background-color: #f9f9fb;
 }
 
 .jumbotron {
@@ -36,6 +37,23 @@ body {
   }
 }
 
+.box {
+  background-color: #FFFFFF;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e1e5e5;
+  padding: 25px;
+  margin-bottom: 20px;
+  .title {
+    margin-top: -20px;
+    margin-bottom: 15px;
+    color: #222222;
+  }
+  .info {
+    margin-bottom: 25px;
+  }
+}
+
 .comment {
   .header {
     .author {
@@ -45,6 +63,30 @@ body {
       font-size: 13px;
       color: #9b9f9f;
     }
+  }
+}
+
+hr {
+  color: #e1e5e5;
+}
+
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.stealth {
+  color: #333333;
+  &:hover {
+    color: #337ab7;
+  }
+}
+
+.zoom {
+  color: #333333;
+  &:hover {
+    color: black;
   }
 }
 
