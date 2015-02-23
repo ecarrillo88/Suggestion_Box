@@ -71,15 +71,20 @@ hr {
 }
 
 a {
+  color: #D54113;
   &:hover {
+    color: #A52903;
     text-decoration: none;
+  }
+  &:focus {
+    color: #A52903;
   }
 }
 
 .stealth {
   color: #333333;
   &:hover {
-    color: #337ab7;
+    color: #D54113;
   }
 }
 
@@ -87,6 +92,30 @@ a {
   color: #333333;
   &:hover {
     color: black;
+  }
+}
+
+.pagination {
+  .active {
+    span {
+      background-color: #D54113;
+      border-color: #D54113;
+      &:hover, &:focus {
+        background-color: #D54113;
+        border-color: #D54113;
+      }
+    }
+  }
+  li {
+    a {
+      color: #D54113;
+      &:hover, &:focus {
+        color: #A52903;
+      }
+    }
+    span {
+      color: #D54113;
+    }
   }
 }
 
