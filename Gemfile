@@ -37,6 +37,10 @@ group :development, :test do
   gem 'spring'
   # MailCatcher runs a super simple SMTP server
   gem 'mailcatcher'
+  # RSpec for Rails
+  gem 'rspec-rails'
+  # Capybara is an integration testing tool for rack based web applications. It simulates how a user would interact with a website
+  gem 'capybara'
 end
 
 group :production do
