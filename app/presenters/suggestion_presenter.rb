@@ -5,6 +5,10 @@ class SuggestionPresenter < BasePresenter
     suggestion.comments.where(visible: true).size
   end
   
+  def supporters
+    suggestion.comments.where(visible: true, support: true).size
+  end
+  
   def created_at
     suggestion.created_at.to_formatted_s(:long)
   end

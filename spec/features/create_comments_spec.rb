@@ -16,9 +16,9 @@ RSpec.feature "CreateComments", type: :feature do
     expect(page).to have_text 'Awesome Suggestion'
 
     fill_in 'Name',    with: 'Invisible Woman'
-    fill_in 'email',   with: 'SusanStorm@email.com'
+    fill_in 'Email',   with: 'SusanStorm@email.com'
     fill_in 'Comment', with: 'Aenean commodo ligula eget dolor'
-    click_button 'Create Comment'
+    click_button 'Comment'
 
     expect(page).to have_text 'Showing Suggestion'
     expect(page).to have_text 'Awesome Suggestion'

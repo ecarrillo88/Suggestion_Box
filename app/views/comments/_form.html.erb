@@ -8,7 +8,7 @@
     <%= f.text_field :author, placeholder: "Name", class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.text_field :email, placeholder: "email", class: "form-control" %>
+    <%= f.text_field :email, placeholder: "Email", class: "form-control" %>
   </div>
   <div class="field">
   	<br>
@@ -16,6 +16,7 @@
   </div>
   <div class="actions">
   	<br>
-    <%= f.submit class: "form-control btn btn-default" %>
+  	<%= f.submit 'Comment & Support', name: 'comment_and_support', class: "form-control btn btn-red" %>
+    <%= f.submit 'Comment', name: 'only_comment', class: "form-control btn btn-default" %>
   </div>
 <% end %>

@@ -11,10 +11,18 @@ class CommentsController < ApplicationController
   end
 
   def create
+    comment_attr = comment_params
     @suggestion = Suggestion.find(params[:suggestion_id])
-    @comment = @suggestion.comments.create(comment_params)
+    unless params[:comment_and_support].nil?
+      if email_has_supported?
+        flash[:danger] = 'Only one support per person is allowed.'
+        redirect_to suggestion_path(@suggestion) and return
+      end
+      comment_attr.merge!({support: true})
+    end
+    @comment = @suggestion.comments.create(comment_attr)
     if @comment.save
-      if WhiteListEmail.find_by(email: comment_params[:email]).nil?
+      if WhiteListEmail.find_by(email: comment_attr[:email]).nil?
         CommentMailer.comment_validation_email(@comment).deliver_later
         flash[:info] = 'In a few moments you will receive an email to confirm your comment.'
       else
@@ -53,6 +61,9 @@ class CommentsController < ApplicationController
   end
 
   private
+    def email_has_supported?
+      @suggestion.comments.where(email: comment_params[:email], support: true).count > 0
+    end
     def set_comment
       @comment = Comment.find(params[:id])
     end

@@ -15,7 +15,7 @@
         <li><i class="glyphicon glyphicon-user"></i> <%= @suggestion.author %></li>
         <li><i class="glyphicon glyphicon-calendar"></i> <%= suggestion_presenter.created_at %></li>
         <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(@comments.size, 'Comment') %></li>
-        <!-- <li><i class="glyphicon glyphicon-share"></i> 14 Shares</li> -->
+        <li><i class="glyphicon glyphicon-edit"></i> <%= pluralize(suggestion_presenter.supporters, 'Support') %></li>
         <li class="pull-right">
           <ul class="list-inline">
             <li>Text size</li>

@@ -119,6 +119,17 @@ a {
   }
 }
 
+.btn-red {
+  color: #fff;
+  background-color: #D54113;
+  border-color: #A52903;
+  &:hover, &:focus {
+    color: #fff;
+    background-color: #A52903;
+    border-color: #801F01;
+  }
+}
+
 textarea.form-control {
   height: 150px;
 }
