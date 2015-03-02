@@ -1,7 +1,7 @@
 <%= javascript_include_tag 'suggestions.js', 'data-turbolinks-track' => true %>
 
-<% content_for :header_title, '<h2>Showing Suggestion</h2>'.html_safe %>
-<% content_for :header_description, 'If you think the suggestion is important, you can leave a comment or support it' %>
+<% content_for :header_title, "<h2>#{t('.header_title')}</h2>".html_safe %>
+<% content_for :header_description, t('.header_description') %>
 <% content_for :header_button, 'no' %>
 
 <% presenter @suggestion do |suggestion_presenter| %>
@@ -14,26 +14,24 @@
       <ul class="info list-inline">
         <li><i class="glyphicon glyphicon-user"></i> <%= @suggestion.author %></li>
         <li><i class="glyphicon glyphicon-calendar"></i> <%= suggestion_presenter.created_at %></li>
-        <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(@comments.size, 'Comment') %></li>
-        <li><i class="glyphicon glyphicon-edit"></i> <%= pluralize(suggestion_presenter.supporters, 'Support') %></li>
-        <li class="pull-right">
-          <ul class="list-inline">
-            <li>Text size</li>
-            <li><a href="#" id="decrease_text_size" class="zoom"><i class="glyphicon glyphicon-zoom-out"></i></a></li>
-            <li><a href="#" id="increase_text_size" class="zoom"><i class="glyphicon glyphicon-zoom-in"></i></a></li>
-          </ul>
-        </li>
+        <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(@comments.size, t('.comment')) %></li>
+        <li><i class="glyphicon glyphicon-edit"></i> <%= pluralize(suggestion_presenter.supporters, t('.support')) %></li>
       </ul>
       <div id="SuggestionComent">
         <p><%= simple_format(@suggestion.comment) %></p>
       </div>
-      <%= link_to 'Edit', edit_suggestion_path(@suggestion), class: "btn btn-default" %>
+      <%= link_to t('.edit_button'), edit_suggestion_path(@suggestion), class: "btn btn-default" %>
+      <ul class="list-inline pull-right">
+        <li><a href="#" id="decrease_text_size" class="zoom"><i class="glyphicon glyphicon-zoom-out"></i></a></li>
+        <li><%= t('.text_size') %></li>
+        <li><a href="#" id="increase_text_size" class="zoom"><i class="glyphicon glyphicon-zoom-in"></i></a></li>
+      </ul>
     </div>
     
     <% if suggestion_presenter.has_images? %>
     <div class="box">
       <div class="title">
-        <h3>Images</h3>
+        <h3><%= t('.images_title') %></h3>
       </div>
       <% if suggestion_presenter.has_image1? %>
         <% image_url = @imageManager.get_image_url(@suggestion.image1_id, 800, 600) %>
@@ -50,7 +48,7 @@
     <% if suggestion_presenter.has_map? %>
     <div class="box">
       <div class="title">
-        <h3>Geolocation</h3>
+        <h3><%= t('.geolocation_title') %></h3>
       </div>
       <div id="map-canvas-show" data-lat="<%= @suggestion.latitude %>", data-lng="<%= @suggestion.longitude %>" style="width: 100%; height: 400px;"></div>
     </div>
@@ -58,14 +56,14 @@
 
     <!-- Show comments -->
     <% if suggestion_presenter.has_comments? %>
-      <h3>Comments</h3>
+      <h3><%= t('.comments_title') %></h3>
       <hr>
       <%= render @comments %>
     <% end %>
   </div>
   <div class="col-xs-4">
     <!-- Comments form -->
-    <h3>Add a comment</h3>
+    <h3><%= t('.add_comment_title') %></h3>
     <%= render 'comments/form' %>
   </div>
 </div>

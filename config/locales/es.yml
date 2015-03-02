@@ -1,0 +1,90 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+es:
+  header:
+    title: "Buzón Ciudadano"
+    description: "Deja tus comentarios, preguntas, peticiones y quejas"
+    new_suggestion: "Nueva Sugerencia"
+    new_suggestion_button: "Publica una Sugerencia"
+    search: "Búsqueda"
+  will_paginate:
+    previous_label: "Anterior"
+    next_label: "Siguiente"
+  suggestions:
+    index:
+      comment: "Comentario"
+      support: "Firma"
+    show:
+      header_title: "Sugerencia"
+      header_description: "Si piensas que la sugerencia es importante, deja una firma o un comentario"
+      comment: "Comentario"
+      support: "Firma"
+      images_title: "Imágenes"
+      geolocation_title: "Geolocalización"
+      comments_title: "Comentarios"
+      add_comment_title: "Deja un comentario"
+      edit_button: "Editar"
+      text_size: "Tamaño texto"
+    new:
+      header_title: "Nueva Sugerencia"
+      header_description: "Crea una nueva sugerencia sobre un problema, una pregunta, una solicitud... o cualquier cosa que creas que es importante para tu ciudad"
+      new_suggestion_title: "Nueva Sugerencia"
+    form:
+      title_field: "Título"
+      author_field: "Autor"
+      email_field: "Email"
+      comment_field: "Comentario"
+      required_placeholder: "Obligatorio"
+      author_placeholder: "Si se deja en blanco, la sugerencia se publicará como anónima"
+      upload_images_title: "Adjuntar Imágenes"
+      upload_images_description: "Si lo deseas puedes adjuntar imágenes que aporten más información a la sugerencia."
+      select_image_button: "Seleccionar imagen"
+      change_button: "Modificar"
+      remove_button: "Eliminar"
+      geolocation_title: "Geolocaliza la sugerencia"
+      search_placeholder: "Buscar dirección"
+      clear_marker_button: "Quitar Marca"
+      geolocation_description: "Pon una marca haciendo click en el mapa o busca una dirección para geolocalizar la sugerencia. Si no quieres geolocalizar la sugerencia elimina la marca del mapa."
+      create_suggestion_button: "Publicar Sugerencia"
+      back_button: "Volver"
+    create:
+      flash_create_ok: "La sugerencia ha sido publicada"
+      flash_email_info: "En breves momentos recibirá un email para confirmar su sugerencia"
+    update:
+      flash_update_ok: "La sugerencia ha sido actualizada"
+    destroy:
+      flash_destroy_ok: "La sugerencia ha sido eliminada"
+  comments:
+    form:
+      name_field: "Nombre"
+      email_field: "Email"
+      comment_field: "Comentario"
+      comment_button: "Comenta"
+      comment_and_support_button: "Firma y comenta"
+    comment:
+      delete_comment_link: "Eliminar Comentario"
+    create:
+      flash_support_error: "Solo se permite una firma por persona"
+      flash_create_ok: "El comentario ha sido publicado"
+      flash_email_info: "En breves momentos recibirá un email para confirmar su comentario"
+    destroy:
+      flash_destroy_ok: "El comentario ha sido eliminado"

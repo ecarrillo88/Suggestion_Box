@@ -1,23 +1,61 @@
-<%= form_for(@suggestion) do |f| %>
+<%= form_for @suggestion, html: { multipart: :true } do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title, class: "form-control" %>
+    <%= f.label t('.title_field') %><br>
+    <%= f.text_field :title, placeholder: t('.required_placeholder'), class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :author %><br>
-    <%= f.text_field :author, class: "form-control" %>
+    <%= f.label t('.author_field') %><br>
+    <%= f.text_field :author, placeholder: t('.author_placeholder'), class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, class: "form-control" %>
+    <%= f.label t('.email_field') %><br>
+    <%= f.text_field :email, placeholder: t('.required_placeholder'), class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_area :comment, class: "form-control" %>
+    <%= f.label t('.comment_field') %><br>
+    <%= f.text_area :comment, placeholder: t('.required_placeholder'), class: "form-control" %>
   </div>
+  <%= f.hidden_field :latitude  %>
+  <%= f.hidden_field :longitude %>
+  <br>
+  
+  <h3><%= t('.upload_images_title') %></h3>
+  <p><%= t('.upload_images_description') %></p>
+  <div class="fileinput fileinput-new" data-provides="fileinput">
+    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+    <div>
+      <span class="btn btn-default btn-file"><span class="fileinput-new"><%= t('.select_image_button') %></span><span class="fileinput-exists"><%= t('.change_button') %></span><input type="file" name="image1_id" id="image1_id"></span>
+      <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_button') %></a>
+    </div>
+  </div>
+  
+  <div class="fileinput fileinput-new" data-provides="fileinput">
+    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+    <div>
+      <span class="btn btn-default btn-file"><span class="fileinput-new"><%= t('.select_image_button') %></span><span class="fileinput-exists"><%= t('.change_button') %></span><input type="file" name="image2_id" id="image2_id"></span>
+      <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_button') %></a>
+    </div>
+  </div>
+  <br>
+
+  <h3><%= t('.geolocation_title') %></h3>
+  <p><%= t('.geolocation_description') %></p>
+    
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="<%= t('.search_placeholder') %>" name="address" id="address">
+    <div class="input-group-btn">
+      <button id="search-address" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+      <input id="clear-marker" class="btn btn-default" type="button" value="<%= t('.clear_marker_button') %>">
+    </div>
+  </div>
+
+  <div id="map-canvas-edit" style='width: 100%; height: 400px;'></div>
+    
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit t('.create_suggestion_button'), class: "btn btn-red"%>
+    <%= button_to t('.back_button'), suggestions_path, class: "btn btn-default" %>
   </div>
 <% end %>

@@ -9,6 +9,6 @@
   <div class="text">
     <%= simple_format(comment.text) %>
   </div>
-  <p><%= link_to 'Delete Comment', [comment.suggestion, comment], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <p><%= link_to t('.delete_comment_link'), [comment.suggestion, comment], method: :delete, data: { confirm: 'Are you sure?' } %></p>
   <hr>
 </div>

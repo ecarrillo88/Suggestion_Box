@@ -11,16 +11,16 @@ RSpec.feature "CreateComments", type: :feature do
   end
   
   scenario 'Create a new comment' do
-    visit suggestion_path(@suggestion)
-    expect(page).to have_text 'Showing Suggestion'
+    visit suggestion_path(@suggestion, locale: :en)
+    expect(page).to have_text I18n.t('suggestions.show.header_title')
     expect(page).to have_text 'Awesome Suggestion'
 
-    fill_in 'Name',    with: 'Invisible Woman'
-    fill_in 'Email',   with: 'SusanStorm@email.com'
-    fill_in 'Comment', with: 'Aenean commodo ligula eget dolor'
-    click_button 'Comment'
+    fill_in I18n.t('comments.form.name_field'),    with: 'Invisible Woman'
+    fill_in I18n.t('comments.form.email_field'),   with: 'SusanStorm@email.com'
+    fill_in I18n.t('comments.form.comment_field'), with: 'Aenean commodo ligula eget dolor'
+    click_button I18n.t('comments.form.comment_button')
 
-    expect(page).to have_text 'Showing Suggestion'
+    expect(page).to have_text I18n.t('suggestions.show.header_title')
     expect(page).to have_text 'Awesome Suggestion'
     expect(page).to have_text 'Aenean commodo ligula eget dolor'
   end

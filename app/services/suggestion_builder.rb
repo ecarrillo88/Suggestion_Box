@@ -16,11 +16,11 @@ class SuggestionBuilder
     if @suggestion_hash[:save]
       if in_whiteList?
         @suggestion.update(visible: true)
-        @suggestion_hash[:msg] = 'Suggestion was successfully published.'
+        @suggestion_hash[:msg] = I18n.t('suggestions.create.flash_create_ok')
       else
         @suggestion.update(token_validation: create_token)
         send_validation_email
-        @suggestion_hash[:msg] = 'In a few moments you will receive an email to confirm the suggestion.'
+        @suggestion_hash[:msg] = I18n.t('suggestions.create.flash_email_info')
       end
     end
     @suggestion_hash[:suggestion] = @suggestion

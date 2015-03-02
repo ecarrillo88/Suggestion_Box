@@ -33,7 +33,7 @@ class SuggestionsController < ApplicationController
 
   def update
       if @suggestion.update(suggestion_params)
-        flash[:info] = 'Suggestion was successfully updated'
+        flash[:info] = t('.flash_update_ok')
         redirect_to @suggestion
       else
         render :edit
@@ -42,7 +42,7 @@ class SuggestionsController < ApplicationController
 
   def destroy
     @suggestion.destroy
-    flash[:info] = 'Suggestion was successfully destroyed'
+    flash[:info] = t('.flash_destroy_ok')
     redirect_to suggestions_url
   end
   

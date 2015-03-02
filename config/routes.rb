@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
-  resources :suggestions do
-    resources :comments
+  scope "(:locale)", locale: /es|en/ do
+    resources :suggestions do
+      resources :comments
+    end
+    
+    root to: 'suggestions#index'
+    get      '/suggestions/validation/:token/' => 'suggestions#validation'
+    get      '/comment/validation/:email/'     => 'comments#validation'
   end
-  
-  root to: 'suggestions#index'
-  get      '/suggestions/validation/:token/' => 'suggestions#validation'
-  get      '/comment/validation/:email/'     => 'comments#validation'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -10,8 +10,8 @@
           <ul class="list-inline">
             <li><i class="glyphicon glyphicon-user"></i> <%= suggestion.author %></li>
             <li><i class="glyphicon glyphicon-calendar"></i> <%= suggestion_presenter.created_at %></li>
-            <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(suggestion_presenter.comments, 'Comment') %></li>
-            <li><i class="glyphicon glyphicon-edit"></i> <%= pluralize(suggestion_presenter.supporters, 'Support') %></li>
+            <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(suggestion_presenter.comments, t('.comment')) %></li>
+            <li><i class="glyphicon glyphicon-edit"></i> <%= pluralize(suggestion_presenter.supporters, t('.support')) %></li>
           </ul>
         </div>
       </div>

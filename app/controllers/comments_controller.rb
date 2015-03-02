@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     @suggestion = Suggestion.find(params[:suggestion_id])
     unless params[:comment_and_support].nil?
       if email_has_supported?
-        flash[:danger] = 'Only one support per person is allowed.'
+        flash[:danger] = t('.flash_support_error')
         redirect_to suggestion_path(@suggestion) and return
       end
       comment_attr.merge!({support: true})
@@ -24,10 +24,10 @@ class CommentsController < ApplicationController
     if @comment.save
       if WhiteListEmail.find_by(email: comment_attr[:email]).nil?
         CommentMailer.comment_validation_email(@comment).deliver_later
-        flash[:info] = 'In a few moments you will receive an email to confirm your comment.'
+        flash[:info] = t('.flash_email_info')
       else
         @comment.update(visible: true)
-        flash[:info] = 'Comment was successfully published.'
+        flash[:info] = t('.flash_create_ok')
       end
       redirect_to suggestion_path(@suggestion)
     else
@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    flash[:info] = 'Comment was successfully destroyed.'
+    flash[:info] = t('.flash_destroy_ok')
     redirect_to @comment.suggestion
   end
   

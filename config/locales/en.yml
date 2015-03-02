@@ -20,4 +20,71 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  header:
+    title: "Suggestion Box"
+    description: "Drop your comments, questions, requests and complaints"
+    new_suggestion: "New Suggestion"
+    new_suggestion_button: "Create a new Suggestion"
+    search: "Search"
+  will_paginate:
+    previous_label: "Previous"
+    next_label: "Next"
+  suggestions:
+    index:
+      comment: "Comment"
+      support: "Support"
+    show:
+      header_title: "Showing Suggestion"
+      header_description: "If you think the suggestion is important, you can leave a comment or support it"
+      comment: "Comentario"
+      support: "Firma"
+      images_title: "Images"
+      geolocation_title: "Geolocation"
+      comments_title: "Comments"
+      add_comment_title: "Add a comment"
+      edit_button: "Edit"
+      text_size: "Text size"
+    new:
+      header_title: "New Suggestion"
+      header_description: "Create a new suggestion about a problem, a question, a request... or anything you think is important for your city"
+      new_suggestion_title: "New Suggestion"
+    form:
+      title_field: "Title"
+      author_field: "Author"
+      email_field: "Email"
+      comment_field: "Comment"
+      required_placeholder: "Required"
+      author_placeholder: "If left blank, the suggestion will be published as anonymous"
+      upload_images_title: "Upload images"
+      upload_images_description: "If you want you can upload images to provide more information to the suggestion."
+      select_image_button: "Select image"
+      change_button: "Change"
+      remove_button: "Remove"
+      geolocation_title: "Geolocate the suggestion"
+      search_placeholder: "Search address"
+      clear_marker_button: "Clear Marker"
+      geolocation_description: "Put a marker by clicking on the map or search address to geolocate the suggestion. If you do not want to geolocate the suggestion remove the map marker."
+      create_suggestion_button: "Create Suggestion"
+      back_button: "Back"
+    create:
+      flash_create_ok: "Suggestion was successfully published"
+      flash_email_info: "In a few moments you will receive an email to confirm the suggestion"
+    update:
+      flash_update_ok: "Suggestion was successfully updated"
+    destroy:
+      flash_destroy_ok: "Suggestion was successfully destroyed"
+  comments:
+    form:
+      name_field: "Name"
+      email_field: "Email"
+      comment_field: "Comment"
+      comment_button: "Comment"
+      comment_and_support_button: "Comment & Support"
+    comment:
+      delete_comment_link: "Delete Comment"
+    create:
+      flash_support_error: "Only one support per person is allowed"
+      flash_create_ok: "Comment was successfully published"
+      flash_email_info: "In a few moments you will receive an email to confirm your comment"
+    destroy:
+      flash_destroy_ok: "Comment was successfully destroyed"

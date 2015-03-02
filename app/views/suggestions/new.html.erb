@@ -1,76 +1,17 @@
 <%= javascript_include_tag 'suggestions.js', 'data-turbolinks-track' => true %>
 
-<% content_for :header_title, '<h2>New Suggestion</h2>'.html_safe %>
-<% content_for :header_description, 'Create a new suggestion about a problem, a question, a request... or anything you think is important for your city' %>
+<% content_for :header_title, "<h2>#{t('.header_title')}</h2>".html_safe %>
+<% content_for :header_description, t('.header_description') %>
 <% content_for :header_button, 'no' %>
 
 <div class="row">
   <div class="col-xs-12">
   	<div class="box">
     <div class="title">
-      <h2>New Suggestion</h2>
+      <h2><%= t('.new_suggestion_title') %></h2>
     </div>
     <br>
-    <%= form_for @suggestion, html: { multipart: :true } do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-
-      <div class="field">
-        <%= f.label :title %><br>
-        <%= f.text_field :title, placeholder: "Required", class: "form-control" %>
-      </div>
-      <div class="field">
-        <%= f.label :author %><br>
-        <%= f.text_field :author, placeholder: "If left blank, the suggestion will be published as anonymous" ,class: "form-control" %>
-      </div>
-      <div class="field">
-        <%= f.label :email %><br>
-        <%= f.text_field :email, placeholder: "Required", class: "form-control" %>
-      </div>
-      <div class="field">
-        <%= f.label :comment %><br>
-        <%= f.text_area :comment, placeholder: "Required", class: "form-control" %>
-      </div>
-      <%= f.hidden_field :latitude  %>
-      <%= f.hidden_field :longitude %>
-      <br>
-      
-      <h3>Upload images</h3>
-      <div class="fileinput fileinput-new" data-provides="fileinput">
-        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-        <div>
-          <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="image1_id" id="image1_id"></span>
-          <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-        </div>
-      </div>
-      
-      <div class="fileinput fileinput-new" data-provides="fileinput">
-        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-        <div>
-          <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="image2_id" id="image2_id"></span>
-          <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-        </div>
-      </div>
-      <br>
-
-      <h3>Geolocate the suggestion</h3>
-      <p>Put a marker by clicking on the map or search address to geolocate the suggestion. If you do not want to geolocate the suggestion remove the map marker.</p>
-    
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search" name="address" id="address">
-        <div class="input-group-btn">
-          <button id="search-address" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
-          <input id="clear-marker" class="btn btn-default" type="button" value="Clear Marker">
-        </div>
-      </div>
-
-      <div id="map-canvas-edit" style='width: 100%; height: 400px;'></div>
-    
-      <br>
-      <div class="actions">
-        <%= f.submit class: "btn btn-default"%>
-        <%= button_to 'Back', suggestions_path, class: "btn btn-default" %>
-      </div>
-    <% end %>
+    <%= render 'suggestions/form' %>
     </div>
   </div>
 </div>
