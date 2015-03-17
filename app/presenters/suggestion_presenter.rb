@@ -32,4 +32,8 @@ class SuggestionPresenter < BasePresenter
   def has_images?
     has_image1? || has_image2?
   end
+  
+  def activated?
+    suggestion.visible?
+  end
 end

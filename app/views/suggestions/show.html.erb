@@ -63,8 +63,10 @@
   </div>
   <div class="col-xs-4">
     <!-- Comments form -->
-    <h3><%= t('.add_comment_title') %></h3>
-    <%= render 'comments/form' %>
+    <% if suggestion_presenter.activated? %>
+      <h3><%= t('.add_comment_title') %></h3>
+      <%= render 'comments/form' %>
+    <% end %>
   </div>
 </div>
 <% end %>
