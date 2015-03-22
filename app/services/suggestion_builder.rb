@@ -2,8 +2,8 @@ require 'image_manager.rb'
 
 class SuggestionBuilder
   
-  def initialize
-    @image_manager = ImageManager.new
+  def initialize(manager_image = nil)
+    @image_manager = manager_image || ImageManager.new
     @suggestion_hash = {}
   end
   
