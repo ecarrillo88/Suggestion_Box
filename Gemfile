@@ -25,6 +25,8 @@ gem 'cloudinary'
 gem 'bootstrap-sass', '3.3.3'
 # This gem integrates the Twitter Bootstrap pagination component with the will_paginate pagination gem
 gem 'will_paginate-bootstrap'
+# Call JavaScript code and manipulate JavaScript objects from Ruby. Call Ruby code and manipulate Ruby objects from JavaScript.
+gem 'therubyracer', '~> 0.12.1'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
