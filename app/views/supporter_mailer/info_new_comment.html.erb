@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <% supporters = @suggestion.comments.where(visible: true, support: true).size %>
+    <h1>Nuevo Comentario</h1>
+    <p>Nuevo comentario en la sugerencia "<i><%= @suggestion.title %></i>" (<%= pluralize(supporters, 'Firma') %>)</p>
+    <p><b>Nombre:</b> <%= @comment.author %></p>
+    <p><b>Comentario:</b> <%= @comment.text %></p>
+    <p><%= link_to 'Ir a la sugerencia', @url %></p>
+    <br>
+    <p>Gracias por tu apoyo</p>
+    <br>
+    <p>--------------------------------------------------------------</p>
+    <br>
+    <h1>New comment</h1>
+    <p>New comment on the suggestion "<i><%= @suggestion.title %></i>" (<%= pluralize(supporters, 'Support') %>)</p>
+    <p><b>Name:</b> <%= @comment.author %></p>
+    <p><b>Comment:</b> <%= @comment.text %></p>
+    <p><%= link_to 'Go to suggestion', @url %></p>
+    <br>
+    <p>Thanks for your support</p>
+  </body>
+</html>
