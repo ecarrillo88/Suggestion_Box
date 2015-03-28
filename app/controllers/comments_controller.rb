@@ -27,6 +27,7 @@ class CommentsController < ApplicationController
         flash[:info] = t('.flash_email_info')
       else
         @comment.update(visible: true)
+        SupporterMailer.info_for_supporters(@comment).deliver_later if @comment.support
         send_info_email_to_supporters
         flash[:info] = t('.flash_create_ok')
       end
@@ -51,6 +52,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by(email: email)
     unless @comment.nil?
       @comment.update(visible: true)
+      SupporterMailer.info_for_supporters(@comment).deliver_later if @comment.support
       send_info_email_to_supporters
       # Add email to white list
       if WhiteListEmail.find_by(email: email).nil?
