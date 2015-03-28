@@ -26,9 +26,9 @@ class CommentsController < ApplicationController
         CommentMailer.comment_validation_email(@comment).deliver_later
         flash[:info] = t('.flash_email_info')
       else
-        @comment.update(visible: true)
         SupporterMailer.info_for_supporters(@comment).deliver_later if @comment.support
-        send_info_email_to_supporters
+        send_info_email_to_supporters(@suggestion)
+        @comment.update(visible: true)
         flash[:info] = t('.flash_create_ok')
       end
       redirect_to suggestion_path(@suggestion)
@@ -51,9 +51,9 @@ class CommentsController < ApplicationController
     email = Base64.decode64(params[:email])
     @comment = Comment.find_by(email: email)
     unless @comment.nil?
-      @comment.update(visible: true)
       SupporterMailer.info_for_supporters(@comment).deliver_later if @comment.support
-      send_info_email_to_supporters
+      send_info_email_to_supporters(@comment.suggestion)
+      @comment.update(visible: true)
       # Add email to white list
       if WhiteListEmail.find_by(email: email).nil?
         WhiteListEmail.new(email: email).save
@@ -69,13 +69,14 @@ class CommentsController < ApplicationController
       @suggestion.comments.where(email: comment_params[:email], support: true).count > 0
     end
     
-    def send_info_email_to_supporters
+    def send_info_email_to_supporters(suggestion)
       email_set = Set.new
-      @suggestion.comments.each do |comment|
-        email_set.add(comment.email) if comment.support == true
+      suggestion.comments.each do |comment|
+        email_set.add(comment.email) if comment.support
       end
+      email_set.delete(@comment.email)
       email_set.each do |email|
-        SupporterMailer.info_new_comment(@suggestion, @comment, email).deliver_later
+        SupporterMailer.info_new_comment(suggestion, @comment, email).deliver_later
       end
     end
     
