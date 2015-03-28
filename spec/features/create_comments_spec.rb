@@ -1,15 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature "CreateComments", type: :feature do
-  
+
   background do
-    @suggestion = Suggestion.create(title:   'Awesome Suggestion',
-                                    author:  'Mister Fantastic',
-                                    email:   'ReedRichards@email.com',
-                                    comment: 'Lorem ipsum dolor sit amet')
+    @suggestion = Suggestion.create(title:   'Awesome Suggestion', author:  'Mister Fantastic', email:   'ReedRichards@email.com', comment: 'Lorem ipsum dolor sit amet', visible: true)
     WhiteListEmail.new(email: 'SusanStorm@email.com').save
   end
-  
+
   scenario 'Create a new comment' do
     visit suggestion_path(@suggestion, locale: :en)
     expect(page).to have_text I18n.t('suggestions.show.header_title')
