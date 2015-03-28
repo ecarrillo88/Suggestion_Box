@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Buzón Ciudadano</h1>
+    <p>Hola <%= @comment.author %>,</p>
+    <p>Gracias por dar tu apoyo firmando la sugerencia. Con tu ayuda la visibilidad de la sugerencia aumentará y conseguirá mayor presión social.</p>
+    <p>Te informaremos sobre los nuevos comentarios que se publiquen para que estes al día de la evloución de la sugerencia.</p>
+    <p><%= link_to 'Ir a la sugerencia', @url %></p>
+    <br>
+    <p>Gracias por tu apoyo</p>
+    <br>
+    <p>--------------------------------------------------------------</p>
+    <br>
+    <h1>Suggestion Box</h1>
+    <p>Hello <%= @comment.author %>,</p>
+    <p>Thank you for your support. With your help, the suggestion increase visibility and achieve greater social pressure.</p>
+    <p>We will notify about new comments are posted to keep you informed about the progress of suggestion.</p>
+    <p><%= link_to 'Go to suggestion', @url %></p>
+    <br>
+    <p>Thanks for your support</p>
+  </body>
+</html>
