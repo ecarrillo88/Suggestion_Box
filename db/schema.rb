@@ -11,17 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227164541) do
+ActiveRecord::Schema.define(version: 20150328194126) do
+
+  create_table "city_council_domains", force: :cascade do |t|
+    t.string   "domain"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string   "author"
     t.text     "text"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "suggestion_id"
     t.string   "email"
-    t.boolean  "visible",       default: false
-    t.boolean  "support",       default: false
+    t.boolean  "visible",            default: false
+    t.boolean  "support",            default: false
+    t.boolean  "city_council_staff", default: false
   end
 
   add_index "comments", ["suggestion_id"], name: "index_comments_on_suggestion_id"

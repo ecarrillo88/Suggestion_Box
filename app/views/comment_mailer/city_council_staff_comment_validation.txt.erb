@@ -1,0 +1,21 @@
+Buzón Ciudadano
+===============
+
+Hola <%= @comment.author %>,
+Gracias por tomarte la molestia de dejar un comentario en la sugerencia "<%= @comment.suggestion.title %>"
+Para validar el comentario y hacerlo visible haz click en el siguiente enlace:
+<%= link_to 'Enlace de validacion', @url %>
+
+Gracias por comentar
+
+---------------------------------
+
+Suggestion Box
+==============
+
+Hello <%= @comment.author %>,
+Thank you for taking the time to comment on the suggestion "<%= @comment.suggestion.title %>"
+To confirm your comment and make it visible click the following link:
+<%= link_to 'Validation link', @url %>
+
+Thanks for comment

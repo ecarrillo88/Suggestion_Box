@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
 
   validates :author, presence: true,
                      length: { maximum: 25 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-_.]+\.[a-z]+\z/i
   validates :email, presence: true,
                     format: { with: VALID_EMAIL_REGEX }
   validates :text, presence: :true

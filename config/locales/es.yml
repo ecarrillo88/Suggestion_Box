@@ -81,9 +81,11 @@ es:
       comment_button: "Comenta"
       comment_and_support_button: "Firma y comenta"
     comment:
+      city_council: "Ayuntamiento"
       delete_comment_link: "Eliminar Comentario"
     create:
       flash_support_error: "Solo se permite una firma por persona"
+      flash_city_council_staff_support_error: "El personal del ayuntamiento no puede firmar sugerencias"
       flash_create_ok: "El comentario ha sido publicado"
       flash_email_info: "En breves momentos recibirá un email para confirmar su comentario"
     destroy:

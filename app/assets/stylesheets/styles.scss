@@ -71,6 +71,29 @@ body {
   }
 }
 
+.comment-city-council-staff {
+  background: #FFFFA6;
+  border-style: dashed;
+  border-width: 2px;
+  .header {
+    .author {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .city-council-staff {
+      font-size: 13px;
+      color: #7b7f7f;
+    }
+    .date {
+      font-size: 13px;
+      color: #7b7f7f;
+    }
+  }
+  .text {
+    font-style: italic;
+  }
+}
+
 hr {
   color: #e1e5e5;
 }
