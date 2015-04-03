@@ -11,47 +11,16 @@ class CommentsController < ApplicationController
   end
 
   def create
-    comment_attr = comment_params
     @suggestion = Suggestion.find(params[:suggestion_id])
-    if is_city_council_staff?(comment_attr[:email])
-      if !params[:comment_and_support].nil?
-        flash[:danger] = t('.flash_city_council_staff_support_error')
-        redirect_to suggestion_path(@suggestion) and return
-      end
-      comment_attr.merge!({city_council_staff: true})
-      @comment = @suggestion.comments.create(comment_attr)
-      if @comment.save
-        CommentMailer.city_council_staff_comment_validation(@comment).deliver_later
-        flash[:info] = t('.flash_email_info')
-        redirect_to suggestion_path(@suggestion)
-      else
-        @comments = Suggestion.find(params[:suggestion_id]).comments
-        render 'suggestions/show'
-      end
+    comment_builder = CommentBuilder.new
+    flash_type, flash_msg, action = comment_builder.create(comment_params, @suggestion, params[:comment_and_support])
+    flash.now[flash_type] = t(flash_msg) unless flash_type.nil? || flash_msg.nil?
+    if action == 'redirect'
+      redirect_to @suggestion
     else
-      unless params[:comment_and_support].nil?
-        if email_has_supported?
-          flash[:danger] = t('.flash_support_error')
-          redirect_to suggestion_path(@suggestion) and return
-        end
-        comment_attr.merge!({support: true})
-      end
-      @comment = @suggestion.comments.create(comment_attr)
-      if @comment.save
-        if WhiteListEmail.find_by(email: comment_attr[:email]).nil?
-          CommentMailer.comment_validation_email(@comment).deliver_later
-          flash[:info] = t('.flash_email_info')
-        else
-          SupporterMailer.info_for_supporters(@comment).deliver_later if @comment.support
-          send_info_email_to_supporters(@suggestion)
-          @comment.update(visible: true)
-          flash[:info] = t('.flash_create_ok')
-        end
-        redirect_to suggestion_path(@suggestion)
-      else
-        @comments = Suggestion.find(params[:suggestion_id]).comments
-        render 'suggestions/show'
-      end
+      @comment = @suggestion.comments.last
+      @comments = Suggestion.find(@suggestion.id).comments
+      render 'suggestions/show'
     end
   end
 
@@ -82,14 +51,6 @@ class CommentsController < ApplicationController
   end
 
   private
-    def is_city_council_staff?(email)
-       CityCouncilDomain.where(domain: email.split('@').last).any?
-    end
-    
-    def email_has_supported?
-      @suggestion.comments.where(email: comment_params[:email], support: true).count > 0
-    end
-    
     def send_info_email_to_supporters(suggestion)
       email_set = Set.new
       suggestion.comments.each do |comment|
