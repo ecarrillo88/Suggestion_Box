@@ -90,3 +90,27 @@ en:
       flash_email_info: "In a few moments you will receive an email to confirm your comment"
     destroy:
       flash_destroy_ok: "Comment was successfully destroyed"
+  header_error_message: "It seems that some data is missing"
+  activerecord:
+    errors:
+      models:
+        suggestion:
+          attributes:
+            title:
+              blank: "Title is required"
+              too_long: "Title is too long (maximum is 150 characters)"
+            email:
+              blank: "Email is required"
+              invalid: "Invalid email format"
+            comment:
+              blank: "Comment is required"
+        comment:
+          attributes:
+            author:
+              blank: "Name is required"
+              too_long: "Name is too long (maximum is 25 characters)"
+            email:
+              blank: "Email is required"
+              invalid: "Invalid email format"
+            text:
+              blank: "Comment is required"

@@ -90,3 +90,27 @@ es:
       flash_email_info: "En breves momentos recibirá un email para confirmar su comentario"
     destroy:
       flash_destroy_ok: "El comentario ha sido eliminado"
+  header_error_message: "Parece que falta algún dato"
+  activerecord:
+    errors:
+      models:
+        suggestion:
+          attributes:
+            title:
+              blank: "El título es obligatorio"
+              too_long: "El título es demasiado largo (máximo 150 caracteres)"
+            email:
+              blank: "El email es obligatorio"
+              invalid: "Formato de email invalido"
+            comment:
+              blank: "El Comentario es obligatorio"
+        comment:
+          attributes:
+            author:
+              blank: "El Nombre es obligatorio"
+              too_long: "El nombre es demasiado largo (máximo 25 caracteres)"
+            email:
+              blank: "El Email es obligatorio"
+              invalid: "Formato de email invalido"
+            text:
+              blank: "El Comentario es obligatorio"

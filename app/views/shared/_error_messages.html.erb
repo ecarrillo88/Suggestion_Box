@@ -3,11 +3,11 @@
     <div class="alert alert-danger">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       <span class="sr-only">Error:</span>
-      The form contains <%= pluralize(object.errors.count, "error") %>.
+      <%= I18n.t('.header_error_message') %>
     </div>
       <ul>
-        <% object.errors.full_messages.each do |msg| %>
-          <li>* <%= msg %></li>
+        <% object.errors.values.flatten.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
   </div>
