@@ -4,7 +4,6 @@ class SuggestionBuilder
   
   def initialize(manager_image = nil)
     @image_manager = manager_image || ImageManager.new
-    @suggestion_hash = {}
   end
   
   def create (suggestion_params, img1, img2)
@@ -12,19 +11,15 @@ class SuggestionBuilder
     set_anonymous_author_if_left_blank
     upload_images_to_cloudinary(img1, img2)
     @suggestion = Suggestion.new(@suggestion_attr)
-    @suggestion_hash[:save] = @suggestion.save
-    if @suggestion_hash[:save]
+    if @suggestion.save
       if in_whiteList?
         @suggestion.update(visible: true)
-        @suggestion_hash[:msg] = I18n.t('suggestions.create.flash_create_ok')
       else
         @suggestion.update(token_validation: create_token)
         send_validation_email
-        @suggestion_hash[:msg] = I18n.t('suggestions.create.flash_email_info')
       end
     end
-    @suggestion_hash[:suggestion] = @suggestion
-    return @suggestion_hash
+    return @suggestion
   end
   
   private
@@ -54,5 +49,4 @@ class SuggestionBuilder
         @suggestion_attr[:image2_id] = image_hash['public_id']
       end
     end
-  
 end

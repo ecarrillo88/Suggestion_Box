@@ -11,16 +11,16 @@ RSpec.describe "Suggestion Builder tests" do
     builder.create(suggestion_params, 'image', nil)
   end
   
-  it "should fail to create a suggestion without title" do
+  it "should fail to create a suggestion without mandatory fields" do
     builder = SuggestionBuilder.new
-    suggestion_params = {title: nil, author: 'Anonymous', email: 'my_email@email.com', comment: 'New comment', latitude: nil, longitude: nil}
+    suggestion_params = {title: nil, author: 'Anonymous', email: nil, comment: nil, latitude: nil, longitude: nil}
     
-    suggestion_hash = builder.create(suggestion_params, nil, nil)
+    suggestion = builder.create(suggestion_params, nil, nil)
     
-    expect(suggestion_hash[:save]).to equal(false)
+    expect(suggestion.errors.any?).to equal(true)
   end
   
-  context "email in whielist" do
+  context "if my email is in whielist" do
     before(:each) do
       WhiteListEmail.new(email: 'email_validated@email.com').save
     end
@@ -29,23 +29,22 @@ RSpec.describe "Suggestion Builder tests" do
       builder = SuggestionBuilder.new
       suggestion_params = {title: 'New title', author: 'Anonymous', email: 'email_validated@email.com', comment: 'New comment', latitude: nil, longitude: nil}
       
-      suggestion_hash = builder.create(suggestion_params, nil, nil)
+      suggestion = builder.create(suggestion_params, nil, nil)
       
-      expect(suggestion_hash[:save]).to equal(true)
-      expect(suggestion_hash[:suggestion].visible).to equal(true)
-      expect(suggestion_hash[:msg]) == I18n.t('suggestions.create.flash_create_ok')
+      expect(suggestion.save).to equal(true)
+      expect(suggestion.visible).to equal(true)
     end
   end
   
-  context "email not in whitelist" do
+  context "if my email is not in whitelist" do
     it "should save the suggestion and not make it visible" do
       builder = SuggestionBuilder.new
       suggestion_params = {title: 'New title', author: 'Anonymous', email: 'email_validated@email.com', comment: 'New comment', latitude: nil, longitude: nil}
       
-      suggestion_hash = builder.create(suggestion_params, nil, nil)
+      suggestion = builder.create(suggestion_params, nil, nil)
       
-      expect(suggestion_hash[:save]).to equal(true)
-      expect(suggestion_hash[:suggestion].visible).to equal(false)
+      expect(suggestion.save).to equal(true)
+      expect(suggestion.visible).to equal(false)
     end
     
     it "should send a validation email" do
@@ -56,16 +55,7 @@ RSpec.describe "Suggestion Builder tests" do
       expect(SuggestionMailer).to receive(:suggestion_validation_email).with(an_instance_of(Suggestion)).and_return(message_delivery)
       expect(message_delivery).to receive(:deliver_later)
       
-      suggestion_hash =  builder.create(suggestion_params, nil, nil)
-    end
-    
-    it "should dislplay a message informing the validation email has been sent" do
-      builder = SuggestionBuilder.new
-      suggestion_params = {title: 'New title', author: 'Anonymous', email: 'email_validated@email.com', comment: 'New comment', latitude: nil, longitude: nil}
-      
-      suggestion_hash =  builder.create(suggestion_params, nil, nil)
-      
-      expect(suggestion_hash[:msg]) == (I18n.t('suggestions.create.flash_email_info'))
+      builder.create(suggestion_params, nil, nil)
     end
   end
 end

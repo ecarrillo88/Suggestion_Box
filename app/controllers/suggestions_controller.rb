@@ -21,14 +21,13 @@ class SuggestionsController < ApplicationController
 
   def create
     suggestion_builder = SuggestionBuilder.new
-    suggestion_hash = suggestion_builder.create(suggestion_params, params[:image1_id], params[:image2_id])
-    @suggestion = suggestion_hash[:suggestion]
-    if suggestion_hash[:save]
-      flash[:info] = suggestion_hash[:msg]
-      redirect_to @suggestion
-    else
-      render :new
-    end
+    @suggestion = suggestion_builder.create(suggestion_params, params[:image1_id], params[:image2_id])
+    
+    render :new and return if @suggestion.errors.any?
+    
+    flash[:info] = I18n.t('suggestions.create.flash_create_ok') if @suggestion.visible
+    flash[:info] = I18n.t('suggestions.create.flash_email_info') if !@suggestion.visible
+    redirect_to @suggestion
   end
 
   def update
