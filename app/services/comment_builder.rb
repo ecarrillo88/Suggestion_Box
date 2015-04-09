@@ -1,5 +1,6 @@
 class CommentBuilder
   class CityCouncilCannotSupport < StandardError; end
+  class OnlyOneSupportPerPersonIsAllowed < StandardError; end
   class ErrorSavingComment < StandardError; end
 
   def create(comment_params, suggestion, want_support)
@@ -16,38 +17,35 @@ class CommentBuilder
   private
 
   def create_city_council_staff_comment
-    raise CityCouncilCannotSupport if want_support?
-
+    raise CityCouncilCannotSupport if @want_support
+    
     @comment_attr.merge!({city_council_staff: true})
     @comment = @suggestion.comments.create(@comment_attr)
     if @comment.save
       send_city_council_staff_comment_validation_email
+      return @comment
     else
       raise ErrorSavingComment
     end
   end
 
   def create_comment
-    if want_support?
-      if email_has_supported?
-        return [:danger, '.flash_support_error', @suggestion, 'redirect']
-      end
+    if @want_support
+      raise OnlyOneSupportPerPersonIsAllowed if email_has_supported?
       @comment_attr.merge!({support: true})
     end
     @comment = @suggestion.comments.create(@comment_attr)
     if @comment.save
       if not_in_whitelist
         comment_validation_email
-        flash_msg = '.flash_email_info'
       else
         send_info_for_supporters_email
         send_info_email_to_supporters(@suggestion)
         @comment.update(visible: true)
-        flash_msg = '.flash_create_ok'
       end
-        return [:info, flash_msg, @suggestion, 'redirect']
+      return @comment
       else
-        return [nil, nil, nil, 'render']
+        raise ErrorSavingComment
       end
     end
 
@@ -85,8 +83,5 @@ class CommentBuilder
         SupporterMailer.info_new_comment(suggestion, @comment, email).deliver_later
       end
     end
-
-    def want_support?
-      !@want_support.nil?
-    end
+    
 end

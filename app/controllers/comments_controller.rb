@@ -13,14 +13,22 @@ class CommentsController < ApplicationController
   def create
     @suggestion = Suggestion.find(params[:suggestion_id])
     comment_builder = CommentBuilder.new
-    flash_type, flash_msg, action = comment_builder.create(comment_params, @suggestion, params[:comment_and_support])
-    flash.now[flash_type] = t(flash_msg) unless flash_type.nil? || flash_msg.nil?
-    if action == 'redirect'
+    begin
+      comment = comment_builder.create(comment_params, @suggestion, !params[:comment_and_support].nil?)
+    rescue CommentBuilder::OnlyOneSupportPerPersonIsAllowed
+      flash[:danger] = t('.flash_support_error')
       redirect_to @suggestion
-    else
+    rescue CommentBuilder::CityCouncilCannotSupport
+      flash[:danger] = t('.flash_city_council_staff_support_error')
+      redirect_to @suggestion
+    rescue CommentBuilder::ErrorSavingComment
       @comment = @suggestion.comments.last
       @comments = Suggestion.find(@suggestion.id).comments
       render 'suggestions/show'
+    else
+      flash[:info] = t('.flash_email_info') if comment.city_council_staff || !comment.visible
+      flash[:info] = t('.flash_create_ok')  if comment.visible
+      redirect_to @suggestion
     end
   end
 

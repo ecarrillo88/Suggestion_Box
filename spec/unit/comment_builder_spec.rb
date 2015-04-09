@@ -18,11 +18,10 @@ RSpec.describe "Comment Builder tests: " do
         it "should publish the comment" do
           comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor'}
 
-          flash_type, flash_msg, action = builder.create(comment_params, @suggestion, nil)
+          comment = builder.create(comment_params, @suggestion, nil)
 
-          expect(@suggestion.comments.last.author).to eq('Invisible Woman')
-          expect(@suggestion.comments.last.visible).to equal(true)
-          expect(I18n.t('comments.create'+flash_msg)).to eq(I18n.t('comments.create.flash_create_ok'))
+          expect(comment.author).to eq('Invisible Woman')
+          expect(comment.visible).to equal(true)
         end
 
         it "should send a email informing the other supporters about the new comment" do
@@ -37,18 +36,17 @@ RSpec.describe "Comment Builder tests: " do
       end
 
       context "if my email is not in whitelist" do
-        it "should send a validation email" do
+        it "should send a email validation" do
           message_delivery = double(ActionMailer::MessageDelivery)
           comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor'}
 
           expect(CommentMailer).to receive(:comment_validation_email).with(an_instance_of(Comment)).and_return(message_delivery)
           expect(message_delivery).to receive(:deliver_later)
 
-          flash_type, flash_msg, action = builder.create(comment_params, @suggestion, nil)
+          comment = builder.create(comment_params, @suggestion, nil)
 
-          expect(@suggestion.comments.last.author).to eq('Invisible Woman')
-          expect(@suggestion.comments.last.visible).to equal(false)
-          expect(I18n.t('comments.create'+flash_msg)).to eq(I18n.t('comments.create.flash_email_info'))
+          expect(comment.author).to eq('Invisible Woman')
+          expect(comment.visible).to equal(false)
         end
       end
     end
@@ -64,12 +62,10 @@ RSpec.describe "Comment Builder tests: " do
             builder.create(comment_params, @suggestion, 'support suggestion')
           end
 
-          it "should display an error message" do
+          it "should raise an exceptio" do
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.'}
 
-            flash_type, flash_msg, action = builder.create(comment_params, @suggestion, 'support suggestion')
-
-            expect(I18n.t('comments.create'+flash_msg)).to eq(I18n.t('comments.create.flash_support_error'))
+            expect { builder.create(comment_params, @suggestion, 'support suggestion') }.to raise_error CommentBuilder::OnlyOneSupportPerPersonIsAllowed
           end
         end
 
@@ -77,12 +73,11 @@ RSpec.describe "Comment Builder tests: " do
           it "should publish the comment" do
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor'}
 
-            flash_type, flash_msg, action = builder.create(comment_params, @suggestion, 'support suggestion')
+            comment = builder.create(comment_params, @suggestion, 'support suggestion')
 
-            expect(@suggestion.comments.last.author).to eq('Invisible Woman')
-            expect(@suggestion.comments.last.support).to equal(true)
-            expect(@suggestion.comments.last.visible).to equal(true)
-            expect(I18n.t('comments.create'+flash_msg)).to eq(I18n.t('comments.create.flash_create_ok'))
+            expect(comment.author).to eq('Invisible Woman')
+            expect(comment.support).to equal(true)
+            expect(comment.visible).to equal(true)
           end
 
           it "should inform me about the implications of supporting the suggestion" do
@@ -112,63 +107,63 @@ RSpec.describe "Comment Builder tests: " do
       end
 
       context "if my email is not in whitelist" do
-        it "should send a validation email" do
+        it "should send a email validation" do
           message_delivery = double(ActionMailer::MessageDelivery)
           comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor'}
 
           expect(CommentMailer).to receive(:comment_validation_email).with(an_instance_of(Comment)).and_return(message_delivery)
           expect(message_delivery).to receive(:deliver_later)
 
-          flash_type, flash_msg, action = builder.create(comment_params, @suggestion, 'support suggestion')
+          comment = builder.create(comment_params, @suggestion, 'support suggestion')
 
-          expect(@suggestion.comments.last.author).to eq('Invisible Woman')
-          expect(@suggestion.comments.last.visible).to equal(false)
-          expect(I18n.t('comments.create'+flash_msg)).to eq(I18n.t('comments.create.flash_email_info'))
+          expect(comment.author).to eq('Invisible Woman')
+          expect(comment.visible).to equal(false)
         end
       end
     end
   end
 
-    context "As a city council staff I want to" do
-      before do
-        CityCouncilDomain.new(domain: 'city_council.gov').save
+  context "As a city council staff I want to" do
+    before do
+      CityCouncilDomain.new(domain: 'city_council.gov').save
+    end
+
+    context "comment a suggestion" do
+      it 'sends an email to the author' do
+        message_delivery = double(ActionMailer::MessageDelivery)
+        comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.'}
+
+        expect(CommentMailer).to receive(:city_council_staff_comment_validation).with(an_instance_of(Comment)).and_return(message_delivery)
+        expect(message_delivery).to receive(:deliver_later)
+
+        builder.create(comment_params, @suggestion, nil)
       end
 
-      context "comment a suggestion" do
-        it 'sends an email to the author' do
-          message_delivery = double(ActionMailer::MessageDelivery)
-          comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.'}
+      it "should publish the suggestion" do
+        comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.'}
 
-          expect(CommentMailer).to receive(:city_council_staff_comment_validation).with(an_instance_of(Comment)).and_return(message_delivery)
-          expect(message_delivery).to receive(:deliver_later)
+        comment = builder.create(comment_params, @suggestion, nil)
 
-          builder.create(comment_params, @suggestion, nil)
-        end
-
-        it "should publish the suggestion" do
-          comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.'}
-
-          builder.create(comment_params, @suggestion, nil)
-
-          expect(@suggestion.comments.last.author).to eq('The Thing')
-          expect(@suggestion.comments.last.city_council_staff).to equal(true)
-        end
-      end
-
-      context "if comments contains error" do
-        it "raise an exception" do
-          comment_params = {email: 'BenjaminGrimm@city_council.gov'}
-
-          expect { builder.create(comment_params, @suggestion, nil) }.to raise_error CommentBuilder::ErrorSavingComment
-        end
-      end
-
-      context "support a suggestion" do
-        it "raise an exception" do
-          comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.'}
-
-          expect { builder.create(comment_params, @suggestion, 'support suggestion') }.to raise_error CommentBuilder::CityCouncilCannotSupport
-        end
+        expect(comment.author).to eq('The Thing')
+        expect(comment.city_council_staff).to equal(true)
       end
     end
+
+    context "if comments contains error" do
+      it "should raise an exception" do
+        comment_params = {email: 'BenjaminGrimm@city_council.gov'}
+
+        expect { builder.create(comment_params, @suggestion, nil) }.to raise_error CommentBuilder::ErrorSavingComment
+      end
+    end
+
+    context "support a suggestion" do
+      it "should raise an exception" do
+        comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.'}
+
+        expect { builder.create(comment_params, @suggestion, 'support suggestion') }.to raise_error CommentBuilder::CityCouncilCannotSupport
+      end
+    end
+  end
+  
 end
