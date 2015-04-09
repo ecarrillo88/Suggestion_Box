@@ -158,6 +158,13 @@ a {
   }
 }
 
+@-moz-document url-prefix() {
+  .position-sticky {
+    position: sticky;
+    top: 60px;
+  }
+}
+
 textarea.form-control {
   height: 150px;
 }

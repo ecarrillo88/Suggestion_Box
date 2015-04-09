@@ -1,8 +1,7 @@
 <% @suggestions.each do |suggestion| %>
   <% presenter suggestion do |suggestion_presenter| %>
     <div class="row">
-      <div class="col-xs-12">
-      	<div class="box">
+      <div class="col-md-12 box">
           <div class="title">
             <h2><%= link_to suggestion.title, suggestion, class: 'stealth' %></h2>
           </div>
@@ -13,7 +12,6 @@
             <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(suggestion_presenter.comments, t('.comment')) %></li>
             <li><i class="glyphicon glyphicon-edit"></i> <%= pluralize(suggestion_presenter.supporters, t('.support')) %></li>
           </ul>
-        </div>
       </div>
     </div>
   <% end %>

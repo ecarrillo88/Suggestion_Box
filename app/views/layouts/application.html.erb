@@ -12,30 +12,12 @@
 <body>
 <%= render 'layouts/header' %>
 
-<div class="container-fluid">
-  
-  <!--left-->
-  <div class="col-sm-3">
-  <!-- <%= render 'layouts/left_sidebar' %> -->
-  <br>
+<div class="container">
+  <div class="col-md-10 col-md-offset-1">
+    <%= render partial: "shared/flash_messages", flash: flash %> 
+    <%= yield %>
   </div>
-  <!--/left-->
-  
-  <!--center-->
-  <div class="col-sm-6">
-  <%= render partial: "shared/flash_messages", flash: flash %> 
-  <%= yield %>
-  </div>
-  <!--/center-->
-
-  <!--right-->
-  <div class="col-sm-3">
-  <!-- <%= render 'layouts/right_sidebar' %> -->
-  <br>
-  </div>
-  <!--/right-->
 </div>
-<!--/container-fluid-->
 
 <%= render 'layouts/footer' %>
 </body>
