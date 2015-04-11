@@ -44,11 +44,11 @@
         <h3><%= t('.images_title') %></h3>
       </div>
       <% if suggestion_presenter.has_image1? %>
-        <% image_url = @imageManager.get_image_url(@suggestion.image1_id, 800, 600) %>
+        <% image_url = @image_manager.get_image_url(@suggestion.image1_id, 800, 600) %>
         <%= link_to cl_image_tag(@suggestion.image1_id, width: 200, height: 150), image_url.to_s, class: 'fancybox', rel: 'group' %>
       <% end %>
       <% if suggestion_presenter.has_image2? %>
-        <% image_url = @imageManager.get_image_url(@suggestion.image2_id, 800, 600) %>
+        <% image_url = @image_manager.get_image_url(@suggestion.image2_id, 800, 600) %>
         <%= link_to cl_image_tag(@suggestion.image2_id, width: 200, height: 150), image_url.to_s, class: 'fancybox', rel: 'group' %>
       <% end %>
       <br>

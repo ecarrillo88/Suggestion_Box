@@ -2,7 +2,7 @@ require 'image_manager.rb'
 
 class SuggestionsController < ApplicationController
   before_action :set_suggestion, only: [:show, :edit, :update, :destroy]
-  before_action :new_imageManager_filter, only: [:show, :edit]
+  before_action :new_image_manager_filter, only: [:show, :edit]
 
   def index
     @suggestions = Suggestion.where(visible: true).paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
@@ -64,8 +64,8 @@ class SuggestionsController < ApplicationController
       @suggestion = Suggestion.find(params[:id])
     end
     
-    def new_imageManager_filter
-      @imageManager = ImageManager.new
+    def new_image_manager_filter
+      @image_manager = ImageManager.new
     end
 
     def suggestion_params

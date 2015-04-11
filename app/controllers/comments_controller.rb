@@ -24,6 +24,7 @@ class CommentsController < ApplicationController
     rescue CommentBuilder::ErrorSavingComment
       @comment = @suggestion.comments.last
       @comments = Suggestion.find(@suggestion.id).comments
+      @image_manager = ImageManager.new
       render 'suggestions/show'
     else
       flash[:info] = t('.flash_email_info') if comment.city_council_staff || !comment.visible
