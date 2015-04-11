@@ -17,6 +17,16 @@
         <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(@comments.size, t('.comment')) %></li>
         <li><i class="glyphicon glyphicon-edit"></i> <%= pluralize(suggestion_presenter.supporters, t('.support')) %></li>
       </ul>
+      
+      <ul class="list-inline">
+        <li><i class="glyphicon glyphicon-thumbs-up"></i></li>
+        <li class="pull-right"><i class="glyphicon glyphicon-thumbs-down"></i></li>
+      </ul>
+      <div class="progress progress-xs">
+        <div class="progress-bar" role="progressbar" style="width:<%= suggestion_presenter.progress_in_favour %>%"></div>
+        <div class="progress-bar span 2 progress-bar-danger" role="progressbar" style="width:<%= suggestion_presenter.progress_against %>%"></div>
+      </div>
+      
       <div id="SuggestionComent">
         <p><%= simple_format(@suggestion.comment) %></p>
       </div>
@@ -58,7 +68,7 @@
     <% if suggestion_presenter.has_comments? %>
       <h3><%= t('.comments_title') %></h3>
       <hr>
-      <%= render @comments %>
+      <%= render 'comments/comment' %>
     <% end %>
   </div>
   <div class="col-md-4 box position-sticky">

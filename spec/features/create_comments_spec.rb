@@ -24,7 +24,8 @@ RSpec.feature "CreateComments", type: :feature do
   end
 
   background do
-    @suggestion.comments.create(author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', city_council_staff: true, visible: true)
+    @suggestion.comments.create(author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.',
+                                city_council_staff: true, visible: true, vote: Comment.vote[:abstention])
   end
 
   scenario 'Check comment created by city council staff when already validated' do
@@ -37,5 +38,4 @@ RSpec.feature "CreateComments", type: :feature do
     expect(page).to have_text 'The Thing'
     expect(page).to have_css 'div.comment-city-council-staff'
   end
-
 end

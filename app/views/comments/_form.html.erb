@@ -10,9 +10,27 @@
   <div class="field">
     <%= f.text_field :email, placeholder: t('.email_field'), class: "form-control" %>
   </div>
+  <br>
   <div class="field">
-  	<br>
     <%= f.text_area :text, placeholder: t('.comment_field'), class: "form-control" %>
+  </div>
+  <br>
+  <div class="field">
+    <p><%= t('.vote_info') %></p>
+  	<ul class="list-inline ul-center">
+  	  <li class="li-blue pull-left">
+  	  	<%= label_tag(:vote, '<i class="glyphicon glyphicon-thumbs-up"></i>'.html_safe) %>
+        <%= f.radio_button(:vote, 1) %>
+      </li>
+      <li>
+      	<%= label_tag(:vote, "=") %>
+        <%= f.radio_button(:vote, 2, checked: true) %>
+      </li>
+      <li class="li-red pull-right">
+      	<%= label_tag(:vote, '<i class="glyphicon glyphicon-thumbs-down"></i>'.html_safe) %>
+        <%= f.radio_button(:vote, 3) %>
+      </li>
+    </ul>
   </div>
   <div class="actions">
   	<br>

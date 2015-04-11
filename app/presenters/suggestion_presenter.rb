@@ -36,4 +36,23 @@ class SuggestionPresenter < BasePresenter
   def activated?
     suggestion.visible?
   end
+  
+  def progress_in_favour
+    total = suggestion.comments.where("vote = 1 OR vote = 3").size
+    in_favour = suggestion.comments.where(vote: 1).size
+    if total != 0
+      return ((in_favour.to_f / total) * 100).to_i 
+    else
+      return 0
+    end
+  end
+  
+  def progress_against
+    against = suggestion.comments.where(vote: 3).size
+    if against != 0
+      return 100 - progress_in_favour
+    else
+      return 0
+    end
+  end
 end

@@ -78,6 +78,7 @@ es:
       name_field: "Nombre"
       email_field: "Email"
       comment_field: "Comentario"
+      vote_info: "Deja tu punto de vista acerca de la sugerencia. Firmar implica estar a favor independientemente de la opción marcada."
       comment_button: "Comenta"
       comment_and_support_button: "Firma y comenta"
     comment:

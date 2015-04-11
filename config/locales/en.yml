@@ -78,6 +78,7 @@ en:
       name_field: "Name"
       email_field: "Email"
       comment_field: "Comment"
+      vote_info: "Leave your point of view about the suggestion. Support implies being in favor regardless of the selected item."
       comment_button: "Comment"
       comment_and_support_button: "Comment & Support"
     comment:

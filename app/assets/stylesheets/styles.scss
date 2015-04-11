@@ -158,6 +158,24 @@ a {
   }
 }
 
+.ul-center {
+  text-align: center;
+  margin: auto;
+  font-size: 20px;
+}
+
+.li-blue {
+  color: #337AB7;
+}
+
+.li-red {
+  color: #D9534F;
+}
+
+.progress-xs {
+  height: 10px;
+}
+
 @-moz-document url-prefix() {
   .position-sticky {
     position: sticky;

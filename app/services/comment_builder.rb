@@ -19,6 +19,7 @@ class CommentBuilder
   def create_city_council_staff_comment
     raise CityCouncilCannotSupport if @want_support
     
+    @comment_attr[:vote] = Comment.vote[:abstention]
     @comment_attr.merge!({city_council_staff: true})
     @comment = @suggestion.comments.create(@comment_attr)
     if @comment.save
@@ -32,6 +33,7 @@ class CommentBuilder
   def create_comment
     if @want_support
       raise OnlyOneSupportPerPersonIsAllowed if email_has_supported?
+      @comment_attr[:vote] = Comment.vote[:in_favour]
       @comment_attr.merge!({support: true})
     end
     @comment = @suggestion.comments.create(@comment_attr)
