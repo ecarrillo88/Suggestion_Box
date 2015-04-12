@@ -21,4 +21,14 @@ module ApplicationHelper
     return "" if header_button == 'no'
     return header_button
   end
+  
+  def created_at(object)
+    date = object.created_at
+    if I18n.locale == :es
+      months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Dicicembre"]
+      return "#{date.day} de #{months[date.month-1]}, #{date.year}"
+    else
+      return "#{date.strftime("%B")} #{date.day}, #{date.year}"
+    end
+  end
 end

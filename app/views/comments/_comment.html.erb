@@ -6,7 +6,7 @@
     <ul class="list-inline">
       <li class="author"><%= comment.author %></li>
       <li class="city-council-staff"><%= "(#{t('.city_council')})" if comment.city_council_staff %></li>
-      <li class="date pull-right"><%= comment_presenter.created_at %></li>
+      <li class="date pull-right"><%= created_at(comment) %></li>
       <li class=<%= comment_presenter.point_of_view_color %>><i class="<%= comment_presenter.point_of_view_icon %>"></i></li>
     </ul>
   </div>

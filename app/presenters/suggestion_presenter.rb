@@ -9,10 +9,6 @@ class SuggestionPresenter < BasePresenter
     suggestion.comments.where(visible: true, support: true).size
   end
   
-  def created_at
-    suggestion.created_at.to_formatted_s(:long)
-  end
-  
   def has_map?
     !suggestion.latitude.nil? && !suggestion.longitude.nil?
   end
