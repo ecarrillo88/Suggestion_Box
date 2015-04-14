@@ -80,6 +80,7 @@ function handleNoGeolocation(errorFlag) {
 function placeMarker(location) {
   if (marker) {
     marker.setPosition(location);
+    marker.setMap(map);
   }
   else {
     marker = new google.maps.Marker({
