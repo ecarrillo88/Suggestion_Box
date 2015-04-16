@@ -18,6 +18,7 @@ $(document).ready(function(){
   });
   
   $(".fancybox").fancybox({
+  	parent      : 'body',
     openEffect  : 'none',
     closeEffect : 'none',
     type        : 'image'
