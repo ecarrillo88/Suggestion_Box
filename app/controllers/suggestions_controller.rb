@@ -5,7 +5,7 @@ class SuggestionsController < ApplicationController
   before_action :new_image_manager_filter, only: [:show, :edit]
 
   def index
-    @suggestions = Suggestion.where(visible: true).paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
+    @suggestions = Suggestion.where("title LIKE '%#{params[:title]}%'").paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
   end
 
   def show
@@ -22,9 +22,9 @@ class SuggestionsController < ApplicationController
   def create
     suggestion_builder = SuggestionBuilder.new
     @suggestion = suggestion_builder.create(suggestion_params, params[:image1_id], params[:image2_id])
-    
+
     render :new and return if @suggestion.errors.any?
-    
+
     flash[:info] = I18n.t('suggestions.create.flash_create_ok') if @suggestion.visible
     flash[:info] = I18n.t('suggestions.create.flash_email_info') if !@suggestion.visible
     redirect_to @suggestion
@@ -44,7 +44,7 @@ class SuggestionsController < ApplicationController
     flash[:info] = t('.flash_destroy_ok')
     redirect_to suggestions_url
   end
-  
+
   def validation
     @suggestion = Suggestion.find_by(token_validation: params[:token])
     unless @suggestion.nil?
@@ -63,7 +63,7 @@ class SuggestionsController < ApplicationController
     def set_suggestion
       @suggestion = Suggestion.find(params[:id])
     end
-    
+
     def new_image_manager_filter
       @image_manager = ImageManager.new
     end

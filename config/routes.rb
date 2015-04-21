@@ -4,10 +4,11 @@ Rails.application.routes.draw do
     resources :suggestions do
       resources :comments
     end
-    
+
     root to: 'suggestions#index'
     get      '/suggestions/validation/:token/' => 'suggestions#validation'
     get      '/comment/validation/:email/'     => 'comments#validation'
+    post     '/'                               => 'suggestions#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

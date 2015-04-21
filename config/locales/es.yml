@@ -31,6 +31,8 @@ es:
     next_label: "Siguiente"
   suggestions:
     index:
+      search_filter: "Filtro de búsqueda"
+      search_button: "Buscar"
       comment: "Comentario"
       support: "Firma"
     show:

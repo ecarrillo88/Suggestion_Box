@@ -31,6 +31,8 @@ en:
     next_label: "Next"
   suggestions:
     index:
+      search_filter: "Search filter"
+      search_button: "Search"
       comment: "Comment"
       support: "Support"
     show:
