@@ -6,6 +6,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3.exp' %>
+  <%= stylesheet_link_tag 'http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
@@ -14,7 +15,7 @@
 
 <div class="container">
   <div class="col-md-10 col-md-offset-1">
-    <%= render partial: "shared/flash_messages", flash: flash %> 
+    <%= render partial: "shared/flash_messages", flash: flash %>
     <%= yield %>
   </div>
 </div>

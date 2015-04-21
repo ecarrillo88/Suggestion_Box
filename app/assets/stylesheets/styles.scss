@@ -176,6 +176,46 @@ a {
   height: 10px;
 }
 
+footer {
+  text-align: center;
+  color: white;
+  background-image: url("pattern.png");
+  a {
+    color: #fff;
+    &:hover, &:focus {
+      color: #cacccd;
+    }
+  }
+  .container {
+    padding-top: 40px;
+    padding-bottom: 30px;
+    .footer-icon-container {
+      display: block;
+      height: 36px;
+      width: 36px;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 50%;
+      text-align: center;
+      border-color: rgba(255,255,255,0.2);
+    }
+    .footer-icon {
+      position: relative;
+      top: 7px;
+    }
+    #copyleft {
+      padding-top: 10px;
+      color: #82888a;
+      p {
+        display: inline-block;
+      }
+      #copyleft-icon {
+        -webkit-transform: rotate(180deg);
+      }
+    }
+  }
+}
+
 @-moz-document url-prefix() {
   .position-sticky {
     position: sticky;
