@@ -23,9 +23,11 @@ es:
   header:
     title: "Buzón Ciudadano"
     description: "Deja tus comentarios, preguntas, peticiones y quejas"
-    new_suggestion: "Nueva Sugerencia"
-    new_suggestion_button: "Publica una Sugerencia"
-    search: "Búsqueda"
+    new_suggestion_button: "Publica una sugerencia"
+  footer:
+    change_language: "Cambiar idioma"
+    spanish_language: "Español"
+    english_language: "Inglés"
   will_paginate:
     previous_label: "Anterior"
     next_label: "Siguiente"

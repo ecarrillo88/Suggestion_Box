@@ -6,9 +6,8 @@ body {
   background-color: #f9f9fb;
 }
 
-.navbar-form {
-  padding-right: 0px;
-  padding-left: 0px;
+.navbar-brand {
+  font-size: 20px;
 }
 
 .jumbotron {
@@ -40,6 +39,10 @@ body {
     border-color: #090909;
     color: #9d9d9d;
   }
+}
+
+.dropdown-menu {
+  background-color: #f9f9fb;
 }
 
 .box {
@@ -158,6 +161,15 @@ a {
   }
 }
 
+.btn-grey {
+  background-color: #565a5c;
+  color: #fff;
+  &:hover, &:focus {
+    color: #fff;
+    background-color: #6C7174;
+  }
+}
+
 .ul-center {
   text-align: center;
   margin: auto;
@@ -179,7 +191,10 @@ a {
 footer {
   text-align: center;
   color: white;
-  background-image: url("pattern.png");
+  background-image: url("footer_pattern.png");
+  h4 {
+    margin-top: 0px;
+  }
   a {
     color: #fff;
     &:hover, &:focus {
@@ -189,6 +204,9 @@ footer {
   .container {
     padding-top: 40px;
     padding-bottom: 30px;
+    hr {
+      border-color: rgba(255,255,255,0.2);
+    }
     .footer-icon-container {
       display: block;
       height: 36px;
