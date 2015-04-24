@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @suggestion = Suggestion.find(params[:suggestion_id])
+    @suggestion = Suggestion.friendly.find(params[:suggestion_id])
     comment_builder = CommentBuilder.new
     begin
       comment = comment_builder.create(comment_params, @suggestion, !params[:comment_and_support].nil?)
@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
       redirect_to @suggestion
     rescue CommentBuilder::ErrorSavingComment
       @comment = @suggestion.comments.last
-      @comments = Suggestion.find(@suggestion.id).comments
+      @comments = Suggestion.friendly.find(@suggestion.id).comments
       @image_manager = ImageManager.new
       render 'suggestions/show'
     else
@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
     flash[:info] = t('.flash_destroy_ok')
     redirect_to @comment.suggestion
   end
-  
+
   def validation
     email = Base64.decode64(params[:email])
     @comment = Comment.where(email: email).order("id DESC").first
@@ -70,7 +70,7 @@ class CommentsController < ApplicationController
         SupporterMailer.info_new_comment(suggestion, @comment, email).deliver_later
       end
     end
-    
+
     def set_comment
       @comment = Comment.find(params[:id])
     end

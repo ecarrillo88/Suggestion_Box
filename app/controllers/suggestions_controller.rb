@@ -9,7 +9,7 @@ class SuggestionsController < ApplicationController
   end
 
   def show
-    @comments = Suggestion.find(params[:id]).comments.where(visible: true)
+    @comments = Suggestion.friendly.find(params[:id]).comments.where(visible: true)
   end
 
   def new
@@ -61,7 +61,7 @@ class SuggestionsController < ApplicationController
 
   private
     def set_suggestion
-      @suggestion = Suggestion.find(params[:id])
+      @suggestion = Suggestion.friendly.find(params[:id])
     end
 
     def new_image_manager_filter

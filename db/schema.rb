@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410155808) do
+ActiveRecord::Schema.define(version: 20150424175512) do
 
   create_table "city_council_domains", force: :cascade do |t|
     t.string   "domain"
@@ -47,7 +47,10 @@ ActiveRecord::Schema.define(version: 20150410155808) do
     t.string   "image2_id"
     t.string   "token_validation"
     t.boolean  "visible",          default: false
+    t.string   "slug"
   end
+
+  add_index "suggestions", ["slug"], name: "index_suggestions_on_slug"
 
   create_table "white_list_emails", force: :cascade do |t|
     t.string   "email"
