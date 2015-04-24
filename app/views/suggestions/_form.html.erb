@@ -1,4 +1,5 @@
-<%= form_for @suggestion, html: { multipart: :true } do |f| %>
+<%= form_for @suggestion, url: create_suggestion_path, html: { multipart: :true } do |f| %>
+
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="field">
@@ -20,7 +21,7 @@
   <%= f.hidden_field :latitude  %>
   <%= f.hidden_field :longitude %>
   <br>
-  
+
   <h3><%= t('.upload_images_title') %></h3>
   <p><%= t('.upload_images_description') %></p>
   <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -30,7 +31,7 @@
       <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_button') %></a>
     </div>
   </div>
-  
+
   <div class="fileinput fileinput-new" data-provides="fileinput">
     <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
     <div>
@@ -42,7 +43,7 @@
 
   <h3><%= t('.geolocation_title') %></h3>
   <p><%= t('.geolocation_description') %></p>
-    
+
   <div class="input-group">
     <input type="text" class="form-control" placeholder="<%= t('.search_placeholder') %>" name="address" id="address">
     <div class="input-group-btn">
@@ -52,7 +53,7 @@
   </div>
 
   <div id="map-canvas-edit" style='width: 100%; height: 400px;'></div>
-    
+
   <br>
   <div class="actions">
     <%= f.submit t('.create_suggestion_button'), class: "btn btn-red"%>
