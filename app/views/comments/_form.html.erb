@@ -1,9 +1,9 @@
-<%= form_for([@suggestion, @suggestion.comments.build]) do |f| %>
-  
+<%= form_for([@suggestion, @suggestion.comments.build], url: create_comment_path(@suggestion)) do |f| %>
+
   <% unless @comment.nil? %>
     <%= render 'shared/error_messages', object: @comment %>
   <% end %>
-  
+
   <div class="field">
     <%= f.text_field :author, placeholder: t('.name_field'), class: "form-control" %>
   </div>

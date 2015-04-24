@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
     root to: 'suggestions#index'
     post     '/suggestions/new'                => 'suggestions#create', as: 'create_suggestion'
+    post     '/suggestions/:suggestion_id'     => 'comments#create',    as: 'create_comment'
     get      '/suggestions/validation/:token/' => 'suggestions#validation'
     get      '/comment/validation/:email/'     => 'comments#validation'
     post     '/'                               => 'suggestions#index'
