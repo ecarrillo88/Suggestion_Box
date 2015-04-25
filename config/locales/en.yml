@@ -82,7 +82,12 @@ en:
       name_field: "Name"
       email_field: "Email"
       comment_field: "Comment"
-      vote_info: "Leave your point of view about the suggestion. Support implies being in favor regardless of the selected item."
+      vote_title: "Vote this suggestion"
+      vote_info: "Vote this suggestion to give your opinion. Support implies being in favor regardless of the selected option."
+      option_default: "Select an option"
+      option_in_favour: "In favour"
+      option_abstention: "Abstention"
+      option_against: "Against"
       comment_button: "Comment"
       comment_and_support_button: "Comment & Support"
     comment:
@@ -119,3 +124,5 @@ en:
               invalid: "Invalid email format"
             text:
               blank: "Comment is required"
+            vote:
+              blank: "Vote is required"

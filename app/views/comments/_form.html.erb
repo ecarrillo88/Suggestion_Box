@@ -16,21 +16,15 @@
   </div>
   <br>
   <div class="field">
-    <p><%= t('.vote_info') %></p>
-  	<ul class="list-inline ul-center">
-  	  <li class="li-blue pull-left">
-  	  	<%= label_tag(:vote, '<i class="glyphicon glyphicon-thumbs-up"></i>'.html_safe) %>
-        <%= f.radio_button(:vote, 1) %>
-      </li>
-      <li>
-      	<%= label_tag(:vote, "=") %>
-        <%= f.radio_button(:vote, 2, checked: true) %>
-      </li>
-      <li class="li-red pull-right">
-      	<%= label_tag(:vote, '<i class="glyphicon glyphicon-thumbs-down"></i>'.html_safe) %>
-        <%= f.radio_button(:vote, 3) %>
-      </li>
-    </ul>
+    <%=  label_tag t('.vote_title') %> <i class="glyphicon glyphicon-question-sign"
+                                          data-toggle="tooltip"
+                                          data-original-title="<%= t('.vote_info') %>"></i>
+
+    <%= f.select :vote, options_for_select([[t('.option_default'),    0],
+                                            [t('.option_in_favour'),  1],
+                                            [t('.option_abstention'), 2],
+                                            [t('.option_against'),    3]],
+                                            disabled: 0, selected: 0), {}, {class: "form-control"} %>
   </div>
   <div class="actions">
   	<br>

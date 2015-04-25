@@ -82,7 +82,12 @@ es:
       name_field: "Nombre"
       email_field: "Email"
       comment_field: "Comentario"
-      vote_info: "Deja tu punto de vista acerca de la sugerencia. Firmar implica estar a favor independientemente de la opción marcada."
+      vote_title: "Vota la sugerencia"
+      vote_info: "Vota la sugerencia para dar tu opinión acerca de la misma. Firmar implica estar a favor independientemente de la opción marcada."
+      option_default: "Seleccione una opción"
+      option_in_favour: "A favor"
+      option_abstention: "Abstenerse"
+      option_against: "En contra"
       comment_button: "Comenta"
       comment_and_support_button: "Firma y comenta"
     comment:
@@ -119,3 +124,5 @@ es:
               invalid: "Formato de email invalido"
             text:
               blank: "El Comentario es obligatorio"
+            vote:
+              blank: "El Voto es obligatorio"
