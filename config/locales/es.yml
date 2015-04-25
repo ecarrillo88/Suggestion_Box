@@ -42,6 +42,8 @@ es:
       header_description: "Si piensas que la sugerencia es importante, deja una firma o un comentario"
       comment: "Comentario"
       support: "Firma"
+      vote_in_favour_tooltip: "Votos a favor"
+      vote_against_tooltip: "Votos en contra"
       images_title: "Imágenes"
       geolocation_title: "Geolocalización"
       comments_title: "Comentarios"

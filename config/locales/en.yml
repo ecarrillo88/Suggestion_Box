@@ -42,6 +42,8 @@ en:
       header_description: "If you think the suggestion is important, you can leave a comment or support it"
       comment: "Comentario"
       support: "Firma"
+      vote_in_favour_tooltip: "Votes in favour"
+      vote_against_tooltip: "Votes against"
       images_title: "Images"
       geolocation_title: "Geolocation"
       comments_title: "Comments"
