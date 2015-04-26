@@ -5,7 +5,8 @@ class SuggestionsController < ApplicationController
   before_action :new_image_manager_filter, only: [:show, :edit]
 
   def index
-    @suggestions = Suggestion.where("title LIKE '%#{params[:title]}%'").paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
+
+    @suggestions = Suggestion.where(search_conditions(params[:title])).paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
   end
 
   def show
@@ -60,6 +61,19 @@ class SuggestionsController < ApplicationController
   end
 
   private
+    def search_conditions(title)
+      conditions = "1 = 1 "
+      if !title.nil? && !title.blank?
+        words = title.split(" ")
+        conditions += "AND ("
+        words.each_with_index do |word, index|
+          conditions += "(upper(title) LIKE '%#{word}%')"
+          conditions += " OR " if index != words.size - 1
+        end
+        conditions += ")"
+      end
+    end
+
     def set_suggestion
       @suggestion = Suggestion.friendly.find(params[:id])
     end
