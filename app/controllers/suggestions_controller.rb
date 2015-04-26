@@ -67,7 +67,7 @@ class SuggestionsController < ApplicationController
         words = title.split(" ")
         conditions += "AND ("
         words.each_with_index do |word, index|
-          conditions += "(upper(title) LIKE '%#{word}%')"
+          conditions += "(upper(title) LIKE upper('%#{word}%'))"
           conditions += " OR " if index != words.size - 1
         end
         conditions += ")"
