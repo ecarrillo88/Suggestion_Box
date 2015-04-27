@@ -33,7 +33,13 @@ es:
     next_label: "Siguiente"
   suggestions:
     index:
-      search_filter: "Filtro de búsqueda"
+      search_filter_title: "Filtro de búsqueda"
+      title_filter: "Título"
+      address_filter: "Dirección"
+      distance_filter: "Distancia"
+      default_option: "Seleccinone una distancia"
+      meter: "metro"
+      kilometer: "kilometro"
       search_button: "Buscar"
       comment: "Comentario"
       support: "Firma"

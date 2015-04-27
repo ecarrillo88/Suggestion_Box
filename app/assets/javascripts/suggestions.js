@@ -1,4 +1,15 @@
 $(document).ready(function(){
+  //Index
+  $('#distance').attr('disabled', true);
+
+  $('#address').keyup(function() {
+    if($(this).val().trim() != '') {
+      $('#distance').removeAttr('disabled');
+    } else {
+      $('#distance').attr('disabled', true);
+    }
+  });
+
   //Show
   var map_canvas_show = $("#map-canvas-show");
   if (map_canvas_show.length > 0) {

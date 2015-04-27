@@ -5,8 +5,8 @@ class SuggestionsController < ApplicationController
   before_action :new_image_manager_filter, only: [:show, :edit]
 
   def index
-
-    @suggestions = Suggestion.where(search_conditions(params[:title])).paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
+    suggestions = search_by(params[:title], params[:address], params[:distance])
+    @suggestions = suggestions.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
@@ -61,7 +61,7 @@ class SuggestionsController < ApplicationController
   end
 
   private
-    def search_conditions(title)
+    def search_by(title, address, distance)
       conditions = "1 = 1 "
       if !title.nil? && !title.blank?
         words = title.split(" ")
@@ -72,6 +72,14 @@ class SuggestionsController < ApplicationController
         end
         conditions += ")"
       end
+
+      suggestions = Suggestion.where(conditions).order(created_at: :desc)
+
+      if !address.nil? && !address.blank?
+        suggestions = suggestions.near(address, distance.to_f, unit: :km).reorder('distance ASC')
+      end
+
+      return suggestions
     end
 
     def set_suggestion

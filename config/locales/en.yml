@@ -33,7 +33,13 @@ en:
     next_label: "Next"
   suggestions:
     index:
-      search_filter: "Search filter"
+      search_filter_title: "Search filter"
+      title_filter: "Title"
+      address_filter: "Address"
+      distance_filter: "Distance"
+      default_option: "Select a distance"
+      meter: "meter"
+      kilometer: "kilometer"
       search_button: "Search"
       comment: "Comment"
       support: "Support"

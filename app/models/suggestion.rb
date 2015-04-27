@@ -6,6 +6,9 @@ class Suggestion < ActiveRecord::Base
     title_changed?
   end
 
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :reverse_geocode  # auto-fetch address
+
   has_many :comments, dependent: :destroy
 
   validates :title, presence: :true,
