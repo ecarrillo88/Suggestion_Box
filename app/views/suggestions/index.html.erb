@@ -37,7 +37,13 @@
           <div class="title">
             <h2><%= link_to suggestion.title, suggestion, class: 'stealth' %></h2>
           </div>
-          <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>
+          <p class="pull-right">
+            <% if suggestion_presenter.has_address? %>
+              <span class="label label-default"><%= suggestion_presenter.street %></span>
+              <span class="label label-default"><%= suggestion_presenter.postal_code %></span>
+              <span class="label label-default"><%= suggestion_presenter.district %></span>
+            <% end %>
+          </p>
           <ul class="list-inline">
             <li><i class="glyphicon glyphicon-user"></i> <%= suggestion.author %></li>
             <li><i class="glyphicon glyphicon-calendar"></i> <%= created_at(suggestion) %></li>
