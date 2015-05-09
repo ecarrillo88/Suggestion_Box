@@ -1,0 +1,5 @@
+language: ruby
+rvm:
+  - 2.2.1p85
+before_script: "bundle exec rake db:drop db:create db:migrate"
+script: "bundle exec rspec spec/"
