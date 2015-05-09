@@ -4,11 +4,11 @@ RSpec.feature "CreateSuggestions", type: :feature do
   background do
     WhiteListEmail.new(email: 'JohnnyStorm@email.com').save
   end
-  
+
   scenario 'Create a new suggestion' do
     visit root_path(locale: :en)
-    click_link I18n.t('header.new_suggestion_button')
-    expect(page).to have_text I18n.t('header.new_suggestion')
+    first(:link, I18n.t('header.new_suggestion_button')).click
+    expect(page).to have_text I18n.t('suggestions.new.header_title')
 
     fill_in 'suggestion_title',   with: 'Fantastic Suggestion'
     fill_in 'suggestion_author',  with: 'Human Torch'
@@ -19,7 +19,7 @@ RSpec.feature "CreateSuggestions", type: :feature do
     expect(page).to have_text I18n.t('suggestions.show.header_title')
     expect(page).to have_text I18n.t('suggestions.create.flash_create_ok')
     expect(page).to have_text 'Fantastic Suggestion'
-    
+
     visit root_path(locale: :en)
     expect(page).to have_text 'Fantastic Suggestion'
   end
