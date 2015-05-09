@@ -21,14 +21,13 @@ class CommentsController < ApplicationController
     rescue CommentBuilder::CityCouncilCannotSupport
       flash[:danger] = t('.flash_city_council_staff_support_error')
       redirect_to @suggestion
-    rescue CommentBuilder::ErrorSavingComment
-      @comment = @suggestion.comments.last
-      @comments = Suggestion.friendly.find(@suggestion.id).comments
+    rescue CommentBuilder::ErrorSavingComment => error
+      @comment = error.comment
       @image_manager = ImageManager.new
       render 'suggestions/show'
     else
-      flash[:info] = t('.flash_email_info') if comment.city_council_staff || !comment.visible
-      flash[:info] = t('.flash_create_ok')  if comment.visible
+      flash[:info] = t('.flash_email_info') if comment.is_a_city_council_staff_comment? || !comment.visible?
+      flash[:info] = t('.flash_create_ok')  if comment.visible?
       redirect_to @suggestion
     end
   end
@@ -46,11 +45,11 @@ class CommentsController < ApplicationController
     email = Base64.decode64(params[:email])
     @comment = Comment.where(email: email).order("id DESC").first
     unless @comment.nil?
-      SupporterMailer.info_for_supporters(@comment).deliver_later if @comment.support
+      SupporterMailer.info_for_supporters(@comment).deliver_later if @comment.supported?
       send_info_email_to_supporters(@comment.suggestion)
       @comment.update(visible: true)
       # Add email to white list
-      if WhiteListEmail.find_by(email: email).nil? && @comment.city_council_staff == false
+      if WhiteListEmail.not_in_whitelist?(email) && !@comment.is_a_city_council_staff_comment?
         WhiteListEmail.new(email: email).save
       end
       render 'comments/validation_success'

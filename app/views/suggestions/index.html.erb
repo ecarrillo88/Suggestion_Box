@@ -31,27 +31,25 @@
 </div>
 
 <% @suggestions.each do |suggestion| %>
-  <% presenter suggestion do |suggestion_presenter| %>
-    <div class="row">
-      <div class="col-md-12 box">
-          <div class="title">
-            <h2><%= link_to suggestion.title, suggestion, class: 'stealth' %></h2>
-          </div>
-          <p class="pull-right">
-            <% if suggestion_presenter.has_address? %>
-              <span class="label label-default"><%= suggestion_presenter.street %></span>
-              <span class="label label-default"><%= suggestion_presenter.postal_code %></span>
-              <span class="label label-default"><%= suggestion_presenter.district %></span>
-            <% end %>
-          </p>
-          <ul class="list-inline">
-            <li><i class="glyphicon glyphicon-user"></i> <%= suggestion.author %></li>
-            <li><i class="glyphicon glyphicon-calendar"></i> <%= created_at(suggestion) %></li>
-            <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(suggestion_presenter.comments, t('.comment')) %></li>
-            <li><i class="glyphicon glyphicon-edit"></i> <%= pluralize(suggestion_presenter.supporters, t('.support')) %></li>
-          </ul>
-      </div>
+  <div class="row">
+    <div class="col-md-12 box">
+        <div class="title">
+          <h2><%= link_to suggestion.title, suggestion, class: 'stealth' %></h2>
+        </div>
+        <p class="pull-right">
+          <% if suggestion.has_address? %>
+            <span class="label label-default"><%= suggestion.street %></span>
+            <span class="label label-default"><%= suggestion.postal_code %></span>
+            <span class="label label-default"><%= suggestion.district %></span>
+          <% end %>
+        </p>
+        <ul class="list-inline">
+          <li><i class="glyphicon glyphicon-user"></i> <%= suggestion.author %></li>
+          <li><i class="glyphicon glyphicon-calendar"></i> <%= created_at(suggestion) %></li>
+          <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(suggestion.number_of_comments, t('.comment')) %></li>
+          <li><i class="glyphicon glyphicon-edit"></i> <%= pluralize(suggestion.number_of_supporters, t('.support')) %></li>
+        </ul>
     </div>
-  <% end %>
+  </div>
 <% end %>
 <%= will_paginate @suggestions, renderer: BootstrapPagination::Rails %>

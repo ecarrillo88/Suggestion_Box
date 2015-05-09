@@ -14,8 +14,8 @@
       <ul class="info list-inline">
         <li><i class="glyphicon glyphicon-user"></i> <%= @suggestion.author %></li>
         <li><i class="glyphicon glyphicon-calendar"></i> <%= created_at(@suggestion) %></li>
-        <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(@comments.size, t('.comment')) %></li>
-        <li><i class="glyphicon glyphicon-edit"></i> <%= pluralize(suggestion_presenter.supporters, t('.support')) %></li>
+        <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(@suggestion.number_of_comments, t('.comment')) %></li>
+        <li><i class="glyphicon glyphicon-edit"></i> <%= pluralize(@suggestion.number_of_supporters, t('.support')) %></li>
       </ul>
 
       <ul class="list-inline">
@@ -38,24 +38,24 @@
       </ul>
     </div>
 
-    <% if suggestion_presenter.has_images? %>
-    <div class="box">
-      <div class="title">
-        <h3><%= t('.images_title') %></h3>
+    <% if @suggestion.has_images? %>
+      <div class="box">
+        <div class="title">
+          <h3><%= t('.images_title') %></h3>
+        </div>
+        <% if @suggestion.has_image1? %>
+          <% image_url = @image_manager.get_image_url(@suggestion.image1_id, 800, 600) %>
+          <%= link_to cl_image_tag(@suggestion.image1_id, width: 200, height: 150), image_url.to_s, class: 'fancybox', rel: 'group' %>
+        <% end %>
+        <% if @suggestion.has_image2? %>
+          <% image_url = @image_manager.get_image_url(@suggestion.image2_id, 800, 600) %>
+          <%= link_to cl_image_tag(@suggestion.image2_id, width: 200, height: 150), image_url.to_s, class: 'fancybox', rel: 'group' %>
+        <% end %>
+        <br>
       </div>
-      <% if suggestion_presenter.has_image1? %>
-        <% image_url = @image_manager.get_image_url(@suggestion.image1_id, 800, 600) %>
-        <%= link_to cl_image_tag(@suggestion.image1_id, width: 200, height: 150), image_url.to_s, class: 'fancybox', rel: 'group' %>
-      <% end %>
-      <% if suggestion_presenter.has_image2? %>
-        <% image_url = @image_manager.get_image_url(@suggestion.image2_id, 800, 600) %>
-        <%= link_to cl_image_tag(@suggestion.image2_id, width: 200, height: 150), image_url.to_s, class: 'fancybox', rel: 'group' %>
-      <% end %>
-      <br>
-    </div>
     <% end %>
 
-    <% if suggestion_presenter.has_map? %>
+    <% if @suggestion.has_geolocation? %>
     <div class="box">
       <div class="title">
         <h3><%= t('.geolocation_title') %></h3>
@@ -65,18 +65,19 @@
    <% end %>
 
     <!-- Show comments -->
-    <% if suggestion_presenter.has_comments? %>
+    <% if @suggestion.has_comments? %>
       <h3><%= t('.comments_title') %></h3>
       <hr>
       <%= render 'comments/comment' %>
     <% end %>
   </div>
-  <div class="col-md-4 box position-sticky">
-    <!-- Comments form -->
-    <% if suggestion_presenter.activated? %>
+
+  <!-- Comments form -->
+  <% if @suggestion.visible? %>
+    <div class="col-md-4 box position-sticky">
       <h3><%= t('.add_comment_title') %></h3>
       <%= render 'comments/form' %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
 <% end %>

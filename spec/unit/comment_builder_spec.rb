@@ -21,7 +21,7 @@ RSpec.describe "Comment Builder tests: " do
           comment = builder.create(comment_params, @suggestion, false)
 
           expect(comment.author).to eq('Invisible Woman')
-          expect(comment.visible).to equal(true)
+          expect(comment.visible?).to equal(true)
         end
 
         it "should send a email informing the other supporters about the new comment" do
@@ -33,7 +33,7 @@ RSpec.describe "Comment Builder tests: " do
 
           builder.create(comment_params, @suggestion, false)
         end
-        
+
         context "I vote in favour" do
           it "should publish the comment as in favour" do
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:in_favour]}
@@ -41,11 +41,11 @@ RSpec.describe "Comment Builder tests: " do
             comment = builder.create(comment_params, @suggestion, false)
 
             expect(comment.author).to eq('Invisible Woman')
-            expect(comment.visible).to equal(true)
+            expect(comment.visible?).to equal(true)
             expect(comment.vote).to equal(Comment.vote[:in_favour])
           end
         end
-        
+
         context "I vote abstention" do
           it "should publish the comment as abstention" do
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
@@ -53,11 +53,11 @@ RSpec.describe "Comment Builder tests: " do
             comment = builder.create(comment_params, @suggestion, false)
 
             expect(comment.author).to eq('Invisible Woman')
-            expect(comment.visible).to equal(true)
+            expect(comment.visible?).to equal(true)
             expect(comment.vote).to equal(Comment.vote[:abstention])
           end
         end
-        
+
         context "I vote against" do
           it "should publish the comment as against" do
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:against]}
@@ -65,7 +65,7 @@ RSpec.describe "Comment Builder tests: " do
             comment = builder.create(comment_params, @suggestion, false)
 
             expect(comment.author).to eq('Invisible Woman')
-            expect(comment.visible).to equal(true)
+            expect(comment.visible?).to equal(true)
             expect(comment.vote).to equal(Comment.vote[:against])
           end
         end
@@ -82,7 +82,7 @@ RSpec.describe "Comment Builder tests: " do
           comment = builder.create(comment_params, @suggestion, false)
 
           expect(comment.author).to eq('Invisible Woman')
-          expect(comment.visible).to equal(false)
+          expect(comment.visible?).to equal(false)
         end
       end
     end
@@ -113,7 +113,7 @@ RSpec.describe "Comment Builder tests: " do
 
             expect(comment.author).to eq('Invisible Woman')
             expect(comment.support).to equal(true)
-            expect(comment.visible).to equal(true)
+            expect(comment.visible?).to equal(true)
           end
 
           it "should inform me about the implications of supporting the suggestion" do
@@ -139,7 +139,7 @@ RSpec.describe "Comment Builder tests: " do
 
             builder.create(comment_params, @suggestion, true)
           end
-          
+
           context "I vote in favour" do
             it "should publish the comment as in favour" do
               comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:in_favour]}
@@ -148,11 +148,11 @@ RSpec.describe "Comment Builder tests: " do
 
               expect(comment.author).to eq('Invisible Woman')
               expect(comment.support).to equal(true)
-              expect(comment.visible).to equal(true)
+              expect(comment.visible?).to equal(true)
               expect(comment.vote).to equal(Comment.vote[:in_favour])
             end
           end
-          
+
           context "I vote abstention" do
             it "should publish the comment as in favour" do
               comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
@@ -161,11 +161,11 @@ RSpec.describe "Comment Builder tests: " do
 
               expect(comment.author).to eq('Invisible Woman')
               expect(comment.support).to equal(true)
-              expect(comment.visible).to equal(true)
+              expect(comment.visible?).to equal(true)
               expect(comment.vote).to equal(Comment.vote[:in_favour])
             end
           end
-          
+
           context "I vote against" do
             it "should publish the comment as in favour" do
               comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:against]}
@@ -174,7 +174,7 @@ RSpec.describe "Comment Builder tests: " do
 
               expect(comment.author).to eq('Invisible Woman')
               expect(comment.support).to equal(true)
-              expect(comment.visible).to equal(true)
+              expect(comment.visible?).to equal(true)
               expect(comment.vote).to equal(Comment.vote[:in_favour])
             end
           end
@@ -192,7 +192,7 @@ RSpec.describe "Comment Builder tests: " do
           comment = builder.create(comment_params, @suggestion, true)
 
           expect(comment.author).to eq('Invisible Woman')
-          expect(comment.visible).to equal(false)
+          expect(comment.visible?).to equal(false)
         end
       end
     end
@@ -220,9 +220,9 @@ RSpec.describe "Comment Builder tests: " do
         comment = builder.create(comment_params, @suggestion, false)
 
         expect(comment.author).to eq('The Thing')
-        expect(comment.city_council_staff).to equal(true)
+        expect(comment.is_a_city_council_staff_comment?).to equal(true)
       end
-      
+
       context "I vote in favour" do
         it "should publish the comment as abstencion" do
           comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:in_favour]}
@@ -230,11 +230,11 @@ RSpec.describe "Comment Builder tests: " do
           comment = builder.create(comment_params, @suggestion, false)
 
           expect(comment.author).to eq('The Thing')
-          expect(comment.city_council_staff).to equal(true)
+          expect(comment.is_a_city_council_staff_comment?).to equal(true)
           expect(comment.vote).to equal(Comment.vote[:abstention])
         end
       end
-      
+
       context "I vote abstention" do
         it "should publish the comment as abstencion" do
           comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:abstention]}
@@ -242,11 +242,11 @@ RSpec.describe "Comment Builder tests: " do
           comment = builder.create(comment_params, @suggestion, false)
 
           expect(comment.author).to eq('The Thing')
-          expect(comment.city_council_staff).to equal(true)
+          expect(comment.is_a_city_council_staff_comment?).to equal(true)
           expect(comment.vote).to equal(Comment.vote[:abstention])
         end
       end
-      
+
       context "I vote against" do
         it "should publish the comment as abstencion" do
           comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:against]}
@@ -254,7 +254,7 @@ RSpec.describe "Comment Builder tests: " do
           comment = builder.create(comment_params, @suggestion, false)
 
           expect(comment.author).to eq('The Thing')
-          expect(comment.city_council_staff).to equal(true)
+          expect(comment.is_a_city_council_staff_comment?).to equal(true)
           expect(comment.vote).to equal(Comment.vote[:abstention])
         end
       end
@@ -268,12 +268,12 @@ RSpec.describe "Comment Builder tests: " do
       end
     end
   end
-  
+
   context "when a comment is created without the required fields" do
     it "should raise an exception" do
       comment_params = {author: "", email: "", text: "", vote: Comment.vote[:abstention]}
 
       expect { builder.create(comment_params, @suggestion, false) }.to raise_error CommentBuilder::ErrorSavingComment
     end
-  end  
+  end
 end
