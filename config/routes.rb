@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     post     '/suggestions/new'                => 'suggestions#create', as: 'create_suggestion'
     patch    '/suggestions/:id/edit'           => 'suggestions#update', as: 'update_suggestion'
     post     '/suggestions/:suggestion_id'     => 'comments#create',    as: 'create_comment'
-    get      '/suggestions/validation/:token/' => 'suggestions#validation'
-    get      '/comment/validation/:email/'     => 'comments#validation'
+    get      '/suggestion_validation/:token/'  => 'email_validation#suggestion_validation'
+    get      '/comment_validation/:email/'     => 'email_validation#comment_validation'
     post     '/'                               => 'suggestions#index'
   end
 

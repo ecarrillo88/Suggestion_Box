@@ -45,20 +45,6 @@ class SuggestionsController < ApplicationController
     redirect_to suggestions_url
   end
 
-  def validation
-    @suggestion = Suggestion.find_by(token_validation: params[:token])
-    unless @suggestion.nil?
-      @suggestion.update(visible: true)
-      # Add email to white list
-      if WhiteListEmail.not_in_whitelist?(@suggestion.email)
-        WhiteListEmail.new(email: @suggestion.email).save
-      end
-      render 'suggestions/validation'
-    else
-      render 'suggestions/fail'
-    end
-  end
-
   private
     def set_suggestion
       @suggestion = Suggestion.friendly.find(params[:id])
