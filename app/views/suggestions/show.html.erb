@@ -12,6 +12,7 @@
         <h2><%= @suggestion.title %></h2>
       </div>
       <ul class="info list-inline">
+        <li><i class="glyphicon glyphicon-info-sign"></i> <%= t(".category_#{@suggestion.category}") %></li>
         <li><i class="glyphicon glyphicon-user"></i> <%= @suggestion.author %></li>
         <li><i class="glyphicon glyphicon-calendar"></i> <%= created_at(@suggestion) %></li>
         <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(@suggestion.number_of_comments, t('.comment')) %></li>

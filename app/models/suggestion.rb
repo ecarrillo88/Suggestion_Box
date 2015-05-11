@@ -7,14 +7,21 @@ class Suggestion < ActiveRecord::Base
 
   has_many :comments, dependent: :destroy
 
+  #Validations
   validates :title, presence: :true,
                     length: { maximum: 150 }
+  validates :category, presence: :true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
                     format: { with: VALID_EMAIL_REGEX }
   validates :comment, presence: :true
 
-  def self.search_filter(title, address, distance)
+  #Methods
+  def self.category
+    { suggestion: 1, complaint: 2, congratulation: 3, issue: 4 }
+  end
+
+  def self.search_filter(category, title, address, distance)
     conditions = "1 = 1 "
     if !title.nil? && !title.blank?
       words = title.split(" ")
@@ -26,7 +33,9 @@ class Suggestion < ActiveRecord::Base
       conditions += ")"
     end
 
-    suggestions = Suggestion.where(conditions).order(created_at: :desc)
+    suggestions = Suggestion.where(conditions)
+    suggestions = suggestions.where(category: category) if !category.blank?
+    suggestions = suggestions.order(created_at: :desc)
 
     if !address.nil? && !address.blank?
       suggestions = suggestions.near(address, distance.to_f, unit: :km).reorder('distance ASC')

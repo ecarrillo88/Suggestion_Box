@@ -53,6 +53,8 @@ body {
   padding: 25px;
   margin-bottom: 20px;
   .title {
+    width: 100%;
+    display: inline-block;
     margin-top: -20px;
     margin-bottom: 15px;
     color: #222222;
@@ -240,6 +242,10 @@ footer {
 
 textarea.form-control {
   height: 150px;
+}
+
+.no-padding {
+  padding: 0px;
 }
 
 .field_with_errors {

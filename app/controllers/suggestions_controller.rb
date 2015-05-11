@@ -5,7 +5,7 @@ class SuggestionsController < ApplicationController
   before_action :new_image_manager_filter, only: [:show, :edit]
 
   def index
-    @suggestions = Suggestion.search_filter(params[:title], params[:address], params[:distance])
+    @suggestions = Suggestion.search_filter(params[:category], params[:title], params[:address], params[:distance])
                              .paginate(:page => params[:page], :per_page => 10)
   end
 
@@ -69,6 +69,6 @@ class SuggestionsController < ApplicationController
     end
 
     def suggestion_params
-      params.require(:suggestion).permit(:title, :author, :email, :comment, :latitude, :longitude)
+      params.require(:suggestion).permit(:title, :category, :author, :email, :comment, :latitude, :longitude)
     end
 end

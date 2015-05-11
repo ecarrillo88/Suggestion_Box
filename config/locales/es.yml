@@ -35,6 +35,7 @@ es:
     index:
       search_filter_title: "Filtro de búsqueda"
       title_filter: "Título"
+      type_filter: "Tipo"
       address_filter: "Dirección"
       distance_filter: "Distancia"
       default_option: "Seleccinone una distancia"
@@ -43,6 +44,10 @@ es:
       search_button: "Buscar"
       comment: "Comentario"
       support: "Firma"
+      category_1: "Sugerencia"
+      category_2: "Queja"
+      category_3: "Felicitaciones"
+      category_4: "Incidencia"
     show:
       header_title: "Sugerencia"
       header_description: "Si piensas que la sugerencia es importante, deja una firma o un comentario"
@@ -56,12 +61,22 @@ es:
       add_comment_title: "Deja un comentario"
       edit_button: "Editar"
       text_size: "Tamaño texto"
+      category_1: "Sugerencia"
+      category_2: "Queja"
+      category_3: "Felicitaciones"
+      category_4: "Incidencia"
     new:
       header_title: "Nueva Sugerencia"
       header_description: "Crea una nueva sugerencia sobre un problema, una pregunta, una solicitud... o cualquier cosa que creas que es importante para tu ciudad"
       new_suggestion_title: "Nueva Sugerencia"
     form:
       title_field: "Título"
+      type_field: "Tipo"
+      default_option: "Selecciona el tipo de la sugerencia"
+      suggestion_option: "Sugerencia"
+      complaint_option: "Queja"
+      congratulation_option: "Felicitaciones"
+      issue_option: "Incidencia"
       author_field: "Autor"
       email_field: "Email"
       comment_field: "Comentario"
@@ -117,6 +132,8 @@ es:
             title:
               blank: "El título es obligatorio"
               too_long: "El título es demasiado largo (máximo 150 caracteres)"
+            type:
+              blank: "El tipo es obligatorio"
             email:
               blank: "El email es obligatorio"
               invalid: "Formato de email invalido"

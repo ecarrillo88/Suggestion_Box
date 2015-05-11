@@ -35,6 +35,7 @@ en:
     index:
       search_filter_title: "Search filter"
       title_filter: "Title"
+      type_filter: "Type"
       address_filter: "Address"
       distance_filter: "Distance"
       default_option: "Select a distance"
@@ -43,11 +44,15 @@ en:
       search_button: "Search"
       comment: "Comment"
       support: "Support"
+      category_1: "Suggestion"
+      category_2: "Complaint"
+      category_3: "Congratulations"
+      category_4: "Issue"
     show:
       header_title: "Showing Suggestion"
       header_description: "If you think the suggestion is important, you can leave a comment or support it"
-      comment: "Comentario"
-      support: "Firma"
+      comment: "Comment"
+      support: "Support"
       vote_in_favour_tooltip: "Votes in favour"
       vote_against_tooltip: "Votes against"
       images_title: "Images"
@@ -56,12 +61,22 @@ en:
       add_comment_title: "Add a comment"
       edit_button: "Edit"
       text_size: "Text size"
+      category_1: "Suggestion"
+      category_2: "Complaint"
+      category_3: "Congratulations"
+      category_4: "Issue"
     new:
       header_title: "New Suggestion"
       header_description: "Create a new suggestion about a problem, a question, a request... or anything you think is important for your city"
       new_suggestion_title: "New Suggestion"
     form:
       title_field: "Title"
+      type_field: "Type"
+      default_option: "Select the type of suggestion"
+      suggestion_option: "Suggestion"
+      complaint_option: "Complaint"
+      congratulation_option: "Congratulation"
+      issue_option: "Issue"
       author_field: "Author"
       email_field: "Email"
       comment_field: "Comment"
@@ -117,6 +132,8 @@ en:
             title:
               blank: "Title is required"
               too_long: "Title is too long (maximum is 150 characters)"
+            type:
+              blank: "Type is required"
             email:
               blank: "Email is required"
               invalid: "Invalid email format"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427145600) do
+ActiveRecord::Schema.define(version: 20150510181442) do
 
   create_table "city_council_domains", force: :cascade do |t|
     t.string   "domain"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150427145600) do
     t.boolean  "visible",          default: false
     t.string   "slug"
     t.string   "address"
+    t.integer  "category"
   end
 
   add_index "suggestions", ["slug"], name: "index_suggestions_on_slug"
