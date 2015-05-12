@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "CreateSuggestions", type: :feature do
   background do
-    WhiteListEmail.new(email: 'JohnnyStorm@email.com').save
+    WhiteListEmail.new(email: 'JohnnyStorm@fantastic4.com').save
   end
 
   scenario 'Create a new suggestion' do
@@ -11,8 +11,9 @@ RSpec.feature "CreateSuggestions", type: :feature do
     expect(page).to have_text I18n.t('suggestions.new.header_title')
 
     fill_in 'suggestion_title',   with: 'Fantastic Suggestion'
+    select  'Suggestion',         from: 'suggestion_category'
     fill_in 'suggestion_author',  with: 'Human Torch'
-    fill_in 'suggestion_email',   with: 'JohnnyStorm@email.com'
+    fill_in 'suggestion_email',   with: 'JohnnyStorm@fantastic4.com'
     fill_in 'suggestion_comment', with: 'Lorem ipsum dolor sit amet'
     click_button I18n.t('suggestions.form.create_suggestion_button')
 
