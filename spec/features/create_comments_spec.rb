@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "CreateComments", type: :feature do
 
   background do
-    @suggestion = Suggestion.create(title: 'Awesome Suggestion', author: 'Mister Fantastic', email: 'ReedRichards@email.com', comment: 'Lorem ipsum dolor sit amet', visible: true)
+    @suggestion = Suggestion.create(category: 1, title: 'Awesome Suggestion', author: 'Mister Fantastic', email: 'ReedRichards@email.com', comment: 'Lorem ipsum dolor sit amet', visible: true)
     WhiteListEmail.new(email: 'SusanStorm@email.com').save
   end
 

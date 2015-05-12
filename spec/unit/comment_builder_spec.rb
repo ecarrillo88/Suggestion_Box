@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Comment Builder tests: " do
   let (:builder) { CommentBuilder.new }
   before do
-    @suggestion = Suggestion.create(title: 'Awesome Suggestion', author: 'Mister Fantastic', email: 'ReedRichards@email.com', comment: 'Lorem ipsum dolor sit amet', visible: true)
+    @suggestion = Suggestion.create(category: 1, title: 'Awesome Suggestion', author: 'Mister Fantastic', email: 'ReedRichards@email.com', comment: 'Lorem ipsum dolor sit amet', visible: true)
   end
 
   context "As a neighbor I want to" do
