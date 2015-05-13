@@ -1,7 +1,8 @@
-<div class="row box">
+<div class="row">
+  <div class="col-md-12 box">
   <h4><%= t('.search_filter_title') %></h4>
   <%= form_tag(root_path) do %>
-    <div class="col-md-6">
+    <div class="col-sm-6">
       <div class="field">
         <%= label_tag t('.type_filter') %>
         <%= select_tag :category, options_for_select([[''],
@@ -16,7 +17,7 @@
         <%= text_field_tag :title, nil, class: "form-control" %>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-sm-6">
       <div class="field">
         <%= label_tag t('.address_filter') %>
         <%= text_field_tag :address, nil, class: "form-control" %>
@@ -31,11 +32,14 @@
                                                       class: "form-control" %>
       </div>
     </div>
+    <div class="col-sm-12">
     <div class="actions pull-right">
       <br>
       <%= submit_tag t('.search_button'), class: "btn btn-large btn-red" %>
     </div>
+    </div>
   <% end %>
+  </div>
 </div>
 
 <% @suggestions.each do |suggestion| %>

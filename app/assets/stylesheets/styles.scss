@@ -77,7 +77,7 @@ body {
 }
 
 .comment-city-council-staff {
-  background: #FFFFA6;
+  background: #F9F9BF;
   border-style: dashed;
   border-width: 2px;
   .header {
@@ -246,6 +246,10 @@ textarea.form-control {
 
 .no-padding {
   padding: 0px;
+}
+
+.no-padding-left {
+  padding-left: 0px;
 }
 
 .field_with_errors {

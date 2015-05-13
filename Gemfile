@@ -29,8 +29,10 @@ gem 'will_paginate-bootstrap'
 gem 'therubyracer', '~> 0.12.1'
 # It lets you create pretty URLs and work with human-friendly strings as if they were numeric ids.
 gem 'friendly_id', '~> 5.1.0'
-# Provides object geocoding (by street or IP address), reverse geocoding (coordinates to street address), distance queries for ActiveRecord and Mongoid, result caching, and more. 
+# Provides object geocoding (by street or IP address), reverse geocoding (coordinates to street address), distance queries for ActiveRecord and Mongoid, result caching, and more.
 gem 'geocoder', '~> 1.2.8'
+# A wysiwyg text editor for Twitter Bootstrap
+gem 'bootstrap-wysihtml5-rails', '~> 0.3.3.6'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
