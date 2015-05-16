@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Buzón Ciudadano</h1>
+    <p>Hemos recibido una petición de edición de la sugerencia "<%= @suggestion.title %>"</p>
+    <p>Para continuar con la edición haga click en el siguiente enlace:</p>
+    <%= link_to 'Editar sugerencia', @url %>
+    <p>Gracias por utilizar el buzón ciudadano</p>
+    <br>
+    <p>--------------------------------------------------------------</p>
+    <br>
+    <h1>Suggestion Box</h1>
+    <p>We have received a request for editing the suggestion "<%= @suggestion.title %>"</p>
+    <p>To continue editing the suggestion click on the following link:</p>
+    <%= link_to 'Edit suggestion', @url %>
+    <p>Thank you for using the suggestion box</p>
+  </body>
+</html>

@@ -6,12 +6,14 @@ Rails.application.routes.draw do
     end
 
     root to: 'suggestions#index'
-    post     '/suggestions/new'                => 'suggestions#create', as: 'create_suggestion'
-    patch    '/suggestions/:id/edit'           => 'suggestions#update', as: 'update_suggestion'
-    post     '/suggestions/:suggestion_id'     => 'comments#create',    as: 'create_comment'
-    get      '/suggestion_validation/:token/'  => 'email_validation#suggestion_validation'
-    get      '/comment_validation/:email/'     => 'email_validation#comment_validation'
-    post     '/'                               => 'suggestions#index'
+    post     '/suggestions/new'                    => 'suggestions#create',       as: 'create_suggestion'
+    patch    '/suggestions/:id/edit'               => 'suggestions#update',       as: 'update_suggestion'
+    post     '/suggestions/:suggestion_id'         => 'comments#create',          as: 'create_comment'
+    get      '/suggestions/:id/edit_request'       => 'suggestions#edit_request', as: 'suggestion_edit_request'
+    get      '/suggestion_validation/:token/'      => 'email_validation#suggestion_validation'
+    get      '/edit_suggestion_validation/:token/' => 'email_validation#edit_suggestion_validation'
+    get      '/comment_validation/:email/'         => 'email_validation#comment_validation'
+    post     '/'                                   => 'suggestions#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,53 @@
+<% if @suggestion.has_image1? %>
+  <div class="fileinput fileinput-exists" data-provides="fileinput">
+    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+      <img src="/assets/cloud_upload.png" data-src="holder.js/100%x100%" alt="...">
+    </div>
+    <div class="fileinput-preview fileinput-exists thumbnail" style="width: 200px; height: 150px; line-height: 20px;">
+      <% image_url = @image_manager.get_image_url(@suggestion.image1_id, 140, 140) %>
+      <img src="<%= image_url %>" data-src="holder.js/100%x100%">
+    </div>
+    <div>
+      <span class="btn btn-default btn-file"><span class="fileinput-new"><%= t('.select_image_button') %></span><span class="fileinput-exists"><%= t('.change_button') %></span><input type="file" name="image1_id" id="image1_id"></span>
+      <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_button') %></a>
+    </div>
+  </div>​
+<% else %>
+  <div class="fileinput fileinput-new" data-provides="fileinput">
+    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+      <img src="/assets/cloud_upload.png" data-src="holder.js/100%x100%" alt="...">
+    </div>
+    <div class="fileinput-preview fileinput-exists thumbnail" style="width: 200px; height: 150px;"></div>
+    <div>
+      <span class="btn btn-default btn-file"><span class="fileinput-new"><%= t('.select_image_button') %></span><span class="fileinput-exists"><%= t('.change_button') %></span><input type="file" name="image1_id" id="image1_id"></span>
+      <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_button') %></a>
+    </div>
+  </div>
+<% end %>
+
+<% if @suggestion.has_image2? %>
+  <div class="fileinput fileinput-exists" data-provides="fileinput">
+    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+      <img src="/assets/cloud_upload.png" data-src="holder.js/100%x100%" alt="...">
+    </div>
+    <div class="fileinput-preview fileinput-exists thumbnail" style="width: 200px; height: 150px; line-height: 20px;">
+      <% image_url = @image_manager.get_image_url(@suggestion.image2_id, 140, 140) %>
+      <img src="<%= image_url %>" data-src="holder.js/100%x100%">
+    </div>
+    <div>
+      <span class="btn btn-default btn-file"><span class="fileinput-new"><%= t('.select_image_button') %></span><span class="fileinput-exists"><%= t('.change_button') %></span><input type="file" name="image2_id" id="image2_id"></span>
+      <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_button') %></a>
+    </div>
+  </div>​
+<% else %>
+  <div class="fileinput fileinput-new" data-provides="fileinput">
+    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+      <img src="/assets/cloud_upload.png" data-src="holder.js/100%x100%" alt="...">
+    </div>
+    <div class="fileinput-preview fileinput-exists thumbnail" style="width: 200px; height: 150px;"></div>
+    <div>
+      <span class="btn btn-default btn-file"><span class="fileinput-new"><%= t('.select_image_button') %></span><span class="fileinput-exists"><%= t('.change_button') %></span><input type="file" name="image2_id" id="image2_id"></span>
+      <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_button') %></a>
+    </div>
+  </div>
+<% end %>

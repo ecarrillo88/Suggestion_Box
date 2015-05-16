@@ -21,34 +21,41 @@ function initializeMapShow(lat, lng) {
   });
 }
 
-function initializeMapEdit() {
+function initializeMapEdit(lat, lng) {
   var mapOptions = {
-    zoom: 14
+    zoom: 15,
+    center: new google.maps.LatLng(lat, lng)
   };
-  map = new google.maps.Map(document.getElementById('map-canvas-edit'),
-      mapOptions);
+  map = new google.maps.Map(document.getElementById('map-canvas-edit'), mapOptions);
 
-  // Try HTML5 geolocation
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = new google.maps.LatLng(position.coords.latitude,
-                                       position.coords.longitude);
-
-      var infowindow = new google.maps.InfoWindow({
-        map: map,
-        position: pos,
-        content: 'You are here.'
-      });
-
-      map.setCenter(pos);
-    }, function() {
-      handleNoGeolocation(true);
-    });
+  if (lat != "" && lng != "") {
+    // Suggestion geolocation
+    var location = new google.maps.LatLng(lat, lng);
+    placeMarker(location);
+    codeLatLng(lat, lng);
   } else {
-    // Browser doesn't support Geolocation
-    handleNoGeolocation(false);
+    // Try HTML5 geolocation
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = new google.maps.LatLng(position.coords.latitude,
+                                         position.coords.longitude);
+
+        var infowindow = new google.maps.InfoWindow({
+          map: map,
+          position: pos,
+          content: 'You are here.'
+        });
+
+        map.setCenter(pos);
+      }, function() {
+        handleNoGeolocation(true);
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      handleNoGeolocation(false);
+    }
   }
-  
+
   google.maps.event.addListener(map, 'click', function(event) {
     placeMarker(event.latLng);
     document.getElementById("suggestion_latitude").value = event.latLng.lat();
@@ -154,4 +161,3 @@ function setAddressInInfowindow(lat, lng) {
     }
   });
 }
-

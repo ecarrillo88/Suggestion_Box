@@ -37,47 +37,31 @@
   <%= f.hidden_field :longitude %>
   <br>
 
-  <h3><%= t('.upload_images_title') %></h3>
-  <p><%= t('.upload_images_description') %></p>
-  <div class="fileinput fileinput-new" data-provides="fileinput">
-    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-      <img src="/assets/cloud_upload.png" alt="...">
-    </div>
-    <div class="fileinput-preview fileinput-exists thumbnail" style="width: 200px; height: 150px;"></div>
-    <div>
-      <span class="btn btn-default btn-file"><span class="fileinput-new"><%= t('.select_image_button') %></span><span class="fileinput-exists"><%= t('.change_button') %></span><input type="file" name="image1_id" id="image1_id"></span>
-      <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_button') %></a>
-    </div>
+  <div class="col-md-12 no-padding-left">
+    <h3><%= t('.upload_images_title') %></h3>
+    <p><%= t('.upload_images_description') %></p>
+    <%= render 'shared/upload_images' %>
   </div>
 
-  <div class="fileinput fileinput-new" data-provides="fileinput">
-    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-      <img src="/assets/cloud_upload.png" data-src="holder.js/100%x100%" alt="...">
+  <div class="col-md-12 no-padding">
+    <h3><%= t('.geolocation_title') %></h3>
+    <p><%= t('.geolocation_description') %></p>
+
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="<%= t('.search_placeholder') %>" name="address" id="address">
+      <div class="input-group-btn">
+        <button id="search-address" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+        <input id="clear-marker" class="btn btn-default" type="button" value="<%= t('.clear_marker_button') %>">
+      </div>
     </div>
-    <div class="fileinput-preview fileinput-exists thumbnail" style="width: 200px; height: 150px;"></div>
-    <div>
-      <span class="btn btn-default btn-file"><span class="fileinput-new"><%= t('.select_image_button') %></span><span class="fileinput-exists"><%= t('.change_button') %></span><input type="file" name="image2_id" id="image2_id"></span>
-      <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_button') %></a>
-    </div>
+    <div id="map-canvas-edit" data-lat="<%= @suggestion.latitude %>", data-lng="<%= @suggestion.longitude %>" style='width: 100%; height: 400px;'></div>
   </div>
-  <br>
-
-  <h3><%= t('.geolocation_title') %></h3>
-  <p><%= t('.geolocation_description') %></p>
-
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="<%= t('.search_placeholder') %>" name="address" id="address">
-    <div class="input-group-btn">
-      <button id="search-address" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
-      <input id="clear-marker" class="btn btn-default" type="button" value="<%= t('.clear_marker_button') %>">
-    </div>
-  </div>
-
-  <div id="map-canvas-edit" style='width: 100%; height: 400px;'></div>
 
   <br>
-  <div class="actions">
-    <%= f.submit t('.create_suggestion_button'), class: "btn btn-red"%>
-    <%= button_to t('.back_button'), suggestions_path, class: "btn btn-default" %>
+  <div class="col-md-12 no-padding">
+    <div class="actions">
+      <%= f.submit t('.create_suggestion_button'), class: "btn btn-red"%>
+      <%= button_to t('.back_button'), suggestions_path, class: "btn btn-default" %>
+    </div>
   </div>
 <% end %>

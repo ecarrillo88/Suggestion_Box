@@ -19,4 +19,8 @@ class ImageManager
   def delete_image(image_id)
     Cloudinary::Api.delete_resources(image_id)
   end
+
+  def delete_all_images
+    Cloudinary::Api.delete_all_resources
+  end
 end

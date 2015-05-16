@@ -1,8 +1,8 @@
 require 'image_manager.rb'
 
 class SuggestionsController < ApplicationController
-  before_action :set_suggestion, only: [:show, :edit, :update, :destroy]
-  before_action :new_image_manager_filter, only: [:show, :edit]
+  before_action :set_suggestion, only: [:show, :edit, :edit_request, :update, :destroy]
+  before_action :new_image_manager_filter, only: [:show, :edit, :update]
 
   def index
     @suggestions = Suggestion.search_filter(params[:category], params[:title], params[:address], params[:distance])
@@ -19,6 +19,14 @@ class SuggestionsController < ApplicationController
   def edit
   end
 
+  def edit_request
+    token = token_generator(10)
+    @suggestion.update(token_validation: token)
+    SuggestionMailer.edit_suggestion_email_validation(@suggestion).deliver_later
+    flash[:info] = I18n.t('suggestions.edit_request.flash_email_info')
+    redirect_to @suggestion
+  end
+
   def create
     suggestion_builder = SuggestionBuilder.new
     @suggestion = suggestion_builder.create(suggestion_params, params[:image1_id], params[:image2_id])
@@ -31,7 +39,11 @@ class SuggestionsController < ApplicationController
   end
 
   def update
-    if @suggestion.update(suggestion_params)
+    images = {}
+    images[:image1_id] = update_image(params[:image1_id], @suggestion.image1_id)
+    images[:image2_id] = update_image(params[:image2_id], @suggestion.image2_id)
+
+    if @suggestion.update(suggestion_params.merge(images))
       flash[:info] = t('.flash_update_ok')
       redirect_to @suggestion
     else
@@ -46,6 +58,19 @@ class SuggestionsController < ApplicationController
   end
 
   private
+    def update_image(image_param, image_id)
+      return image_id if image_param.nil?
+
+      if image_param.blank?
+        @image_manager.delete_image(image_id) if !image_id.nil?
+        return nil
+      end
+
+      @image_manager.delete_image(image_id) if !image_id.nil?
+      hash = @image_manager.upload_image(image_param)
+      return hash['public_id']
+    end
+
     def set_suggestion
       @suggestion = Suggestion.friendly.find(params[:id])
     end

@@ -66,8 +66,11 @@ $(document).ready(function(){
     }
   });
 
-  if ($("#map-canvas-edit").length > 0) {
-  	initializeMapEdit();
+  var map_canvas_edit = $("#map-canvas-edit");
+  if (map_canvas_edit.length > 0) {
+    lat = map_canvas_edit.data('lat');
+  	lng = map_canvas_edit.data('lng');
+  	initializeMapEdit(lat, lng);
   }
 
   $("#clear-marker").click(function(){

@@ -84,15 +84,14 @@ en:
       author_placeholder: "If left blank, the suggestion will be published as anonymous"
       upload_images_title: "Upload images"
       upload_images_description: "If you want you can upload images to provide more information to the suggestion."
-      select_image_button: "Select image"
-      change_button: "Change"
-      remove_button: "Remove"
       geolocation_title: "Geolocate the suggestion"
       search_placeholder: "Search address"
       clear_marker_button: "Clear Marker"
       geolocation_description: "Put a marker by clicking on the map or search address to geolocate the suggestion. If you do not want to geolocate the suggestion remove the map marker."
       create_suggestion_button: "Create Suggestion"
       back_button: "Back"
+    edit_request:
+      flash_email_info: "In a few moments you will receive an email to confirm the suggestion editing"
     create:
       flash_create_ok: "Suggestion was successfully published"
       flash_email_info: "In a few moments you will receive an email to confirm the suggestion"
@@ -123,6 +122,14 @@ en:
       flash_email_info: "In a few moments you will receive an email to confirm your comment"
     destroy:
       flash_destroy_ok: "Comment was successfully destroyed"
+  email_validation:
+    edit_suggestion_validation_failed:
+      edit_validation_failed: "It seems that the validation link is invalid or has already been used"
+  shared:
+    upload_images:
+      select_image_button: "Select image"
+      change_button: "Change"
+      remove_button: "Remove"
   header_error_message: "It seems that some data is missing"
   activerecord:
     errors:
