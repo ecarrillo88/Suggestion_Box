@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update]
 
   def show
   end
@@ -36,8 +36,26 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
-    flash[:info] = t('.flash_destroy_ok')
+    if !Comment.exists?(params[:id])
+      flash[:danger] = t('.flash_destroy_error')
+      redirect_to suggestion_path(params[:suggestion_id])
+      return
+    end
+
+    set_comment
+    if params[:token].nil?
+      token = token_generator(10)
+      @comment.update(token_validation: token)
+      CommentMailer.delete_comment_email_validation(@comment).deliver_later
+      flash[:info] = t('.flash_email_info')
+    else
+      if params[:token] == @comment.token_validation
+        @comment.destroy
+        flash[:info] = t('.flash_destroy_ok')
+      else
+        flash[:danger] = t('.flash_destroy_token_error')
+      end
+    end
     redirect_to @comment.suggestion
   end
 

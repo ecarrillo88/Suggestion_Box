@@ -13,6 +13,12 @@ class CommentMailer < ApplicationMailer
     mail(to: @comment.email, subject: 'Suggestion Box - Comment validation')
   end
 
+  def delete_comment_email_validation(comment)
+    @comment = comment
+    @url  = get_host + "/suggestions/#{@comment.suggestion.id}/comments/#{@comment.id}/#{@comment.token_validation}/"
+    mail(to: @comment.email, subject: 'Suggestion Box - Delete comment confirmation')
+  end
+
   private
 
   def get_host

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150510181442) do
+ActiveRecord::Schema.define(version: 20150516175858) do
 
   create_table "city_council_domains", force: :cascade do |t|
     t.string   "domain"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150510181442) do
     t.boolean  "support",            default: false
     t.boolean  "city_council_staff", default: false
     t.integer  "vote"
+    t.string   "token_validation"
   end
 
   add_index "comments", ["suggestion_id"], name: "index_comments_on_suggestion_id"

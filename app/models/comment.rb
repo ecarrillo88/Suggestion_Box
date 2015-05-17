@@ -13,6 +13,10 @@ class Comment < ActiveRecord::Base
     { in_favour: 1, abstention: 2, against: 3 }
   end
 
+  def self.exists?(comment_id)
+    where(id: comment_id).present?
+  end
+
   def visible?
     self.visible
   end

@@ -13,7 +13,8 @@
   <div class="text">
     <%= simple_format(comment.text) %>
   </div>
-  <p><%= link_to t('.delete_comment_link'), [comment.suggestion, comment], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <!-- delete_comment_link-->
+  <p><%= link_to "<i class=\"glyphicon glyphicon-trash\"></i>".html_safe, delete_comment_path(comment.suggestion, comment, ''), method: :delete, class: "stealth" %></p>
 </div>
 <hr>
 <% end %>

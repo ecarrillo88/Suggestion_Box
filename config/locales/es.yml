@@ -122,6 +122,9 @@ es:
       flash_email_info: "En breves momentos recibirá un email para confirmar su comentario"
     destroy:
       flash_destroy_ok: "El comentario ha sido eliminado"
+      flash_destroy_token_error: "No hemos podido validar la petición para eliminar el comentario"
+      flash_destroy_error: 'El comentario que estás tratando de eliminar no existe'
+      flash_email_info: "En breves momentos recibirá un email para confirmar la eliminación del comentario"
   email_validation:
     edit_suggestion_validation_failed:
       edit_validation_failed: "Parece que el enlace de validación no es válido o ya ha sido utilizado"

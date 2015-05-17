@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Buzón Ciudadano</h1>
+    <p>Hola <%= @comment.author %>, hemos recibido una petición para eliminar el siguiente comentario de la sugerencia "<%= @comment.suggestion.title %>"</p>
+    <p><b>Comentario:</b> <%= @comment.text %></p>
+    <p>Si deseas eliminar el comentario de forma definitiva haz click en el siguiente enlace. En caso contrario ignora este email.</p>
+    <%= link_to 'Eliminar comentario', @url, locale: :es, method: :delete, confirm: '¿Estás seguro?' %>
+    <p>Gracias por utilizar el Buzón Ciudadano</p>
+    <br>
+    <p>--------------------------------------------------------------</p>
+    <br>
+    <h1>Suggestion Box</h1>
+    <p>Hi <%= @comment.author %>, We have received a request to remove the following comment on the suggestion "<%= @comment.suggestion.title %>"</p>
+    <p><b>Comment:</b> <%= @comment.text %></p>
+    <p>If you want to delete this comment permanently, click on the link below. Otherwise ignore this email.</p>
+    <%= link_to 'Delete comment', @url, method: :delete, confirm: 'Are your sure?' %>
+    <p>Thanks for using the Suggestion Box</p>
+  </body>
+</html>
