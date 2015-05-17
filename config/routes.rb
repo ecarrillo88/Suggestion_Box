@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     root to: 'suggestions#index'
     post     '/suggestions/new'                                => 'suggestions#create',       as: 'create_suggestion'
     patch    '/suggestions/:id/edit'                           => 'suggestions#update',       as: 'update_suggestion'
+    delete   '/suggestions/:id/:token'                         => 'suggestions#destroy',      as: 'delete_suggestion'
+    get      '/suggestions/:id/:token'                         => 'suggestions#destroy'
     post     '/suggestions/:suggestion_id'                     => 'comments#create',          as: 'create_comment'
     delete   '/suggestions/:suggestion_id/comments/:id/:token' => 'comments#destroy',         as: 'delete_comment'
     get      '/suggestions/:suggestion_id/comments/:id/:token' => 'comments#destroy'

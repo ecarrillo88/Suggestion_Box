@@ -21,6 +21,10 @@ class Suggestion < ActiveRecord::Base
     { suggestion: 1, complaint: 2, congratulation: 3, issue: 4 }
   end
 
+  def self.exists?(slug)
+    where(slug: slug).present?
+  end
+
   def self.search_filter(category, title, address, distance)
     conditions = "1 = 1 "
     if !title.nil? && !title.blank?

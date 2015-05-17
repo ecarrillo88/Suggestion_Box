@@ -60,6 +60,7 @@ es:
       comments_title: "Comentarios"
       add_comment_title: "Deja un comentario"
       edit_button: "Editar"
+      delete_button: "Eliminar"
       text_size: "Tamaño texto"
       category_1: "Sugerencia"
       category_2: "Queja"
@@ -99,6 +100,9 @@ es:
       flash_update_ok: "La sugerencia ha sido actualizada"
     destroy:
       flash_destroy_ok: "La sugerencia ha sido eliminada"
+      flash_destroy_token_error: "No hemos podido validar la petición para eliminar la sugerencia"
+      flash_destroy_error: 'La sugerencia que estás tratando de eliminar no existe'
+      flash_email_info: "En breves momentos recibirá un email para confirmar la eliminación de la sugerencia"
   comments:
     form:
       name_field: "Nombre"

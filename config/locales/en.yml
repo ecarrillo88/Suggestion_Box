@@ -60,6 +60,7 @@ en:
       comments_title: "Comments"
       add_comment_title: "Add a comment"
       edit_button: "Edit"
+      delete_button: "Delete"
       text_size: "Text size"
       category_1: "Suggestion"
       category_2: "Complaint"
@@ -98,7 +99,10 @@ en:
     update:
       flash_update_ok: "Suggestion was successfully updated"
     destroy:
-      flash_destroy_ok: "Suggestion was successfully destroyed"
+      flash_destroy_ok: "Suggestion was successfully deleted"
+      flash_destroy_token_error: "We could not validate the request to delete the suggestion"
+      flash_destroy_error: 'The suggestion you are trying to delete does not exist'
+      flash_email_info: "In a few moments you will receive an email to confirm the deletion of the suggestion"
   comments:
     form:
       name_field: "Name"

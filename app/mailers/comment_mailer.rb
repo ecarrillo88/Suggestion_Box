@@ -1,10 +1,9 @@
 class CommentMailer < ApplicationMailer
-  default from: 'no-reply@suggestion-box.com'
 
   def comment_validation_email(comment)
     @comment = comment
     @url  = get_host + "comment_validation/#{Base64.encode64(@comment.email)}/"
-    mail(to: @comment.email, subject: 'Suggestion Box - Comment validation')
+    mail(to: @comment.email, subject: 'Suggestion Box - New comment validation')
   end
 
   def city_council_staff_comment_validation(comment)
@@ -17,15 +16,5 @@ class CommentMailer < ApplicationMailer
     @comment = comment
     @url  = get_host + "/suggestions/#{@comment.suggestion.id}/comments/#{@comment.id}/#{@comment.token_validation}/"
     mail(to: @comment.email, subject: 'Suggestion Box - Delete comment confirmation')
-  end
-
-  private
-
-  def get_host
-    if Rails.env == "production"
-      return "https://tfg-suggestion-box.herokuapp.com/"
-    else
-      return "http://localhost:3000/"
-    end
   end
 end

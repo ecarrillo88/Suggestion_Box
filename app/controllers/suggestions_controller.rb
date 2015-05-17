@@ -1,7 +1,7 @@
 require 'image_manager.rb'
 
 class SuggestionsController < ApplicationController
-  before_action :set_suggestion, only: [:show, :edit, :edit_request, :update, :destroy]
+  before_action :set_suggestion, only: [:show, :edit, :edit_request, :update]
   before_action :new_image_manager_filter, only: [:show, :edit, :update]
 
   def index
@@ -52,9 +52,27 @@ class SuggestionsController < ApplicationController
   end
 
   def destroy
-    @suggestion.destroy
-    flash[:info] = t('.flash_destroy_ok')
-    redirect_to suggestions_url
+    if !Suggestion.exists?(params[:id])
+      flash[:danger] = t('.flash_destroy_error')
+      redirect_to suggestions_url
+      return
+    end
+
+    set_suggestion
+    if params[:token].nil?
+      token = token_generator(10)
+      @suggestion.update(token_validation: token)
+      SuggestionMailer.delete_suggestion_email_validation(@suggestion).deliver_later
+      flash[:info] = t('.flash_email_info')
+    else
+      if params[:token] == @suggestion.token_validation
+        @suggestion.destroy
+        flash[:info] = t('.flash_destroy_ok')
+      else
+        flash[:danger] = t('.flash_destroy_token_error')
+      end
+    end
+    redirect_to @suggestion
   end
 
   private

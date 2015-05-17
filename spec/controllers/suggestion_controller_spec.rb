@@ -24,4 +24,29 @@ RSpec.describe SuggestionsController, type: :controller do
       get :edit_request, :id => @suggestion.id
     end
   end
+
+  context "destroy" do
+    it "should send a delete suggestion email validation" do
+      message_delivery = double(ActionMailer::MessageDelivery)
+      expect(SuggestionMailer).to receive(:delete_suggestion_email_validation)
+                              .with(an_instance_of(Suggestion))
+                              .and_return(message_delivery)
+      expect(message_delivery).to receive(:deliver_later)
+
+      delete :destroy, :id => @suggestion.slug, :token => nil
+    end
+
+    it "should destroy the suggestion" do
+      @suggestion.update(token_validation: 'token')
+      delete :destroy, :id => @suggestion.slug, :token => 'token'
+      expect(Suggestion.exists?(@suggestion.slug)).to eq(false)
+    end
+
+    it "should not destroy the suggestion" do
+      @suggestion.update(token_validation: 'token')
+      delete :destroy, :id => @suggestion.slug,
+                       :token => 'fake'
+      expect(Suggestion.exists?(@suggestion.slug)).to eq(true)
+    end
+  end
 end

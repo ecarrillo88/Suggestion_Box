@@ -1,0 +1,16 @@
+Buzón Ciudadano
+===============
+
+Hola <%= @suggestion.author %>, hemos recibido una petición para eliminar la sugerencia "<%= @suggestion.title %>"
+Si deseas eliminar la sugerencia de forma definitiva haz click en el siguiente enlace. En caso contrario ignora este email.
+<%= link_to 'Eliminar sugerencia', @url %>
+Gracias por utilizar el Buzón Ciudadano
+
+--------------------------------------------------------------
+
+Suggestion Box
+===============
+<p>Hi <%= @suggestion.author %>, We have received a request to remove the suggestion "<%= @suggestion.title %>"</p>
+<p>If you want to delete this suggestion permanently, click on the link below. Otherwise ignore this email.</p>
+<%= link_to 'Delete suggestion', @url %>
+<p>Thanks for using the Suggestion Box</p>
