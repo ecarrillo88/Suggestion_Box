@@ -7,9 +7,9 @@ RSpec.describe SuggestionsController, type: :controller do
     @suggestion.save
   end
 
-  context "edit_request" do
+  context "edit" do
     it "should show a flash message" do
-      get :edit_request, :id => @suggestion.id
+      get :edit, :id => @suggestion.id
       expect(response).to redirect_to(@suggestion)
       expect(flash[:info]).to be_present
     end
@@ -21,7 +21,7 @@ RSpec.describe SuggestionsController, type: :controller do
                               .and_return(message_delivery)
       expect(message_delivery).to receive(:deliver_later)
 
-      get :edit_request, :id => @suggestion.id
+      get :edit, :id => @suggestion.id
     end
   end
 

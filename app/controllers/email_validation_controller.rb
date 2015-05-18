@@ -32,16 +32,6 @@ class EmailValidationController < ApplicationController
     end
   end
 
-  def edit_suggestion_validation
-    @suggestion = Suggestion.find_by(token_validation: params[:token])
-    unless @suggestion.nil?
-      @suggestion.update(token_validation: nil)
-      redirect_to edit_suggestion_path(@suggestion)
-    else
-      render 'edit_suggestion_validation_failed'
-    end
-  end
-
   private
     def send_info_email_to_supporters(suggestion)
       email_set = Set.new

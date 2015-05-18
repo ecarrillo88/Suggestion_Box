@@ -14,7 +14,7 @@
     <%= simple_format(comment.text) %>
   </div>
   <!-- delete_comment_link-->
-  <p><%= link_to "<i class=\"glyphicon glyphicon-trash\"></i>".html_safe, delete_comment_path(comment.suggestion, comment, ''), method: :delete, class: "stealth" %></p>
+  <p><%= link_to "<i class=\"glyphicon glyphicon-trash\"></i>".html_safe, delete_comment_path(comment.suggestion, comment), method: :delete, class: "stealth" %></p>
 </div>
 <hr>
 <% end %>

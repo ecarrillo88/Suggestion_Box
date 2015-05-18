@@ -92,8 +92,8 @@ en:
       back_button: "Back"
     edit:
       header_title: "Edit Suggestion"
-      header_description: " "      
-    edit_request:
+      header_description: " "
+      flash_edit_token_error: "We could not validate the request to edit the suggestion"
       flash_email_info: "In a few moments you will receive an email to confirm the suggestion editing"
     create:
       flash_create_ok: "Suggestion was successfully published"

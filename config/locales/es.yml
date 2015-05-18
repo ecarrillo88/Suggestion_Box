@@ -93,7 +93,7 @@ es:
     edit:
       header_title: "Editar Sugerencia"
       header_description: " "
-    edit_request:
+      flash_edit_token_error: "No hemos podido validar la petición para editar la sugerencia"
       flash_email_info: "En breves momentos recibirá un email para confirmar la edición de la sugerencia"
     create:
       flash_create_ok: "La sugerencia ha sido publicada"

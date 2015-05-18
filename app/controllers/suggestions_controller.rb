@@ -17,14 +17,20 @@ class SuggestionsController < ApplicationController
   end
 
   def edit
-  end
-
-  def edit_request
-    token = ApplicationController.token_generator(10)
-    @suggestion.update(token_validation: token)
-    SuggestionMailer.edit_suggestion_email_validation(@suggestion).deliver_later
-    flash[:info] = I18n.t('suggestions.edit_request.flash_email_info')
-    redirect_to @suggestion
+    if params[:token].nil?
+      @suggestion.update(token_validation: ApplicationController.token_generator(10))
+      SuggestionMailer.edit_suggestion_email_validation(@suggestion).deliver_later
+      flash[:info] = t('.flash_email_info')
+      redirect_to @suggestion
+    else
+      if params[:token] == @suggestion.token_validation
+        @suggestion.update(token_validation: nil)
+        render 'edit'
+      else
+        flash[:danger] = t('.flash_edit_token_error')
+        redirect_to @suggestion
+      end
+    end
   end
 
   def create
@@ -60,8 +66,7 @@ class SuggestionsController < ApplicationController
 
     set_suggestion
     if params[:token].nil?
-      token = ApplicationController.token_generator(10)
-      @suggestion.update(token_validation: token)
+      @suggestion.update(token_validation: ApplicationController.token_generator(10))
       SuggestionMailer.delete_suggestion_email_validation(@suggestion).deliver_later
       flash[:info] = t('.flash_email_info')
     else
