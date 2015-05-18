@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20150516175858) do
     t.boolean  "visible",          default: false
     t.string   "slug"
     t.string   "address"
-    t.string   "category"
+    t.integer  "category"
   end
 
   add_index "suggestions", ["slug"], name: "index_suggestions_on_slug"
