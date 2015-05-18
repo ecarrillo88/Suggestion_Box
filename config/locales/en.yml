@@ -69,7 +69,6 @@ en:
     new:
       header_title: "New Suggestion"
       header_description: "Create a new suggestion about a problem, a question, a request... or anything you think is important for your city"
-      new_suggestion_title: "New Suggestion"
     form:
       title_field: "Title"
       type_field: "Type"
@@ -91,6 +90,9 @@ en:
       geolocation_description: "Put a marker by clicking on the map or search address to geolocate the suggestion. If you do not want to geolocate the suggestion remove the map marker."
       create_suggestion_button: "Create Suggestion"
       back_button: "Back"
+    edit:
+      header_title: "Edit Suggestion"
+      header_description: " "      
     edit_request:
       flash_email_info: "In a few moments you will receive an email to confirm the suggestion editing"
     create:

@@ -69,7 +69,6 @@ es:
     new:
       header_title: "Nueva Sugerencia"
       header_description: "Crea una nueva sugerencia sobre un problema, una pregunta, una solicitud... o cualquier cosa que creas que es importante para tu ciudad"
-      new_suggestion_title: "Nueva Sugerencia"
     form:
       title_field: "Título"
       type_field: "Tipo"
@@ -91,6 +90,9 @@ es:
       geolocation_description: "Pon una marca haciendo click en el mapa o busca una dirección para geolocalizar la sugerencia. Si no quieres geolocalizar la sugerencia elimina la marca del mapa."
       create_suggestion_button: "Publicar Sugerencia"
       back_button: "Volver"
+    edit:
+      header_title: "Editar Sugerencia"
+      header_description: " "
     edit_request:
       flash_email_info: "En breves momentos recibirá un email para confirmar la edición de la sugerencia"
     create:
