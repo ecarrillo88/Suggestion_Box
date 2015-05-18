@@ -130,6 +130,10 @@ es:
       flash_destroy_error: 'El comentario que estás tratando de eliminar no existe'
       flash_email_info: "En breves momentos recibirá un email para confirmar la eliminación del comentario"
   email_validation:
+    suggestion_validation:
+      flash_suggestion_validation_success: 'La sugerencia ha sido validada y publicada'
+    comment_validation:
+      flash_comment_validation_success: 'El comentario ha sido validado y publicado'
     edit_suggestion_validation_failed:
       edit_validation_failed: "Parece que el enlace de validación no es válido o ya ha sido utilizado"
   shared:

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get      '/suggestions/:id/edit_request'                   => 'suggestions#edit_request', as: 'suggestion_edit_request'
     get      '/suggestion_validation/:token/'                  => 'email_validation#suggestion_validation'
     get      '/edit_suggestion_validation/:token/'             => 'email_validation#edit_suggestion_validation'
-    get      '/comment_validation/:email/'                     => 'email_validation#comment_validation'
+    get      '/comment_validation/:token/'                     => 'email_validation#comment_validation'
     post     '/'                                               => 'suggestions#index'
   end
 

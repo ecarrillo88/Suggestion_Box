@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
 
     set_comment
     if params[:token].nil?
-      token = token_generator(10)
+      token = ApplicationController.token_generator(10)
       @comment.update(token_validation: token)
       CommentMailer.delete_comment_email_validation(@comment).deliver_later
       flash[:info] = t('.flash_email_info')

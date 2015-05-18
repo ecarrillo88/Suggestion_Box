@@ -15,7 +15,7 @@ class SuggestionBuilder
       if WhiteListEmail.in_whiteList?(@suggestion_attr[:email])
         @suggestion.update(visible: true)
       else
-        @suggestion.update(token_validation: create_token)
+        @suggestion.update(token_validation: ApplicationController.token_generator(10))
         send_validation_email
       end
     end
@@ -25,10 +25,6 @@ class SuggestionBuilder
   private
     def set_anonymous_author_if_left_blank
       @suggestion_attr[:author] = "Anonymous" if @suggestion_attr[:author].blank?
-    end
-
-    def create_token
-      Digest::MD5.hexdigest(@suggestion.id.to_s + @suggestion.email)
     end
 
     def send_validation_email

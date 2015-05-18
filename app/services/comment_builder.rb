@@ -25,7 +25,7 @@ class CommentBuilder
     raise CityCouncilCannotSupport if @want_support
 
     @comment_attr[:vote] = Comment.vote[:abstention]
-    @comment_attr.merge!({city_council_staff: true})
+    @comment_attr.merge!({city_council_staff: true, token_validation: ApplicationController.token_generator(10)})
     @comment = @suggestion.comments.create(@comment_attr)
     if @comment.save
       send_city_council_staff_comment_validation_email
@@ -41,9 +41,11 @@ class CommentBuilder
       @comment_attr[:vote] = Comment.vote[:in_favour]
       @comment_attr.merge!({support: true})
     end
+
+    @comment_attr.merge!({token_validation: ApplicationController.token_generator(10)})
     @comment = @suggestion.comments.create(@comment_attr)
     if @comment.save
-      if WhiteListEmail.not_in_whitelist?(@comment_attr[:email])
+      if WhiteListEmail.not_in_whitelist?(@comment.email)
         comment_validation_email
       else
         send_info_for_supporters_email

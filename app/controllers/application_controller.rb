@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }
   end
 
-  def token_generator(length)
+  def self.token_generator(length)
     lowercase = ("a".."z")
     uppercase = ("A".."Z")
     numbers = (0..9)
