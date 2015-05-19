@@ -17,4 +17,10 @@ class SuggestionMailer < ApplicationMailer
     @url  = get_host + "suggestions/#{@suggestion.slug}/delete/#{@suggestion.token_validation}/"
     mail(to: @suggestion.email, subject: 'Suggestion Box - Delete suggestion confirmation')
   end
+
+  def info_suggestion_has_been_deleted(suggestion, email)
+    @suggestion = suggestion
+    @url  = get_host
+    mail(to: email, subject: "Suggestion Box - Suggestion '#{@suggestion.title}' has been deleted")
+  end
 end

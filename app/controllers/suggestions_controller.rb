@@ -71,6 +71,7 @@ class SuggestionsController < ApplicationController
       flash[:info] = t('.flash_email_info')
     else
       if params[:token] == @suggestion.token_validation
+        @suggestion.comments_email_list.each { |email| SuggestionMailer.info_suggestion_has_been_deleted(@suggestion, email).deliver_later }
         @suggestion.destroy
         flash[:info] = t('.flash_destroy_ok')
       else

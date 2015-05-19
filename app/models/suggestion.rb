@@ -127,4 +127,10 @@ class Suggestion < ActiveRecord::Base
   def district
     self.reverse_geocode.split(',')[2][7..-1]
   end
+
+  def comments_email_list
+    emails = Set.new
+    self.comments.each { |comment| emails.add(comment.email) }
+    return emails
+  end
 end
