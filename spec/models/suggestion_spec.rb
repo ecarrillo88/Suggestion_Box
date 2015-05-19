@@ -3,20 +3,27 @@ require 'rails_helper'
 RSpec.describe Suggestion, type: :model do
 
   before(:each) do
-    @suggestion1 = Suggestion.create({category: Suggestion.category[:suggestion], title: 'Suggestion', author: 'Anonymous', email: 'my_email@email.com', comment: 'My suggestion!', latitude: 40.4167754, longitude: -3.7037901999999576})
-    @suggestion1.save
+    @suggestion1 = Suggestion.create({category: Suggestion.category[:suggestion], title: 'Suggestion of the year', author: 'Anonymous', email: 'my_email@email.com', comment: 'My suggestion!', latitude: 40.4167754, longitude: -3.7037901999999576})
     @suggestion2 = Suggestion.create({category: Suggestion.category[:complaint], title: 'Complaint', author: 'Anonymous', email: 'my_email@email.com', comment: 'My complaint!', latitude: 40.3963198127118, longitude: -3.716254234313965})
-    @suggestion2.save
   end
 
   context "search_filter" do
     it "should filter by category" do
-      suggestion = Suggestion.search_filter(Suggestion.category[:suggestion], nil, nil, nil)
+      category = Suggestion.category[:suggestion]
+      title = nil
+      address = nil
+      distance = nil
+      suggestion = Suggestion.search_filter(category, title, address, distance)
       expect(suggestion.first).to eq(@suggestion1)
     end
 
     it "should filter by title" do
       suggestion = Suggestion.search_filter(nil, 'Suggestion', nil, nil)
+      expect(suggestion.first).to eq(@suggestion1)
+    end
+
+    it "should filter by title with multiple words" do
+      suggestion = Suggestion.search_filter(nil, 'Suggestion the', nil, nil)
       expect(suggestion.first).to eq(@suggestion1)
     end
 

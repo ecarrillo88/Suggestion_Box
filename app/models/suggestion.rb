@@ -16,7 +16,6 @@ class Suggestion < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX }
   validates :comment, presence: :true
 
-  #Methods
   def self.category
     { suggestion: 1, complaint: 2, congratulation: 3, issue: 4 }
   end
@@ -26,27 +25,29 @@ class Suggestion < ActiveRecord::Base
   end
 
   def self.search_filter(category, title, address, distance)
-    conditions = "1 = 1 "
-    if !title.nil? && !title.blank?
-      words = title.split(" ")
-      conditions += "AND ("
-      words.each_with_index do |word, index|
-        conditions += "(upper(title) LIKE upper('%#{word}%'))"
-        conditions += " AND " if index != words.size - 1
-      end
-      conditions += ")"
-    end
-
-    suggestions = Suggestion.where(conditions)
-    suggestions = suggestions.where(category: category) if !category.blank?
+    suggestions = Suggestion.all
+    suggestions = by_title(title) if title.present?
+    suggestions = suggestions.where(category: category) if category.present?
+    suggestions = suggestions.by_distance(address, distance) if address.present?
     suggestions = suggestions.order(created_at: :desc)
-
-    if !address.nil? && !address.blank?
-      suggestions = suggestions.near(address, distance.to_f, unit: :km).reorder('distance ASC')
-    end
 
     return suggestions
   end
+
+  scope :by_distance, ->(address, distance) {
+    near(address, distance.to_f, unit: :km).reorder('distance ASC')
+  }
+
+  scope :by_title, ->(text) {
+    words = text.split(" ")
+    conditions = "("
+    conditions += words.map do |word|
+      "(upper(title) LIKE upper('%#{word}%'))"
+    end.join(' AND ')
+    conditions += ")"
+
+    where(conditions)
+  }
 
   def self.find_visible_comments(suggestion_id)
     friendly.find(suggestion_id).comments.where(visible: true)
