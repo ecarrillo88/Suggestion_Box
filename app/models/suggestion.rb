@@ -117,15 +117,15 @@ class Suggestion < ActiveRecord::Base
   end
 
   def street
-    self.reverse_geocode.split(',')[0]
+    self.address.split(',').reverse[3..-1].reverse.join(',')
   end
 
   def postal_code
-    self.reverse_geocode.split(',')[2].to_i
+    self.address.split(',').reverse[2].to_i
   end
 
   def district
-    self.reverse_geocode.split(',')[2][7..-1]
+    self.address.split(',').reverse[2][7..-1]
   end
 
   def comments_email_list
