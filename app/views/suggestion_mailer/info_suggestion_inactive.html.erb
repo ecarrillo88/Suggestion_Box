@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Buzón Ciudadano</h1>
+    <p>Estimado usuario,</p>
+    <p>Le informamos que la sugerencia "<%= @suggestion.title %>" lleva más de 30 días de inactividad.<p>
+    <p>Este es un resumen de la sugerencia:</p>
+    <ul>
+      <li>Total firmas: <%= @suggestion.number_of_supporters %></li>
+      <li>Total comentarios: <%= @suggestion.number_of_comments %></li>
+      <li>Comentarios a favor: <%= @suggestion.votes_in_favour %></li>
+      <li>Comentarios en contra: <%= @suggestion.votes_against %></li>
+      <li>Comentarios neutrales: <%= @suggestion.votes_neutral %></li>
+    </ul>
+    <p>Si lo deseas puedes seguir comentando con el fin de que los votos positivos aumenten.</p>
+    <p>Si pasados 7 días desde este aviso no hay nuevos comentarios la sugerencia se dará por concluida.</p>
+    <p><%= link_to 'Ir a la sugerencia', @url %></p>
+    <p>Gracias por utilizar el Buzón Ciudadano</p>
+    <br>
+    <p>--------------------------------------------------------------</p>
+    <br>
+    <h1>Suggestion Box</h1>
+    <p>Dear user,</p>
+    <p>We inform you that the suggestion "<%= @suggestion.title %>" has more than 30 days of inactivity.<p>
+    <p>This is a summary of the suggestion:</p>
+    <ul>
+      <li>Total supports: <%= @suggestion.number_of_supporters %></li>
+      <li>Total comments: <%= @suggestion.number_of_comments %></li>
+      <li>Comments in favour: <%= @suggestion.votes_in_favour %></li>
+      <li>Comments against: <%= @suggestion.votes_against %></li>
+      <li>Neutral comments: <%= @suggestion.votes_neutral %></li>
+    </ul>
+    <p>if you wish you can continue to discuss in order to increase the positive comments.</p>
+    <p>After 7 days of this notice, if no new comment posted on the suggestion, it will be terminated.</p>
+    <p><%= link_to 'Go to suggestion', @url %></p>
+    <p>Thank you for using the Suggestion Box</p>
+  </body>
+</html>

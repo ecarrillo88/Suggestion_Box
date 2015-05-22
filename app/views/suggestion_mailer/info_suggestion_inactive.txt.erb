@@ -1,0 +1,39 @@
+Buzón Ciudadano
+===============
+
+Estimado usuario,
+Le informamos que la sugerencia "<%= @suggestion.title %>" lleva más de 30 días de inactividad.
+Este es un resumen de la sugerencia:
+- Total firmas: <%= @suggestion.number_of_supporters %>
+- Total comentarios: <%= @suggestion.number_of_comments %>
+- Comentarios a favor: <%= @suggestion.votes_in_favour %>
+- Comentarios en contra: <%= @suggestion.votes_against %>
+- Comentarios neutrales: <%= @suggestion.votes_neutral %>
+
+Si lo deseas puedes seguir comentando con el fin de que los votos positivos aumenten.
+Si pasados 7 días desde este aviso no hay nuevos comentarios la sugerencia se dará por concluida.
+
+<%= link_to 'Ir a la sugerencia', @url %>
+
+Gracias por utilizar el Buzón Ciudadano
+
+--------------------------------------------------------------
+
+Suggestion Box
+===============
+
+Dear user,
+We inform you that the suggestion "<%= @suggestion.title %>" has more than 30 days of inactivity.
+This is a summary of the suggestion:
+- Total supports: <%= @suggestion.number_of_supporters %>
+- Total comments: <%= @suggestion.number_of_comments %>
+- Comments in favour: <%= @suggestion.votes_in_favour %>
+- Comments against: <%= @suggestion.votes_against %>
+- Neutral comments: <%= @suggestion.votes_neutral %>
+
+if you wish you can continue to discuss in order to increase the positive comments.
+After 7 days of this notice, if no new comment posted on the suggestion, it will be terminated.
+
+<%= link_to 'Go to suggestion', @url %>
+
+Thank you for using the Suggestion Box

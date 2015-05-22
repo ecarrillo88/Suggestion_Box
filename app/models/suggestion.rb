@@ -109,6 +109,10 @@ class Suggestion < ActiveRecord::Base
     self.comments.where(vote: 3, visible: true).size
   end
 
+  def votes_neutral
+    self.comments.where(vote: 2, visible: true).size
+  end
+
   def votes_in_favour_and_against
     votes_in_favour + votes_against
   end
@@ -133,5 +137,9 @@ class Suggestion < ActiveRecord::Base
     emails = Set.new
     self.comments.each { |comment| emails.add(comment.email) }
     return emails
+  end
+
+  def last_comment
+    self.comments.last
   end
 end

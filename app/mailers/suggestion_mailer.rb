@@ -23,4 +23,10 @@ class SuggestionMailer < ApplicationMailer
     @url  = get_host
     mail(to: email, subject: "Suggestion Box - Suggestion '#{@suggestion.title}' has been deleted")
   end
+
+  def info_suggestion_inactive(suggestion, email_neighbor)
+    @suggestion = suggestion
+    @url  = get_host
+    mail(to: email_neighbor, subject: "Suggestion Box - Suggestion '#{@suggestion.title}' inactive")
+  end
 end
