@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516175858) do
+ActiveRecord::Schema.define(version: 20150523105517) do
 
   create_table "city_council_domains", force: :cascade do |t|
     t.string   "domain"
@@ -40,17 +40,18 @@ ActiveRecord::Schema.define(version: 20150516175858) do
     t.string   "author"
     t.string   "email"
     t.text     "comment"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.float    "latitude"
     t.float    "longitude"
     t.string   "image1_id"
     t.string   "image2_id"
     t.string   "token_validation"
-    t.boolean  "visible",          default: false
+    t.boolean  "visible",              default: false
     t.string   "slug"
     t.string   "address"
     t.integer  "category"
+    t.boolean  "notice_of_inactivity", default: false
   end
 
   add_index "suggestions", ["slug"], name: "index_suggestions_on_slug"

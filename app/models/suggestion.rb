@@ -142,4 +142,8 @@ class Suggestion < ActiveRecord::Base
   def last_comment
     self.comments.last
   end
+
+  def notice_of_inactivity?
+    self.notice_of_inactivity
+  end
 end
