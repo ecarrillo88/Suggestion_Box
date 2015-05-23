@@ -7,3 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 CityCouncilDomain.create(domain: 'city_council.gov')
+CityCouncilResponsiblePerson.create(name: 'Juan', last_name: 'Pardo Gutierrrez', email: 'juanpardo@email.com')

@@ -24,9 +24,22 @@ class SuggestionMailer < ApplicationMailer
     mail(to: email, subject: "Suggestion Box - Suggestion '#{@suggestion.title}' has been deleted")
   end
 
-  def info_suggestion_inactive(suggestion, email_neighbor)
+  def info_neighbors_suggestion_inactive(suggestion, email_neighbor)
     @suggestion = suggestion
-    @url  = get_host
+    @url  = get_host + "suggestions/#{@suggestion.slug}/"
     mail(to: email_neighbor, subject: "Suggestion Box - Suggestion '#{@suggestion.title}' inactive")
+  end
+
+  def info_neighbors_suggestion_closed(suggestion, email_neighbor)
+    @suggestion = suggestion
+    @url  = get_host  + "suggestions/#{@suggestion.slug}/"
+    mail(to: email_neighbor, subject: "Suggestion Box - Suggestion '#{@suggestion.title}' closed")
+  end
+
+  def info_responsible_person_suggestion_closed(suggestion, responsible_person)
+    @suggestion = suggestion
+    @responsible_person = responsible_person
+    @url  = get_host + "suggestions/#{@suggestion.slug}/"
+    mail(to: @responsible_person.email, subject: "Suggestion Box - Suggestion '#{@suggestion.title}' closed")
   end
 end

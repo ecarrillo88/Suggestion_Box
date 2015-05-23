@@ -53,6 +53,10 @@ class Suggestion < ActiveRecord::Base
     friendly.find(suggestion_id).comments.where(visible: true)
   end
 
+  def self.find_inactive_suggestions
+    where(notice_of_inactivity: true)
+  end
+
   def find_visible_comments
     self.comments.where(visible: true)
   end
@@ -145,5 +149,13 @@ class Suggestion < ActiveRecord::Base
 
   def notice_of_inactivity?
     self.notice_of_inactivity
+  end
+
+  def open?
+    !self.closed
+  end
+
+  def closed?
+    self.closed
   end
 end

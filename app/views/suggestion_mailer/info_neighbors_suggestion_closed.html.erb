@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Buzón Ciudadano</h1>
+    <p>Le informamos que la sugerencia "<%= @suggestion.title %>" se ha cerrado después de más de 30 días de inactividad.</p>
+    <p>A partir de este momento solo se permite comentar a los responsables del ayuntamiento.<p>
+    <p><%= link_to 'Ir a la sugerencia', @url %></p>
+    <p>Gracias por utilizar el Buzón Ciudadano</p>
+    <br>
+    <p>--------------------------------------------------------------</p>
+    <br>
+    <h1>Suggestion Box</h1>
+    <p>We inform you that the suggestion "<%= @suggestion.title %>" was closed after more than 30 days of inactivity.</p>
+    <p>From now only allowed to publish new comments to the city council staff.<p>
+    <p><%= link_to 'Go to suggestion', @url %></p>
+    <p>Thank you for using the Suggestion Box</p>
+  </body>
+</html>
