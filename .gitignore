@@ -15,6 +15,5 @@
 
 # Configuration files
 /config/cloudinary.yml
-/config/database.yml
 
 /script
