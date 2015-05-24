@@ -66,6 +66,7 @@ es:
       category_2: "Queja"
       category_3: "Felicitaciones"
       category_4: "Incidencia"
+      info_suggestion_closed: "La sugerencia está cerrada y solo se permite comentar al personal del ayuntamiento"
     new:
       header_title: "Nueva Sugerencia"
       header_description: "Crea una nueva sugerencia sobre un problema, una pregunta, una solicitud... o cualquier cosa que creas que es importante para tu ciudad"
@@ -126,6 +127,7 @@ es:
       flash_city_council_staff_support_error: "El personal del ayuntamiento no puede firmar sugerencias"
       flash_create_ok: "El comentario ha sido publicado"
       flash_email_info: "En breves momentos recibirá un email para confirmar su comentario"
+      flash_suggestion_closed: "La sugerencia está cerrada y solo se permite comentar al personal del ayuntamiento"
     destroy:
       flash_destroy_ok: "El comentario ha sido eliminado"
       flash_destroy_token_error: "No hemos podido validar la petición para eliminar el comentario"

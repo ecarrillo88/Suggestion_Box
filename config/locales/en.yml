@@ -66,6 +66,7 @@ en:
       category_2: "Complaint"
       category_3: "Congratulations"
       category_4: "Issue"
+      info_suggestion_closed: "The suggestion is closed and only allows comments from city council staff"
     new:
       header_title: "New Suggestion"
       header_description: "Create a new suggestion about a problem, a question, a request... or anything you think is important for your city"
@@ -126,6 +127,7 @@ en:
       flash_city_council_staff_support_error: "The city council staff can not support suggestions"
       flash_create_ok: "Comment was successfully published"
       flash_email_info: "In a few moments you will receive an email to confirm your comment"
+      flash_suggestion_closed: "The suggestion is closed and only allows comments from city council staff"
     destroy:
       flash_destroy_ok: "Comment was successfully destroyed"
       flash_destroy_token_error: "We could not validate the request to delete the comment"

@@ -9,7 +9,10 @@
   <div class="col-md-8 no-padding-left">
     <div class="box">
   	  <div class="title">
-        <h2><%= @suggestion.title %></h2>
+        <ul class="list-inline">
+          <li><h2><%= @suggestion.title %></h2></li>
+          <li><%= suggestion_presenter.suggestion_closed_icon %></li>
+        </ul>
       </div>
       <ul class="info list-inline">
         <li><i class="glyphicon glyphicon-info-sign"></i> <%= t(".category_#{@suggestion.category}") %></li>

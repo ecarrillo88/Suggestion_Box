@@ -19,4 +19,10 @@ class SuggestionPresenter < BasePresenter
       return 0
     end
   end
+
+  def suggestion_closed_icon
+    if suggestion.closed?
+      h.content_tag :i, nil, class: 'lock glyphicon glyphicon-lock', :"data-toggle" => 'tooltip', :"data-title" => I18n.t('suggestions.show.info_suggestion_closed')
+    end
+  end
 end

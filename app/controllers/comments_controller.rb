@@ -17,19 +17,19 @@ class CommentsController < ApplicationController
       comment = comment_builder.create(comment_params, @suggestion, !params[:comment_and_support].nil?)
     rescue CommentBuilder::OnlyOneSupportPerPersonIsAllowed
       flash[:danger] = t('.flash_support_error')
-      redirect_to @suggestion
     rescue CommentBuilder::CityCouncilCannotSupport
       flash[:danger] = t('.flash_city_council_staff_support_error')
-      redirect_to @suggestion
+    rescue CommentBuilder::SuggestionClosed
+      flash[:danger] = t('.flash_suggestion_closed')
     rescue CommentBuilder::ErrorSavingComment => error
       @comment = error.comment
       @image_manager = ImageManager.new
-      render 'suggestions/show'
+      render 'suggestions/show' and return
     else
       flash[:info] = t('.flash_email_info') if comment.is_a_city_council_staff_comment? || !comment.visible?
       flash[:info] = t('.flash_create_ok')  if comment.visible?
-      redirect_to @suggestion
     end
+    redirect_to @suggestion
   end
 
   def update

@@ -1,6 +1,7 @@
 class CommentBuilder
   class CityCouncilCannotSupport < StandardError; end
   class OnlyOneSupportPerPersonIsAllowed < StandardError; end
+  class SuggestionClosed < StandardError; end
   class ErrorSavingComment < StandardError
     attr :comment
     def initialize(comment)
@@ -15,6 +16,7 @@ class CommentBuilder
     if CityCouncilDomain.is_city_council_staff?(@comment_attr[:email])
       create_city_council_staff_comment
     else
+      raise SuggestionClosed if @suggestion.closed?
       create_comment
     end
   end
