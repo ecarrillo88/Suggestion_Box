@@ -24,8 +24,12 @@ class Suggestion < ActiveRecord::Base
     where(slug: slug).present?
   end
 
+  def self.find_visible_suggestions
+    where(visible: true)
+  end
+
   def self.search_filter(category, title, address, distance)
-    suggestions = Suggestion.all
+    suggestions = Suggestion.find_visible_suggestions
     suggestions = by_title(title) if title.present?
     suggestions = suggestions.where(category: category) if category.present?
     suggestions = suggestions.by_distance(address, distance) if address.present?
