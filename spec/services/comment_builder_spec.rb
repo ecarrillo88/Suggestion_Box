@@ -3,22 +3,23 @@ require 'rails_helper'
 RSpec.describe "Comment Builder tests: " do
   let (:builder) { CommentBuilder.new }
   before do
-    @suggestion = Suggestion.create(category: 1, title: 'Awesome Suggestion', author: 'Mister Fantastic', email: 'ReedRichards@email.com', comment: 'Lorem ipsum dolor sit amet', visible: true)
+    @suggestion_open = Suggestion.create(category: 1, title: 'Awesome Suggestion', author: 'Mister Fantastic', email: 'ReedRichards@email.com', comment: 'Lorem ipsum dolor sit amet', visible: true, closed: false)
+    @suggestion_closed = Suggestion.create(category: 1, title: 'Suggestion Closed', author: 'Mister Fantastic', email: 'ReedRichards@email.com', comment: 'Lorem ipsum dolor sit amet', visible: true, closed: true)
   end
 
   context "As a neighbor I want to" do
-    context "comment a suggestion" do
+    context "comment a suggestion when is open" do
       context "my email is in whitelist" do
         before do
           WhiteListEmail.new(email: 'SusanStorm@email.com').save
           WhiteListEmail.new(email: 'JohnnyStorm@email.com').save
-          builder.create({author: 'Human Torch', email: 'JohnnyStorm@email.com', text: 'Lorem ipsum'}, @suggestion, true)
+          builder.create({author: 'Human Torch', email: 'JohnnyStorm@email.com', text: 'Lorem ipsum'}, @suggestion_open, true)
         end
 
         it "should publish the comment" do
           comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
 
-          comment = builder.create(comment_params, @suggestion, false)
+          comment = builder.create(comment_params, @suggestion_open, false)
 
           expect(comment.author).to eq('Invisible Woman')
           expect(comment.visible?).to equal(true)
@@ -28,17 +29,17 @@ RSpec.describe "Comment Builder tests: " do
           message_delivery = double(ActionMailer::MessageDelivery)
           comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
 
-          expect(SupporterMailer).to receive(:info_new_comment).with(@suggestion, an_instance_of(Comment), 'JohnnyStorm@email.com').and_return(message_delivery)
+          expect(SupporterMailer).to receive(:info_new_comment).with(@suggestion_open, an_instance_of(Comment), 'JohnnyStorm@email.com').and_return(message_delivery)
           expect(message_delivery).to receive(:deliver_later)
 
-          builder.create(comment_params, @suggestion, false)
+          builder.create(comment_params, @suggestion_open, false)
         end
 
         context "I vote in favour" do
           it "should publish the comment as in favour" do
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:in_favour]}
 
-            comment = builder.create(comment_params, @suggestion, false)
+            comment = builder.create(comment_params, @suggestion_open, false)
 
             expect(comment.author).to eq('Invisible Woman')
             expect(comment.visible?).to equal(true)
@@ -50,7 +51,7 @@ RSpec.describe "Comment Builder tests: " do
           it "should publish the comment as abstention" do
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
 
-            comment = builder.create(comment_params, @suggestion, false)
+            comment = builder.create(comment_params, @suggestion_open, false)
 
             expect(comment.author).to eq('Invisible Woman')
             expect(comment.visible?).to equal(true)
@@ -62,7 +63,7 @@ RSpec.describe "Comment Builder tests: " do
           it "should publish the comment as against" do
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:against]}
 
-            comment = builder.create(comment_params, @suggestion, false)
+            comment = builder.create(comment_params, @suggestion_open, false)
 
             expect(comment.author).to eq('Invisible Woman')
             expect(comment.visible?).to equal(true)
@@ -79,7 +80,7 @@ RSpec.describe "Comment Builder tests: " do
           expect(CommentMailer).to receive(:comment_validation_email).with(an_instance_of(Comment)).and_return(message_delivery)
           expect(message_delivery).to receive(:deliver_later)
 
-          comment = builder.create(comment_params, @suggestion, false)
+          comment = builder.create(comment_params, @suggestion_open, false)
 
           expect(comment.author).to eq('Invisible Woman')
           expect(comment.visible?).to equal(false)
@@ -87,7 +88,15 @@ RSpec.describe "Comment Builder tests: " do
       end
     end
 
-    context "support a suggestion" do
+    context "comment a suggestion when is closed" do
+      it "should raise an exception" do
+        comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
+
+        expect { builder.create(comment_params, @suggestion_closed, false) }.to raise_error CommentBuilder::SuggestionClosed
+      end
+    end
+
+    context "support a suggestion when is open" do
       context "my email is in whitelist" do
         before do
           WhiteListEmail.new(email: 'SusanStorm@email.com').save
@@ -95,13 +104,13 @@ RSpec.describe "Comment Builder tests: " do
         context "I have already supported the suggestion" do
           before do
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
-            builder.create(comment_params, @suggestion, true)
+            builder.create(comment_params, @suggestion_open, true)
           end
 
-          it "should raise an exceptio" do
+          it "should raise an exception" do
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:abstention]}
 
-            expect { builder.create(comment_params, @suggestion, true) }.to raise_error CommentBuilder::OnlyOneSupportPerPersonIsAllowed
+            expect { builder.create(comment_params, @suggestion_open, true) }.to raise_error CommentBuilder::OnlyOneSupportPerPersonIsAllowed
           end
         end
 
@@ -109,7 +118,7 @@ RSpec.describe "Comment Builder tests: " do
           it "should publish the comment" do
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
 
-            comment = builder.create(comment_params, @suggestion, true)
+            comment = builder.create(comment_params, @suggestion_open, true)
 
             expect(comment.author).to eq('Invisible Woman')
             expect(comment.support).to equal(true)
@@ -123,28 +132,28 @@ RSpec.describe "Comment Builder tests: " do
             expect(SupporterMailer).to receive(:info_for_supporters).with(an_instance_of(Comment)).and_return(message_delivery)
             expect(message_delivery).to receive(:deliver_later)
 
-            builder.create(comment_params, @suggestion, true)
+            builder.create(comment_params, @suggestion_open, true)
           end
 
           before do
             WhiteListEmail.new(email: 'JohnnyStorm@email.com').save
-            builder.create({author: 'Human Torch', email: 'JohnnyStorm@email.com', text: 'Lorem ipsum', vote: Comment.vote[:abstention]}, @suggestion, true)
+            builder.create({author: 'Human Torch', email: 'JohnnyStorm@email.com', text: 'Lorem ipsum', vote: Comment.vote[:abstention]}, @suggestion_open, true)
           end
           it "should send a email informing the other supporters about the new comment" do
             message_delivery = double(ActionMailer::MessageDelivery)
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
 
-            expect(SupporterMailer).to receive(:info_new_comment).with(@suggestion, an_instance_of(Comment), 'JohnnyStorm@email.com').and_return(message_delivery)
+            expect(SupporterMailer).to receive(:info_new_comment).with(@suggestion_open, an_instance_of(Comment), 'JohnnyStorm@email.com').and_return(message_delivery)
             expect(message_delivery).to receive(:deliver_later)
 
-            builder.create(comment_params, @suggestion, true)
+            builder.create(comment_params, @suggestion_open, true)
           end
 
           context "I vote in favour" do
             it "should publish the comment as in favour" do
               comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:in_favour]}
 
-              comment = builder.create(comment_params, @suggestion, true)
+              comment = builder.create(comment_params, @suggestion_open, true)
 
               expect(comment.author).to eq('Invisible Woman')
               expect(comment.support).to equal(true)
@@ -157,7 +166,7 @@ RSpec.describe "Comment Builder tests: " do
             it "should publish the comment as in favour" do
               comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
 
-              comment = builder.create(comment_params, @suggestion, true)
+              comment = builder.create(comment_params, @suggestion_open, true)
 
               expect(comment.author).to eq('Invisible Woman')
               expect(comment.support).to equal(true)
@@ -170,7 +179,7 @@ RSpec.describe "Comment Builder tests: " do
             it "should publish the comment as in favour" do
               comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:against]}
 
-              comment = builder.create(comment_params, @suggestion, true)
+              comment = builder.create(comment_params, @suggestion_open, true)
 
               expect(comment.author).to eq('Invisible Woman')
               expect(comment.support).to equal(true)
@@ -189,11 +198,19 @@ RSpec.describe "Comment Builder tests: " do
           expect(CommentMailer).to receive(:comment_validation_email).with(an_instance_of(Comment)).and_return(message_delivery)
           expect(message_delivery).to receive(:deliver_later)
 
-          comment = builder.create(comment_params, @suggestion, true)
+          comment = builder.create(comment_params, @suggestion_open, true)
 
           expect(comment.author).to eq('Invisible Woman')
           expect(comment.visible?).to equal(false)
         end
+      end
+    end
+
+    context "support a suggestion when is closed" do
+      it "should raise an exception" do
+        comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
+
+        expect { builder.create(comment_params, @suggestion_closed, true) }.to raise_error CommentBuilder::SuggestionClosed
       end
     end
   end
@@ -203,7 +220,7 @@ RSpec.describe "Comment Builder tests: " do
       CityCouncilDomain.new(domain: 'city_council.gov').save
     end
 
-    context "comment a suggestion" do
+    context "comment a suggestion when is open" do
       it 'should sends an email to the author' do
         message_delivery = double(ActionMailer::MessageDelivery)
         comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:abstention]}
@@ -211,13 +228,13 @@ RSpec.describe "Comment Builder tests: " do
         expect(CommentMailer).to receive(:city_council_staff_comment_validation).with(an_instance_of(Comment)).and_return(message_delivery)
         expect(message_delivery).to receive(:deliver_later)
 
-        builder.create(comment_params, @suggestion, false)
+        builder.create(comment_params, @suggestion_open, false)
       end
 
-      it "should publish the suggestion" do
+      it "should publish the comment" do
         comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:abstention]}
 
-        comment = builder.create(comment_params, @suggestion, false)
+        comment = builder.create(comment_params, @suggestion_open, false)
 
         expect(comment.author).to eq('The Thing')
         expect(comment.is_a_city_council_staff_comment?).to equal(true)
@@ -227,7 +244,7 @@ RSpec.describe "Comment Builder tests: " do
         it "should publish the comment as abstencion" do
           comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:in_favour]}
 
-          comment = builder.create(comment_params, @suggestion, false)
+          comment = builder.create(comment_params, @suggestion_open, false)
 
           expect(comment.author).to eq('The Thing')
           expect(comment.is_a_city_council_staff_comment?).to equal(true)
@@ -239,7 +256,7 @@ RSpec.describe "Comment Builder tests: " do
         it "should publish the comment as abstencion" do
           comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:abstention]}
 
-          comment = builder.create(comment_params, @suggestion, false)
+          comment = builder.create(comment_params, @suggestion_open, false)
 
           expect(comment.author).to eq('The Thing')
           expect(comment.is_a_city_council_staff_comment?).to equal(true)
@@ -251,7 +268,7 @@ RSpec.describe "Comment Builder tests: " do
         it "should publish the comment as abstencion" do
           comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:against]}
 
-          comment = builder.create(comment_params, @suggestion, false)
+          comment = builder.create(comment_params, @suggestion_open, false)
 
           expect(comment.author).to eq('The Thing')
           expect(comment.is_a_city_council_staff_comment?).to equal(true)
@@ -260,11 +277,22 @@ RSpec.describe "Comment Builder tests: " do
       end
     end
 
+    context "comment a suggestion when is closed" do
+      it "should publish the comment" do
+        comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:abstention]}
+
+        comment = builder.create(comment_params, @suggestion_closed, false)
+
+        expect(comment.author).to eq('The Thing')
+        expect(comment.is_a_city_council_staff_comment?).to equal(true)
+      end
+    end
+
     context "support a suggestion" do
       it "should raise an exception" do
         comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:abstention]}
 
-        expect { builder.create(comment_params, @suggestion, true) }.to raise_error CommentBuilder::CityCouncilCannotSupport
+        expect { builder.create(comment_params, @suggestion_open, true) }.to raise_error CommentBuilder::CityCouncilCannotSupport
       end
     end
   end
@@ -273,7 +301,7 @@ RSpec.describe "Comment Builder tests: " do
     it "should raise an exception" do
       comment_params = {author: "", email: "", text: "", vote: Comment.vote[:abstention]}
 
-      expect { builder.create(comment_params, @suggestion, false) }.to raise_error CommentBuilder::ErrorSavingComment
+      expect { builder.create(comment_params, @suggestion_open, false) }.to raise_error CommentBuilder::ErrorSavingComment
     end
   end
 end
