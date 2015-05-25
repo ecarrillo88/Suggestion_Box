@@ -3,50 +3,193 @@ require 'rails_helper'
 RSpec.describe SuggestionsController, type: :controller do
 
   before(:each) do
-    @suggestion = Suggestion.create({category: 1, title: 'New title', author: 'Anonymous', email: 'my_email@email.com', comment: 'New comment', latitude: nil, longitude: nil})
-    @suggestion.save
+    @suggestion = Suggestion.create({ category: 1, title: 'New title', author: 'Anonymous', email: 'my_email@email.com', comment: 'New comment', latitude: nil, longitude: nil })
+    @suggestion.comments.create(author: 'Han Solo', email: 'MillenniumFalcon@email.com', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', visible: true, vote: Comment.vote[:abstention])
   end
 
-  context "edit" do
-    it "should show a flash message" do
-      get :edit, :id => @suggestion.id
-      expect(response).to redirect_to(@suggestion)
-      expect(flash[:info]).to be_present
-    end
-
-    it "should send a email validation" do
-      message_delivery = double(ActionMailer::MessageDelivery)
-      expect(SuggestionMailer).to receive(:edit_suggestion_email_validation)
-                              .with(an_instance_of(Suggestion))
-                              .and_return(message_delivery)
-      expect(message_delivery).to receive(:deliver_later)
-
-      get :edit, :id => @suggestion.id
+  context "GET index" do
+    it "should be success" do
+      get :index, suggestion: @suggestion.slug
+      expect(response).to be_success
     end
   end
 
-  context "destroy" do
-    it "should send a delete suggestion email validation" do
-      message_delivery = double(ActionMailer::MessageDelivery)
-      expect(SuggestionMailer).to receive(:delete_suggestion_email_validation)
-                              .with(an_instance_of(Suggestion))
-                              .and_return(message_delivery)
-      expect(message_delivery).to receive(:deliver_later)
+  context "GET show" do
+    it "should be success" do
+      get :show, id: @suggestion.id
+      expect(response).to be_success
+    end
+  end
 
-      delete :destroy, :id => @suggestion.slug, :token => nil
+  context "GET new" do
+    it "should be success" do
+      get :new
+      expect(response).to be_success
+    end
+  end
+
+  context "GET edit" do
+    context "if the token parameter is not present" do
+      it "should show a flash message" do
+        get :edit, id: @suggestion.id, token: nil
+        expect(response).to redirect_to(@suggestion)
+        expect(flash[:info]).to eq(I18n.t('suggestions.edit.flash_email_info'))
+      end
+
+      it "should send a email validation" do
+        message_delivery = double(ActionMailer::MessageDelivery)
+        expect(SuggestionMailer).to receive(:edit_suggestion_email_validation)
+                                .with(an_instance_of(Suggestion))
+                                .and_return(message_delivery)
+        expect(message_delivery).to receive(:deliver_later)
+
+        get :edit, id: @suggestion.id, token: nil
+      end
     end
 
-    it "should destroy the suggestion" do
-      @suggestion.update(token_validation: 'token')
-      delete :destroy, :id => @suggestion.slug, :token => 'token'
-      expect(Suggestion.exists?(@suggestion.slug)).to eq(false)
+    context "if the token parameter is valid" do
+      it "should render suggestion edit page" do
+        @suggestion.update(token_validation: 'token_OK')
+        get :edit, id: @suggestion.id, token: 'token_OK'
+
+        expect(response).to render_template(:edit)
+      end
     end
 
-    it "should not destroy the suggestion" do
-      @suggestion.update(token_validation: 'token')
-      delete :destroy, :id => @suggestion.slug,
-                       :token => 'fake'
-      expect(Suggestion.exists?(@suggestion.slug)).to eq(true)
+    context "if the token parameter is invalid" do
+      it "should show a flash error message" do
+        @suggestion.update(token_validation: 'token_OK')
+        get :edit, id: @suggestion.id, token: 'token_KO'
+
+        expect(flash[:danger]).to eq(I18n.t('suggestions.edit.flash_edit_token_error'))
+      end
+
+      it "should redirect to suggestion" do
+        @suggestion.update(token_validation: 'token_OK')
+        get :edit, id: @suggestion.id, token: 'token_KO'
+
+        expect(response).to redirect_to(@suggestion)
+      end
+    end
+  end
+
+  context "POST create" do
+    context "If the suggestion is created" do
+      it "should redirect to suggestion" do
+        suggestion_params = {category: 1, title: 'New title 2', author: 'Anonymous', email: 'my_email@email.com', comment: 'New comment', latitude: nil, longitude: nil}
+        post :create, suggestion: suggestion_params
+
+        expect(response).to redirect_to("/es/suggestions/new-title-2")
+      end
+    end
+
+    context "If the suggestion contains an error" do
+      it "should render new" do
+        post :create, suggestion: {category: nil, title: nil, author: nil, email: nil, comment: nil, latitude: nil, longitude: nil}
+
+        expect(response).to render_template(:new)
+      end
+    end
+  end
+
+  context "PATCH update" do
+    context "If suggestion has been updated" do
+      it "should show a flash message" do
+        patch :update, id: @suggestion.id, suggestion: {category: 2, title: 'Updates title', author: 'Anonymous', email: 'anonymous@email.com', comment: 'New comment', latitude: nil, longitude: nil}
+
+        expect(flash[:info]).to eq(I18n.t('suggestions.update.flash_update_ok'))
+      end
+
+      it "should be success" do
+        patch :update, id: @suggestion.id, suggestion: {category: nil, title: nil, author: nil, email: nil, comment: nil, latitude: nil, longitude: nil}
+
+        expect(response).to be_success
+      end
+    end
+
+    context "If suggestion has not been updated" do
+      it "should render edit suggestion page" do
+        patch :update, id: @suggestion.id, suggestion: {category: nil, title: nil, author: nil, email: nil, comment: nil, latitude: nil, longitude: nil}
+
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
+
+  context "DELETE destroy" do
+    context "If the suggestion does not exists" do
+      it "should show a flash error message" do
+        delete :destroy, id: "fake_id", token: nil
+
+        expect(flash[:danger]).to eq(I18n.t('suggestions.destroy.flash_destroy_error'))
+      end
+
+      it "should redirect to index" do
+        delete :destroy, id: "fake_id", token: nil
+
+        expect(response).to redirect_to(suggestions_url)
+      end
+    end
+
+    context "If the suggestion exists and the token parameter is not present" do
+      it "should show a flash message" do
+        delete :destroy, id: @suggestion.slug, token: nil
+
+        expect(flash[:info]).to eq(I18n.t('suggestions.destroy.flash_email_info'))
+      end
+
+      it "should send a delete suggestion email validation" do
+        message_delivery = double(ActionMailer::MessageDelivery)
+        expect(SuggestionMailer).to receive(:delete_suggestion_email_validation)
+                                .with(an_instance_of(Suggestion))
+                                .and_return(message_delivery)
+        expect(message_delivery).to receive(:deliver_later)
+
+        delete :destroy, id: @suggestion.slug, token: nil
+      end
+    end
+
+    context "If the suggestion exists and the token parameter is valid" do
+      it "should show a flash message" do
+        @suggestion.update(token_validation: "token_OK")
+        delete :destroy, id: @suggestion.slug, token: "token_OK"
+
+        expect(flash[:info]).to eq(I18n.t('suggestions.destroy.flash_destroy_ok'))
+      end
+
+      it "should inform neighbors that the suggestion has been deleted" do
+        @suggestion.update(token_validation: "token_OK")
+        message_delivery = double(ActionMailer::MessageDelivery)
+        expect(SuggestionMailer).to receive(:info_suggestion_has_been_deleted)
+                                .with(an_instance_of(Suggestion), 'MillenniumFalcon@email.com')
+                                .and_return(message_delivery)
+
+        expect(message_delivery).to receive(:deliver_later)
+
+        delete :destroy, id: @suggestion.slug, token: "token_OK"
+      end
+
+      it "should destroy the suggestion" do
+        @suggestion.update(token_validation: "token_OK")
+        delete :destroy, :id => @suggestion.slug, :token => "token_OK"
+        expect(Suggestion.exists?(@suggestion.slug)).to eq(false)
+      end
+    end
+
+    context "If the suggestion exists and the token parameter is invalid" do
+      it "should show a flash error message" do
+        @suggestion.update(token_validation: "token_OK")
+        delete :destroy, id: @suggestion.slug, token: "token_KO"
+
+        expect(flash[:danger]).to eq(I18n.t('suggestions.destroy.flash_destroy_token_error'))
+      end
+
+      it "should not destroy the suggestion" do
+        @suggestion.update(token_validation: 'token')
+        delete :destroy, :id => @suggestion.slug,
+                         :token => 'fake'
+        expect(Suggestion.exists?(@suggestion.slug)).to eq(true)
+      end
     end
   end
 end
