@@ -6,10 +6,16 @@ class CommentBuilder
     end
   end
 
+  class CommentInfo < Struct.new(:suggestion, :fields, :supports); end
+
   def create(comment_params, suggestion, want_support)
+    info = CommentInfo.new(suggestion, comment_params, want_support)
     comment_type = NeighbourComment
     comment_type = CityCouncilComment if city_council?(comment_params)
-    comment_type.new(suggestion, want_support, comment_params).create
+    comment = comment_type.new(info).create
+
+    raise ErrorSavingComment.new(comment) unless comment.persisted?
+    comment
   end
 
   private

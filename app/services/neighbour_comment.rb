@@ -2,34 +2,30 @@ class NeighbourComment
   class OnlyOneSupportPerPersonIsAllowed < StandardError; end
   class SuggestionClosed < StandardError; end
 
-  def initialize(suggestion, want_support, comment_attr)
-    raise SuggestionClosed if suggestion.closed?
-    @want_support = want_support
-    @suggestion = suggestion
-    @comment_attr = comment_attr
+  def initialize(comment_input)
+    raise SuggestionClosed if comment_input.suggestion.closed?
+    @comment_input = comment_input
   end
 
   def create
-    if @want_support
-      raise OnlyOneSupportPerPersonIsAllowed if @suggestion.email_has_supported_me?(@comment_attr[:email])
-      @comment_attr[:vote] = Comment.vote[:in_favour]
-      @comment_attr.merge!({support: true})
+    if @comment_input.supports
+      raise OnlyOneSupportPerPersonIsAllowed if @comment_input.suggestion.email_has_supported_me?(@comment_input.fields[:email])
+      @comment_input.fields[:vote] = Comment.vote[:in_favour]
+      @comment_input.fields.merge!({support: true})
     end
 
-    @comment_attr.merge!({token_validation: ApplicationController.token_generator(10)})
-    @comment = @suggestion.comments.create(@comment_attr)
+    @comment_input.fields.merge!({token_validation: ApplicationController.token_generator(10)})
+    @comment = @comment_input.suggestion.comments.create(@comment_input.fields)
     if @comment.save
       if WhiteListEmail.not_in_whitelist?(@comment.email)
         comment_validation_email
       else
         send_info_for_supporters_email
-        send_info_email_to_supporters(@suggestion)
+        send_info_email_to_supporters(@comment_input.suggestion)
         @comment.update(visible: true)
       end
-      return @comment
-    else
-      raise CommentBuilder::ErrorSavingComment.new(@comment)
     end
+    @comment
   end
 
   private
