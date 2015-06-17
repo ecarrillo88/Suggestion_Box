@@ -12,6 +12,8 @@
 *.class
 *.pyc
 *.pyo
+*.sw[a-e]
+*.sw[g-z]
 
 # Configuration files
 /config/cloudinary.yml

@@ -92,7 +92,7 @@ RSpec.describe "Comment Builder tests: " do
       it "should raise an exception" do
         comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
 
-        expect { builder.create(comment_params, @suggestion_closed, false) }.to raise_error CommentBuilder::SuggestionClosed
+        expect { builder.create(comment_params, @suggestion_closed, false) }.to raise_error NeighbourComment::SuggestionClosed
       end
     end
 
@@ -110,7 +110,7 @@ RSpec.describe "Comment Builder tests: " do
           it "should raise an exception" do
             comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:abstention]}
 
-            expect { builder.create(comment_params, @suggestion_open, true) }.to raise_error CommentBuilder::OnlyOneSupportPerPersonIsAllowed
+            expect { builder.create(comment_params, @suggestion_open, true) }.to raise_error NeighbourComment::OnlyOneSupportPerPersonIsAllowed
           end
         end
 
@@ -210,7 +210,7 @@ RSpec.describe "Comment Builder tests: " do
       it "should raise an exception" do
         comment_params = {author: 'Invisible Woman', email: 'SusanStorm@email.com', text: 'Aenean commodo ligula eget dolor', vote: Comment.vote[:abstention]}
 
-        expect { builder.create(comment_params, @suggestion_closed, true) }.to raise_error CommentBuilder::SuggestionClosed
+        expect { builder.create(comment_params, @suggestion_closed, true) }.to raise_error NeighbourComment::SuggestionClosed
       end
     end
   end
@@ -292,7 +292,7 @@ RSpec.describe "Comment Builder tests: " do
       it "should raise an exception" do
         comment_params = {author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', vote: Comment.vote[:abstention]}
 
-        expect { builder.create(comment_params, @suggestion_open, true) }.to raise_error CommentBuilder::CityCouncilCannotSupport
+        expect { builder.create(comment_params, @suggestion_open, true) }.to raise_error CityCouncilComment::CityCouncilCannotSupport
       end
     end
   end
