@@ -15,11 +15,11 @@ class CommentsController < ApplicationController
     comment_builder = CommentBuilder.new
     begin
       comment = comment_builder.create(comment_params, @suggestion, !params[:comment_and_support].nil?)
-    rescue CommentBuilder::OnlyOneSupportPerPersonIsAllowed
+    rescue NeighbourComment::OnlyOneSupportPerPersonIsAllowed
       flash[:danger] = t('.flash_support_error')
-    rescue CommentBuilder::CityCouncilCannotSupport
+    rescue CityCouncilComment::CityCouncilCannotSupport
       flash[:danger] = t('.flash_city_council_staff_support_error')
-    rescue CommentBuilder::SuggestionClosed
+    rescue NeighbourComment::SuggestionClosed
       flash[:danger] = t('.flash_suggestion_closed')
     rescue CommentBuilder::ErrorSavingComment => error
       @comment = error.comment
