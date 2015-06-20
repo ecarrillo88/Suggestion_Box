@@ -1,11 +1,21 @@
 $(document).ready(function(){
   //Index
+  $(document).ajaxStart(function() {
+    $('#suggestion_list').mask('Loading...');
+   });
+  $(document).ajaxStop(function() {
+     $('#suggestion_list').unmask();
+   });
+
+  $('.pagination a').attr('data-remote', 'true')
+
   $('#distance').attr('disabled', true);
 
   $('#address').keyup(function() {
     if($(this).val().trim() != '') {
       $('#distance').removeAttr('disabled');
     } else {
+      $('#distance').val('0.5')
       $('#distance').attr('disabled', true);
     }
   });

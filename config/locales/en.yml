@@ -42,6 +42,11 @@ en:
       meter: "meter"
       kilometer: "kilometer"
       search_button: "Search"
+      category_1: "Suggestion"
+      category_2: "Complaint"
+      category_3: "Congratulations"
+      category_4: "Issue"
+    suggestion_list:
       comment: "Comment"
       support: "Support"
       category_1: "Suggestion"

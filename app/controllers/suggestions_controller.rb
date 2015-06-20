@@ -1,12 +1,23 @@
 require 'image_manager.rb'
 
 class SuggestionsController < ApplicationController
+  protect_from_forgery except: :index
+
   before_action :set_suggestion, only: [:show, :edit, :edit_request, :update]
   before_action :new_image_manager_filter, only: [:show, :edit, :update]
 
   def index
-    @suggestions = Suggestion.search_filter(params[:category], params[:title], params[:address], params[:distance])
+    @category = params[:category]
+    @title = params[:title]
+    @address = params[:address]
+    @distance = params[:distance]
+    @suggestions = Suggestion.search_filter(@category, @title, @address, @distance)
                              .paginate(:page => params[:page], :per_page => 10)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

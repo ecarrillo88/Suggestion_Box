@@ -42,6 +42,11 @@ es:
       meter: "metro"
       kilometer: "kilometro"
       search_button: "Buscar"
+      category_1: "Sugerencia"
+      category_2: "Queja"
+      category_3: "Felicitaciones"
+      category_4: "Incidencia"
+    suggestion_list:
       comment: "Comentario"
       support: "Firma"
       category_1: "Sugerencia"
