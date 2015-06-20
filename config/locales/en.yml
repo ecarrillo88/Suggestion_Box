@@ -159,7 +159,7 @@ en:
             title:
               blank: "Title is required"
               too_long: "Title is too long (maximum is 150 characters)"
-            type:
+            category:
               blank: "Type is required"
             email:
               blank: "Email is required"

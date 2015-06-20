@@ -159,7 +159,7 @@ es:
             title:
               blank: "El título es obligatorio"
               too_long: "El título es demasiado largo (máximo 150 caracteres)"
-            type:
+            category:
               blank: "El tipo es obligatorio"
             email:
               blank: "El email es obligatorio"
