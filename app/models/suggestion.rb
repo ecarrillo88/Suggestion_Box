@@ -11,7 +11,7 @@ class Suggestion < ActiveRecord::Base
   validates :title, presence: :true,
                     length: { maximum: 150 }
   validates :category, presence: :true
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-_.]+\.[a-z]+\z/i
   validates :email, presence: true,
                     format: { with: VALID_EMAIL_REGEX }
   validates :comment, presence: :true
