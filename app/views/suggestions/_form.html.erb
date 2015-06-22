@@ -14,7 +14,7 @@
                                                   [t('.complaint_option'),      2],
                                                   [t('.congratulation_option'), 3],
                                                   [t('.issue_option'),          4]],
-                                                  disabled: 0, selected: 0), {}, {class: "form-control"} %>
+                                                  disabled: 0, selected: @suggestion.category || 0), {}, {class: "form-control"} %>
     </div>
   </div>
   <div class="field">
