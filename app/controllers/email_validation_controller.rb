@@ -13,7 +13,8 @@ class EmailValidationController < ApplicationController
       flash[:info] = t('.flash_comment_validation_success')
       redirect_to @comment.suggestion
     else
-      render 'comment_validation_failed'
+      flash[:danger] = t('.flash_comment_validation_failed')
+      redirect_to root_path
     end
   end
 
@@ -28,7 +29,8 @@ class EmailValidationController < ApplicationController
       flash[:info] = t('.flash_suggestion_validation_success')
       redirect_to @suggestion
     else
-      render 'suggestion_validation_failed'
+      flash[:danger] = t('.flash_suggestion_validation_failed')
+      redirect_to root_path
     end
   end
 

@@ -141,10 +141,10 @@ en:
   email_validation:
     suggestion_validation:
       flash_suggestion_validation_success: 'Your suggestion has been activated and published'
+      flash_suggestion_validation_failed: 'We could not validate your suggestion'
     comment_validation:
       flash_comment_validation_success: 'Your comment has been activated and published'
-    edit_suggestion_validation_failed:
-      edit_validation_failed: "It seems that the validation link is invalid or has already been used"
+      flash_comment_validation_failed: 'We could not validate your comment'
   shared:
     upload_images:
       select_image_button: "Select image"
