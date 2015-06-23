@@ -20,6 +20,10 @@ $(document).ready(function(){
     }
   });
 
+  $('#clear_button').click(function(){
+    clearForm();
+  });
+
   //Show
   var map_canvas_show = $("#map-canvas-show");
   if (map_canvas_show.length > 0) {
@@ -99,7 +103,7 @@ $(document).ready(function(){
   });
 });
 
-
+// functions
 function fontSizer(element, action) {
   $(element).find('p').each(function(){
     var increment = 1;
@@ -127,4 +131,13 @@ function imageValidation(file) {
     return false;
   }
   return true;
+}
+
+function clearForm() {
+  $('#title').val("");
+  $('#category').val("");
+  $('#status').val("");
+  $('#address').val("");
+  $('#distance').val("0.5");
+  $('#distance').attr('disabled', true);
 }
