@@ -32,7 +32,7 @@ en:
     previous_label: "Previous"
     next_label: "Next"
   suggestions:
-    index:
+    search_filter:
       search_filter_title: "Search filter"
       title_filter: "Title"
       type_filter: "Type"
