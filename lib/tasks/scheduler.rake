@@ -20,7 +20,7 @@ namespace :scheduler do
       if suggestion.open? && suggestion.has_comments?
         diff = (Time.now - suggestion.last_comment.created_at) / 86400
         if diff >= 37 # days
-          suggestion.update(closed: true)
+          suggestion.update(closed: 1)
           suggestion.comments_email_list.each do |email|
             SuggestionMailer.info_neighbors_suggestion_closed(suggestion, email).deliver_later
           end

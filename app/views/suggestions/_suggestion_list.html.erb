@@ -27,5 +27,5 @@
   <% end %>
 <% end %>
 
-<%= will_paginate @suggestions, params: {category: @category, title: @title, address: @address, distance: @distance},
+<%= will_paginate @suggestions, params: {title: @title, category: @category, status: @status, address: @address, distance: @distance},
                                 renderer: BootstrapPagination::Rails %>

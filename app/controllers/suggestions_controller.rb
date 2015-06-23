@@ -7,11 +7,12 @@ class SuggestionsController < ApplicationController
   before_action :new_image_manager_filter, only: [:show, :edit, :update]
 
   def index
-    @category = params[:category]
     @title = params[:title]
+    @category = params[:category]
+    @status = params[:status]
     @address = params[:address]
     @distance = params[:distance]
-    @suggestions = Suggestion.search_filter(@category, @title, @address, @distance)
+    @suggestions = Suggestion.search_filter(@title, @category, @status, @address, @distance)
                              .paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|

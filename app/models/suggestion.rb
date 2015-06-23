@@ -28,10 +28,11 @@ class Suggestion < ActiveRecord::Base
     where(visible: true)
   end
 
-  def self.search_filter(category, title, address, distance)
+  def self.search_filter(title, category, status, address, distance)
     suggestions = Suggestion.find_visible_suggestions
     suggestions = by_title(title) if title.present?
     suggestions = suggestions.where(category: category) if category.present?
+    suggestions = suggestions.where(closed: status) if status.present?
     suggestions = suggestions.by_distance(address, distance) if address.present?
     suggestions = suggestions.order(created_at: :desc)
 
@@ -156,10 +157,10 @@ class Suggestion < ActiveRecord::Base
   end
 
   def open?
-    !self.closed
+    self.closed == 0
   end
 
   def closed?
-    self.closed
+    self.closed == 1
   end
 end

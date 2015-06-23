@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523182246) do
+ActiveRecord::Schema.define(version: 20150622192728) do
 
   create_table "city_council_domains", force: :cascade do |t|
     t.string   "domain"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20150523182246) do
     t.string   "address"
     t.integer  "category"
     t.boolean  "notice_of_inactivity", default: false
-    t.boolean  "closed",               default: false
+    t.integer  "closed",               default: 0
   end
 
   add_index "suggestions", ["slug"], name: "index_suggestions_on_slug"

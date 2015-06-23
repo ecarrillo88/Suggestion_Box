@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "Comment Builder tests: " do
   let (:builder) { CommentBuilder.new }
   before do
-    @suggestion_open = Suggestion.create(category: 1, title: 'Awesome Suggestion', author: 'Mister Fantastic', email: 'ReedRichards@email.com', comment: 'Lorem ipsum dolor sit amet', visible: true, closed: false)
-    @suggestion_closed = Suggestion.create(category: 1, title: 'Suggestion Closed', author: 'Mister Fantastic', email: 'ReedRichards@email.com', comment: 'Lorem ipsum dolor sit amet', visible: true, closed: true)
+    @suggestion_open = Suggestion.create(category: 1, title: 'Awesome Suggestion', author: 'Mister Fantastic', email: 'ReedRichards@email.com', comment: 'Lorem ipsum dolor sit amet', visible: true, closed: 0)
+    @suggestion_closed = Suggestion.create(category: 1, title: 'Suggestion Closed', author: 'Mister Fantastic', email: 'ReedRichards@email.com', comment: 'Lorem ipsum dolor sit amet', visible: true, closed: 1)
   end
 
   context "As a neighbor I want to" do
