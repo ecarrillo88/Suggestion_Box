@@ -21,7 +21,7 @@
 
 es:
   header:
-    title: "Buzón Ciudadano"
+    title: "Buzón UPV"
     description: "Deja tus comentarios, preguntas, peticiones y quejas"
     new_suggestion_button: "Publica una sugerencia"
   footer:
@@ -31,6 +31,9 @@ es:
   will_paginate:
     previous_label: "Anterior"
     next_label: "Siguiente"
+  layouts:
+    application:
+      title: "Buzón UPV"
   suggestions:
     search_filter:
       search_filter_title: "Filtro de búsqueda"

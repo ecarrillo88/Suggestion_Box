@@ -21,7 +21,7 @@
 
 en:
   header:
-    title: "Suggestion Box"
+    title: "UPV Suggestion Box"
     description: "Drop your comments, questions, requests and complaints"
     new_suggestion_button: "Create a new suggestion"
   footer:
@@ -31,6 +31,9 @@ en:
   will_paginate:
     previous_label: "Previous"
     next_label: "Next"
+  layouts:
+    application:
+      title: "UPV Suggestion Box"
   suggestions:
     search_filter:
       search_filter_title: "Search filter"

@@ -6,6 +6,12 @@ module ApplicationHelper
     presenter
   end
 
+  def set_header_logo(header_logo)
+    return image_tag 'logo-upv.png', width: 160, heiht: 160 if header_logo.empty?
+    return "" if header_logo == 'no'
+    return header_logo
+  end
+
   def set_header_title(header_title)
     return "<h1>#{I18n.t('header.title')}</h1>".html_safe if header_title.empty?
     return header_title
