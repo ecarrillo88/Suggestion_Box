@@ -5,20 +5,34 @@
         <div class="col-xs-4">
           <div class="btn-group">
             <button class="btn btn-grey dropdown-toggle" type="button" data-toggle="dropdown">
-              <%= I18n.t('footer.change_language') %> <span class="caret"></span>
+              <%= t('.change_language') %> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><%= link_to I18n.t('footer.spanish_language'), locale: 'es' %></li>
-              <li><%= link_to I18n.t('footer.english_language'), locale: 'en' %></li>
+              <li><%= link_to t('.spanish_language'), locale: 'es' %></li>
+              <li><%= link_to t('.english_language'), locale: 'en' %></li>
             </ul>
           </div>
         </div>
         <div class="col-xs-8">
           <ul class="list-inline">
-            <h4>Información</h4>
-            <li><%= link_to 'Contacto', '#' %></li>
-            <li><%= link_to 'Sobre el Buzón Ciudadano', '#' %></li>
-            <li><%= link_to 'Condiciones y privacidad', '#' %></li>
+            <h4><%= t('.information_title') %></h4>
+            <li><%= link_to t('.contact_link'), 'mailto:buzon_upv@upv.es' %></li>
+            <li><%= link_to t('.about_link'), '#', id: 'link-about', 'data-reveal-id': 'modal-about' %></li>
+            <div id="modal-about" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+              <h2 id="modalTitle"><%= t('.about_title') %></h2>
+              <p><%= t('.about_p1') %></p>
+              <p><%= t('.about_p2') %></p>
+              <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </div>
+            <li><%= link_to t('.conditions_link'), '#', id: 'link-conditions', 'data-reveal-id': 'modal-conditions' %></li>
+            <div id="modal-conditions" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+              <h2 id="modalTitle"><%= t('.conditions_title') %></h2>
+              <p class="lead"><%= t('.conditions_title2') %></p>
+              <p><%= t('.conditions_p1') %></p>
+              <p class="lead"><%= t('.privacy_title2') %></p>
+              <p><%= t('.conditions_p2') %></p>
+              <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </div>
           </ul>
         </div>
       </div>
@@ -27,24 +41,34 @@
         <div class="col-md-12">
           <ul class="list-inline">
             <li>
-              <a href="#" class="footer-icon-container"><i class="footer-icon fa fa-facebook"></i></a>
+              <a href="https://www.facebook.com/UPV" class="footer-icon-container" target="_blank">
+                <i class="footer-icon fa fa-facebook"></i>
+              </a>
             </li>
             <li>
-              <a href="#" class="footer-icon-container"><i class="footer-icon fa fa-google-plus"></i></a>
+              <a href="https://plus.google.com/+UPV/posts" class="footer-icon-container" target="_blank">
+                <i class="footer-icon fa fa-google-plus"></i>
+              </a>
             </li>
             <li>
-              <a href="#" class="footer-icon-container"><i class="footer-icon fa fa-twitter"></i></a>
+              <a href="https://twitter.com/upv" class="footer-icon-container" target="_blank">
+                <i class="footer-icon fa fa-twitter"></i>
+              </a>
             </li>
             <li>
-              <a href="#" class="footer-icon-container"><i class="footer-icon fa fa-linkedin"></i></a>
+              <a href="https://www.linkedin.com/edu/school?id=12242&trk=edu-cp-logo" class="footer-icon-container" target="_blank">
+                <i class="footer-icon fa fa-linkedin"></i>
+              </a>
             </li>
             <li>
-              <a href="#" class="footer-icon-container"><i class="footer-icon fa fa-instagram"></i></a>
+              <a href="https://instagram.com/instaupv/" class="footer-icon-container" target="_blank">
+                <i class="footer-icon fa fa-instagram"></i>
+              </a>
             </li>
           </ul>
           <div id="copyleft">
             <p id="copyleft-icon">©</p>
-            <p>Buzón Ciudadano, All rights reversed</p>
+            <p>Buzón UPV, All rights reversed</p>
           </div>
         </div>
       </div>
