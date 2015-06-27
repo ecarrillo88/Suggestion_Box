@@ -6,5 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-CityCouncilDomain.create(domain: 'city_council.gov')
-CityCouncilResponsiblePerson.create(name: 'Juan', last_name: 'Pardo Gutierrrez', email: 'juanpardo@email.com')
+CityCouncilDomain.create(domain: 'city_council.gov') # development
+CityCouncilDomain.create(domain: 'mailinator.com')   # prodution
+CityCouncilResponsiblePerson.create(name: 'Juan', last_name: 'Pardo Gutierrez', email: 'juanpardo@email.com')     # development
+CityCouncilResponsiblePerson.create(name: 'Maria', last_name: 'Pérez García', email: 'mariaperez@mailinator.com') # prodution
