@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
   //Index
   $(document).ajaxStart(function() {
     $('#suggestion_list').mask('Loading...');
@@ -101,6 +101,18 @@ $(document).ready(function(){
       searchByAddress();
   	}
   });
+
+  // footer
+  $("#link-about").click(function(event) {
+    event.preventDefault();
+    $('#modal-about').foundation('reveal', 'open');
+  });
+
+  $("#link-conditions").click(function(event) {
+    event.preventDefault();
+    $('#modal-conditions').foundation('reveal', 'open');
+  });
+
 });
 
 // functions

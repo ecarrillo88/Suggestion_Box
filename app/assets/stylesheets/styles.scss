@@ -10,9 +10,16 @@ body {
   font-size: 20px;
 }
 
+.navbar-brand-logo {
+  @extend .navbar-brand;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 .jumbotron {
   text-align: center;
   background-color: #d56444;
+  color: #292929;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -29,7 +36,7 @@ body {
 }
 
 .masthead {
-  padding: 80px 0 40px;
+  padding: 70px 0 25px;
 }
 
 .panel-default {

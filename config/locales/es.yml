@@ -21,16 +21,31 @@
 
 es:
   header:
-    title: "Buzón Ciudadano"
+    title: "Buzón UPV"
     description: "Deja tus comentarios, preguntas, peticiones y quejas"
     new_suggestion_button: "Publica una sugerencia"
-  footer:
-    change_language: "Cambiar idioma"
-    spanish_language: "Español"
-    english_language: "Inglés"
   will_paginate:
     previous_label: "Anterior"
     next_label: "Siguiente"
+  layouts:
+    application:
+      title: "Buzón UPV"
+    footer:
+      change_language: "Cambiar idioma"
+      spanish_language: "Español"
+      english_language: "Inglés"
+      information_title: "Información"
+      contact_link: "Contacto"
+      about_link: "Sobre el Buzón UPV"
+      about_title: "Bienvenido al buzón UPV"
+      about_p1: "El Buzón UPV es una herramienta de participación que la Universitat Politècnica de València pone al servicio de la comunidad universitaria, con la finalidad de dar respuesta a las consultas, quejas, propuestas o sugerencias relativas a la universidad y sus servicios."
+      about_p2: "De esta manera, puedes colaborar en el desarrollo de mejoras relativas a la universidad a través de esta sencilla herramienta. Te animamos a que participes activamente y nos hagas llegar tu opinión o duda sobre aquellos aspectos que consideres."
+      conditions_link: "Condiciones y privacidad"
+      conditions_title: "Condiciones y privacidad"
+      conditions_title2: "Condiciones"
+      privacy_title2: "Privacidad"
+      conditions_p1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim sem non eros interdum faucibus. Integer posuere gravida diam nec vulputate. Proin eleifend ultrices magna, at eleifend lectus ultrices eu. Nam sodales mauris sit amet arcu condimentum accumsan. Fusce ac mauris ut magna ullamcorper facilisis at nec augue. Sed tempus, erat a viverra porta, odio odio volutpat libero, nec ullamcorper justo magna ut arcu. Morbi in orci magna. Sed condimentum lacinia augue sed vestibulum. Quisque dui urna, faucibus nec ex nec, ultricies ultricies tellus. Vivamus ac tempor velit, quis ultrices eros."
+      conditions_p2: "Phasellus porta fringilla dui, aliquam sollicitudin est mattis ornare. Sed varius blandit dui a faucibus. Cras eu velit ac mauris pulvinar pulvinar eu et felis. Integer ultrices vulputate turpis, non viverra turpis pulvinar vitae. Praesent nulla velit, auctor eget feugiat convallis, placerat vel ante. In vel dolor mi. Praesent vitae enim condimentum, varius diam et, blandit lorem. Mauris est velit, gravida id justo id, varius convallis massa. Mauris tristique felis et ex bibendum, vitae egestas ligula tempor. Donec ac leo magna. Nunc sed tempus tellus. Nunc est nulla, ultricies sit amet congue eu, sollicitudin sed enim. Curabitur eget metus augue."
   suggestions:
     search_filter:
       search_filter_title: "Filtro de búsqueda"
