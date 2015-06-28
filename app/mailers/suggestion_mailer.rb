@@ -42,4 +42,11 @@ class SuggestionMailer < ApplicationMailer
     @url  = get_host + "suggestions/#{@suggestion.slug}/"
     mail(to: @responsible_person.email, subject: "Suggestion Box - Suggestion '#{@suggestion.title}' closed")
   end
+
+  def report_suggestion(suggestion, responsible_person)
+    @suggestion = suggestion
+    @responsible_person = responsible_person
+    @url  = get_host + "suggestions/#{@suggestion.slug}/"
+    mail(to: @responsible_person.email, subject: 'Suggestion Box - Suggestion reported')
+  end
 end

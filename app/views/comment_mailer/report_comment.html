@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Buzón UPV</h1>
+    <p>Hola <%= @responsible_person.name %></p>
+    <p>El siguiente comentario ha sido reportado por un usuario</p>
+    <p><b>Autor:</b> <%= @comment.author %></p>
+    <p><b>Comentario:</b> <%= @comment.text %></p>
+    <br>
+    <p>Si el comentario no incumple las normas del Buzón UPV puedes ignorar este mensaje, en caso contrario el comentario debe ser eliminado.</p>
+    <br>
+    <p><%= link_to 'Ir a la sugerencia', @url %></p>
+    <br>
+    <p>--------------------------------------------------------------</p>
+    <br>
+    <h1>Mailbox UPV</h1>
+    <p>Hello <%= @responsible_person.name %></p>
+    <p>The following comment was reported by a user</p>
+    <p><b>Author:</b> <%= @comment.author %></p>
+    <p><b>Comment:</b> <%= @comment.text %></p>
+    <br>
+    <p>If the comment does not violate the rules of the Mailbox UPV you may ignore this message, otherwise the comment should be removed.</p>
+    <br>
+    <p><%= link_to 'Go to suggestion', @url %></p>
+  </body>
+</html>

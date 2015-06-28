@@ -93,6 +93,7 @@ en:
       category_3: "Congratulations"
       category_4: "Issue"
       info_suggestion_closed: "The suggestion is closed and only allows comments from city council staff"
+      report_suggestion: "Report"
     new:
       header_title: "New Suggestion"
       header_description: "Create a new suggestion about a problem, a question, a request... or anything you think is important for your city"
@@ -132,6 +133,8 @@ en:
       flash_destroy_token_error: "We could not validate the request to delete the suggestion"
       flash_destroy_error: 'The suggestion you are trying to delete does not exist'
       flash_email_info: "In a few moments you will receive an email to confirm the deletion of the suggestion"
+    report:
+      flash_report_ok: "The suggestion has been reported"
   comments:
     form:
       name_field: "Name"
@@ -147,7 +150,8 @@ en:
       comment_and_support_button: "Comment & Support"
     comment:
       city_council: "City Council"
-      delete_comment_link: "Delete Comment"
+      delete_comment: "Delete"
+      report_comment: "Report"
     create:
       flash_support_error: "Only one support per person is allowed"
       flash_city_council_staff_support_error: "The city council staff can not support suggestions"
@@ -159,6 +163,8 @@ en:
       flash_destroy_token_error: "We could not validate the request to delete the comment"
       flash_destroy_error: 'The comment you are trying to delete does not exist'
       flash_email_info: "In a few moments you will receive an email to confirm the deletion of the comment"
+    report:
+      flash_report_ok: "The comment has been reported"
   email_validation:
     suggestion_validation:
       flash_suggestion_validation_success: 'Your suggestion has been activated and published'

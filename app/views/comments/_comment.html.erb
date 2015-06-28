@@ -13,8 +13,10 @@
   <div class="text">
     <%= simple_format(comment.text) %>
   </div>
-  <!-- delete_comment_link-->
-  <p><%= link_to "<i class=\"glyphicon glyphicon-trash\"></i>".html_safe, delete_comment_path(comment.suggestion, comment), method: :delete, class: "stealth" %></p>
+  <ul class="list-inline">
+    <li><%= link_to "<i class=\"glyphicon glyphicon-trash\"></i>#{t('.delete_comment')}".html_safe, delete_comment_path(comment.suggestion, comment), method: :delete, class: "stealth" %></li>
+    <li class="pull-right"><%= link_to "<i class=\"glyphicon glyphicon-flag\"></i>#{t('.report_comment')}".html_safe, report_comment_path(comment), class: "stealth" %></li>
+  </ul>
 </div>
 <hr>
 <% end %>

@@ -3,7 +3,7 @@ require 'image_manager.rb'
 class SuggestionsController < ApplicationController
   protect_from_forgery except: :index
 
-  before_action :set_suggestion, only: [:show, :edit, :edit_request, :update]
+  before_action :set_suggestion, only: [:show, :edit, :edit_request, :update, :report]
   before_action :new_image_manager_filter, only: [:show, :edit, :update]
 
   def index
@@ -90,6 +90,14 @@ class SuggestionsController < ApplicationController
         flash[:danger] = t('.flash_destroy_token_error')
       end
     end
+    redirect_to @suggestion
+  end
+
+  def report
+    CityCouncilResponsiblePerson.all.each do |responsible_person|
+      SuggestionMailer.report_suggestion(@suggestion, responsible_person).deliver_later
+    end
+    flash[:info] = t('.flash_report_ok')
     redirect_to @suggestion
   end
 

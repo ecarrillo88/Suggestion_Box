@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Buzón UPV</h1>
+    <p>Hola <%= @responsible_person.name %></p>
+    <p>La siguiente sugerencia ha sido reportada por un usuario</p>
+    <p><b>Título:</b> <%= @suggestion.title %></p>
+    <p><b>Autor:</b> <%= @suggestion.author %></p>
+    <p><b>Comentario:</b> <%= simple_format(@suggestion.comment) %></p>
+    <br>
+    <p>Si la sugerencia no incumple las normas del Buzón UPV puedes ignorar este mensaje, en caso contrario la sugerencia debe ser eliminada.</p>
+    <br>
+    <p><%= link_to 'Ir a la sugerencia', @url %></p>
+    <br>
+    <p>--------------------------------------------------------------</p>
+    <br>
+    <h1>Mailbox UPV</h1>
+    <p>Hello <%= @responsible_person.name %></p>
+    <p>The following suggestion has been reported by a user</p>
+    <p><b>Title:</b> <%= @suggestion.title %></p>
+    <p><b>Author:</b> <%= @suggestion.author %></p>
+    <p><b>Comment:</b> <%= simple_format(@suggestion.comment) %></p>
+    <br>
+    <p>If the suggestion does not violate the rules of the UPV Mailbox you may ignore this message, otherwise the suggestion should be deleted.</p>
+    <br>
+    <p><%= link_to 'Go to suggestion', @url %></p>
+  </body>
+</html>

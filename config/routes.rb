@@ -6,17 +6,19 @@ Rails.application.routes.draw do
     end
 
     root to: 'suggestions#index'
-    post     '/suggestions/new'                                  => 'suggestions#create',       as: 'create_suggestion'
-    patch    '/suggestions/:id/edit'                             => 'suggestions#update',       as: 'update_suggestion'
-    get      '/suggestions/:id/edit/(:token)'                    => 'suggestions#edit',         as: 'edit_suggestion'
-    delete   '/suggestions/:id/delete/(:token)'                  => 'suggestions#destroy',      as: 'delete_suggestion'
+    post     '/suggestions/new'                                  => 'suggestions#create',                    as: 'create_suggestion'
+    patch    '/suggestions/:id/edit'                             => 'suggestions#update',                    as: 'update_suggestion'
+    get      '/suggestions/:id/edit/(:token)'                    => 'suggestions#edit',                      as: 'edit_suggestion'
+    delete   '/suggestions/:id/delete/(:token)'                  => 'suggestions#destroy',                   as: 'delete_suggestion'
     get      '/suggestions/:id/delete/:token'                    => 'suggestions#destroy'
-    post     '/suggestions/:suggestion_id'                       => 'comments#create',          as: 'create_comment'
-    delete   '/suggestions/:suggestion_id/comments/:id/(:token)' => 'comments#destroy',         as: 'delete_comment'
+    post     '/suggestions/:suggestion_id'                       => 'comments#create',                       as: 'create_comment'
+    delete   '/suggestions/:suggestion_id/comments/:id/(:token)' => 'comments#destroy',                      as: 'delete_comment'
     get      '/suggestions/:suggestion_id/comments/:id/:token'   => 'comments#destroy'
     get      '/suggestion_validation/:token'                     => 'email_validation#suggestion_validation'
     get      '/comment_validation/:token'                        => 'email_validation#comment_validation'
     post     '/'                                                 => 'suggestions#index'
+    get      '/comments/report/:id'                              => 'comments#report',                       as: 'report_comment'
+    get      '/suggestions/report/:id'                           => 'suggestions#report',                    as: 'report_suggestion'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

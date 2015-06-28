@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update]
+  before_action :set_comment, only: [:show, :edit, :update, :report]
 
   def show
   end
@@ -55,6 +55,14 @@ class CommentsController < ApplicationController
         flash[:danger] = t('.flash_destroy_token_error')
       end
     end
+    redirect_to @comment.suggestion
+  end
+
+  def report
+    CityCouncilResponsiblePerson.all.each do |responsible_person|
+      CommentMailer.report_comment(@comment, responsible_person).deliver_later
+    end
+    flash[:info] = t('.flash_report_ok')
     redirect_to @comment.suggestion
   end
 

@@ -93,6 +93,7 @@ es:
       category_3: "Felicitaciones"
       category_4: "Incidencia"
       info_suggestion_closed: "La sugerencia está cerrada y solo se permite comentar al personal del ayuntamiento"
+      report_suggestion: "Reportar"
     new:
       header_title: "Nueva Sugerencia"
       header_description: "Crea una nueva sugerencia sobre un problema, una pregunta, una solicitud... o cualquier cosa que creas que es importante para tu ciudad"
@@ -132,6 +133,8 @@ es:
       flash_destroy_token_error: "No hemos podido validar la petición para eliminar la sugerencia"
       flash_destroy_error: 'La sugerencia que estás tratando de eliminar no existe'
       flash_email_info: "En breves momentos recibirá un email para confirmar la eliminación de la sugerencia"
+    report:
+      flash_report_ok: "La sugerencia ha sido reportada"
   comments:
     form:
       name_field: "Nombre"
@@ -147,7 +150,8 @@ es:
       comment_and_support_button: "Firma y comenta"
     comment:
       city_council: "Ayuntamiento"
-      delete_comment_link: "Eliminar Comentario"
+      delete_comment: "Eliminar"
+      report_comment: "Reportar"
     create:
       flash_support_error: "Solo se permite una firma por persona"
       flash_city_council_staff_support_error: "El personal del ayuntamiento no puede firmar sugerencias"
@@ -159,6 +163,8 @@ es:
       flash_destroy_token_error: "No hemos podido validar la petición para eliminar el comentario"
       flash_destroy_error: 'El comentario que estás tratando de eliminar no existe'
       flash_email_info: "En breves momentos recibirá un email para confirmar la eliminación del comentario"
+    report:
+      flash_report_ok: "El comentario ha sido reportado"
   email_validation:
     suggestion_validation:
       flash_suggestion_validation_success: 'La sugerencia ha sido validada y publicada'
