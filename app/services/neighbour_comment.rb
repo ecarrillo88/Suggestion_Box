@@ -10,7 +10,7 @@ class NeighbourComment
   def create
     if @comment_input.supports
       raise OnlyOneSupportPerPersonIsAllowed if @comment_input.suggestion.email_has_supported_me?(@comment_input.fields[:email])
-      @comment_input.fields[:vote] = Comment.vote[:in_favour]
+      @comment_input.fields[:vote] = Comment::IN_FAVOUR
       @comment_input.fields.merge!({support: true})
     end
 

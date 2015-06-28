@@ -9,9 +9,9 @@ class Comment < ActiveRecord::Base
   validates :text, presence: :true
   validates :vote, presence: true
 
-  def self.vote
-    { in_favour: 1, abstention: 2, against: 3 }
-  end
+  IN_FAVOUR = 1
+  ABSTENTION = 2
+  AGAINST = 3
 
   def self.exists?(comment_id)
     where(id: comment_id).present?
@@ -26,11 +26,11 @@ class Comment < ActiveRecord::Base
   end
 
   def vote_in_favour?
-    self.vote == Comment.vote[:in_favour]
+    self.vote == Comment::IN_FAVOUR
   end
 
   def vote_against?
-    self.vote == Comment.vote[:against]
+    self.vote == Comment::AGAINST
   end
 
   def supported?

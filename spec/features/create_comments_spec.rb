@@ -44,7 +44,7 @@ RSpec.feature "CreateComments", type: :feature do
 
   background do
     @suggestion.comments.create(author: 'The Thing', email: 'BenjaminGrimm@city_council.gov', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.',
-                                city_council_staff: true, visible: true, vote: Comment.vote[:abstention])
+                                city_council_staff: true, visible: true, vote: Comment::ABSTENTION)
   end
 
   scenario 'Check comment created by city council staff when already validated' do

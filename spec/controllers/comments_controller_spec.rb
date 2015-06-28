@@ -5,7 +5,7 @@ RSpec.describe CommentsController, type: :controller do
   before(:each) do
     @suggestion = Suggestion.create({category: 1, title: 'New title', author: 'Anonymous', email: 'my_email@email.com', comment: 'My suggestion!', latitude: nil, longitude: nil})
     @suggestion.save
-    @comment = @suggestion.comments.create({author: 'Spider-Man', text: 'I am Amazing!', email: 'PeterParker@spider.net', vote: Comment.vote[:in_favour]})
+    @comment = @suggestion.comments.create({author: 'Spider-Man', text: 'I am Amazing!', email: 'PeterParker@spider.net', vote: Comment::IN_FAVOUR})
     @comment.save
   end
 

@@ -4,7 +4,7 @@ RSpec.describe SuggestionsController, type: :controller do
 
   before(:each) do
     @suggestion = Suggestion.create({ category: 1, title: 'New title', author: 'Anonymous', email: 'my_email@email.com', comment: 'New comment', latitude: nil, longitude: nil })
-    @suggestion.comments.create(author: 'Han Solo', email: 'MillenniumFalcon@email.com', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', visible: true, vote: Comment.vote[:abstention])
+    @suggestion.comments.create(author: 'Han Solo', email: 'MillenniumFalcon@email.com', text: 'In maximus dolor et urna convallis, a porta tellus ullamcorper.', visible: true, vote: Comment::ABSTENTION)
   end
 
   context "GET index" do

@@ -7,7 +7,7 @@ class CityCouncilComment
   def create
     raise CityCouncilCannotSupport if @comment_input.supports
 
-    @comment_input.fields[:vote] = Comment.vote[:abstention]
+    @comment_input.fields[:vote] = Comment::ABSTENTION
     @comment_input.fields.merge!({city_council_staff: true, token_validation: ApplicationController.token_generator(10)})
     comment = @comment_input.suggestion.comments.create(@comment_input.fields)
     if comment.save
