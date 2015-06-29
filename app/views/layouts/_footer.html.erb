@@ -17,21 +17,19 @@
           <ul class="list-inline">
             <h4><%= t('.information_title') %></h4>
             <li><%= link_to t('.contact_link'), 'mailto:buzon_upv@upv.es' %></li>
-            <li><%= link_to t('.about_link'), '#', id: 'link-about', 'data-reveal-id'=> 'modal-about' %></li>
-            <div id="modal-about" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-              <h2 id="modalTitle"><%= t('.about_title') %></h2>
+            <li><%= link_to t('.about_link'), 'about', id: 'link-about' %></li>
+            <div id="modal-about" class="pop-up-display-content">
+              <h2><%= t('.about_title') %></h2>
               <p><%= t('.about_p1') %></p>
               <p><%= t('.about_p2') %></p>
-              <a class="close-reveal-modal" aria-label="Close">&#215;</a>
             </div>
-            <li><%= link_to t('.conditions_link'), '#', id: 'link-conditions', 'data-reveal-id'=> 'modal-conditions' %></li>
-            <div id="modal-conditions" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-              <h2 id="modalTitle"><%= t('.conditions_title') %></h2>
-              <p class="lead"><%= t('.conditions_title2') %></p>
+            <li><%= link_to t('.conditions_link'), 'conditions_and_privacy', id: 'link-conditions' %></li>
+            <div id="modal-conditions" class="pop-up-display-content">
+              <h2><%= t('.conditions_title') %></h2>
+              <h3><%= t('.conditions_title2') %></h3>
               <p><%= t('.conditions_p1') %></p>
-              <p class="lead"><%= t('.privacy_title2') %></p>
+              <h3><%= t('.privacy_title2') %></h3>
               <p><%= t('.conditions_p2') %></p>
-              <a class="close-reveal-modal" aria-label="Close">&#215;</a>
             </div>
           </ul>
         </div>

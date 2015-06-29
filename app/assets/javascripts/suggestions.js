@@ -103,14 +103,22 @@ $(document).ready(function() {
   });
 
   // footer
-  $("#link-about").click(function(event) {
+  $('#link-about').click(function (event) {
     event.preventDefault();
-    $('#modal-about').foundation('reveal', 'open');
+    $('#modal-about').popUpWindow({
+      action: "open", // open or close
+      modal: true,    // modal mode
+      size: "large",  // large, medium or small
+    });
   });
 
-  $("#link-conditions").click(function(event) {
+  $('#link-conditions').click(function (event) {
     event.preventDefault();
-    $('#modal-conditions').foundation('reveal', 'open');
+    $('#modal-conditions').popUpWindow({
+      action: "open", // open or close
+      modal: true,    // modal mode
+      size: "large",  // large, medium or small
+    });
   });
 
 });
