@@ -22,7 +22,7 @@
 es:
   header:
     title: "Buzón UPV"
-    description: "Deja tus comentarios, preguntas, peticiones y quejas"
+    description: "Deja tus sugerencias, comentarios, peticiones y quejas"
     new_suggestion_button: "Publica una sugerencia"
   will_paginate:
     previous_label: "Anterior"
@@ -96,7 +96,7 @@ es:
       report_suggestion: "Reportar"
     new:
       header_title: "Nueva Sugerencia"
-      header_description: "Crea una nueva sugerencia sobre un problema, una pregunta, una solicitud... o cualquier cosa que creas que es importante para tu ciudad"
+      header_description: "Crea una nueva sugerencia sobre un problema, una solicitud, una queja... o cualquier cosa que creas que es importante"
     form:
       title_field: "Título"
       type_field: "Tipo"
@@ -109,7 +109,7 @@ es:
       email_field: "Email"
       comment_field: "Comentario"
       required_placeholder: "Obligatorio"
-      author_placeholder: "Si se deja en blanco, la sugerencia se publicará como anónima"
+      author_placeholder: "Anonymous por defecto"
       upload_images_title: "Adjuntar Imágenes"
       upload_images_description: "Si lo deseas puedes adjuntar imágenes que aporten más información a la sugerencia."
       geolocation_title: "Geolocaliza la sugerencia"
@@ -149,7 +149,7 @@ es:
       comment_button: "Comenta"
       comment_and_support_button: "Firma y comenta"
     comment:
-      city_council: "Ayuntamiento"
+      city_council: "Personal UPV"
       delete_comment: "Eliminar"
       report_comment: "Reportar"
     create:

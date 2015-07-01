@@ -22,7 +22,7 @@
 en:
   header:
     title: "Mailbox UPV"
-    description: "Drop your comments, questions, requests and complaints"
+    description: "Drop your suggestions, comments, requests and complaints"
     new_suggestion_button: "Create a new suggestion"
   will_paginate:
     previous_label: "Previous"
@@ -96,7 +96,7 @@ en:
       report_suggestion: "Report"
     new:
       header_title: "New Suggestion"
-      header_description: "Create a new suggestion about a problem, a question, a request... or anything you think is important for your city"
+      header_description: "Create a new suggestion about a problem, a request, a complaint... or anything you think is important"
     form:
       title_field: "Title"
       type_field: "Type"
@@ -109,7 +109,7 @@ en:
       email_field: "Email"
       comment_field: "Comment"
       required_placeholder: "Required"
-      author_placeholder: "If left blank, the suggestion will be published as anonymous"
+      author_placeholder: "Anonymous by default"
       upload_images_title: "Upload images"
       upload_images_description: "If you want you can upload images to provide more information to the suggestion."
       geolocation_title: "Geolocate the suggestion"
@@ -149,7 +149,7 @@ en:
       comment_button: "Comment"
       comment_and_support_button: "Comment & Support"
     comment:
-      city_council: "City Council"
+      city_council: "UPV Staff"
       delete_comment: "Delete"
       report_comment: "Report"
     create:
