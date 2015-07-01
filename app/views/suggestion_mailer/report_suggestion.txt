@@ -1,5 +1,5 @@
 Buzón UPV
-===============
+===========
 
 Hola <%= @responsible_person.name %>
 La siguiente sugerencia ha sido reportada por un usuario
@@ -15,7 +15,7 @@ Si la sugerencia no incumple las normas del Buzón UPV puedes ignorar este mensa
 ---------------------------------
 
 Mailbox UPV
-==============
+===========
 
 Hello <%= @responsible_person.name %>
 The following suggestion has been reported by a user
