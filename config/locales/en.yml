@@ -92,7 +92,7 @@ en:
       category_2: "Complaint"
       category_3: "Congratulations"
       category_4: "Issue"
-      info_suggestion_closed: "The suggestion is closed and only allows comments from city council staff"
+      info_suggestion_closed: "The suggestion is closed and only allows comments from UPV staff"
       report_suggestion: "Report"
     new:
       header_title: "New Suggestion"
@@ -154,10 +154,10 @@ en:
       report_comment: "Report"
     create:
       flash_support_error: "Only one support per person is allowed"
-      flash_city_council_staff_support_error: "The city council staff can not support suggestions"
+      flash_city_council_staff_support_error: "The UPV staff can not support suggestions"
       flash_create_ok: "Comment was successfully published"
       flash_email_info: "In a few moments you will receive an email to confirm your comment"
-      flash_suggestion_closed: "The suggestion is closed and only allows comments from city council staff"
+      flash_suggestion_closed: "The suggestion is closed and only allows comments from UPV staff"
     destroy:
       flash_destroy_ok: "Comment was successfully destroyed"
       flash_destroy_token_error: "We could not validate the request to delete the comment"
