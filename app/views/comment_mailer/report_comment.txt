@@ -1,4 +1,4 @@
-Buzón UPV
+<%= I18n.t("header.title") %>
 ===============
 
 Hola <%= @responsible_person.name %>
@@ -7,13 +7,13 @@ El siguiente comentario ha sido reportado por un usuario
 Autor: <%= @comment.author %>
 Comentario: <%= @comment.text %>
 
-Si el comentario no incumple las normas del Buzón UPV puedes ignorar este mensaje, en caso contrario el comentario debe ser eliminado.
+Si el comentario no incumple las normas del <%= I18n.t("header.title") %> puedes ignorar este mensaje, en caso contrario el comentario debe ser eliminado.
 
 <%= link_to 'Ir a la sugerencia', @url %>
 
 ---------------------------------
 
-Mailbox UPV
+<%= I18n.t("header.title") %>
 ==============
 
 Hello <%= @responsible_person.name %>
@@ -22,6 +22,6 @@ The following comment was reported by a user
 Author: <%= @comment.author %>
 Comment: <%= @comment.text %>
 
-If the comment does not violate the rules of the Mailbox UPV you may ignore this message, otherwise the comment should be removed.
+If the comment does not violate the rules of the <%= I18n.t("header.title") %> you may ignore this message, otherwise the comment should be removed.
 
 <%= link_to 'Go to suggestion', @url %>

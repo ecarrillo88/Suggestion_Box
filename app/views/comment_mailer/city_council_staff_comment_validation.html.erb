@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Buzón UPV</h1>
+    <h1><%= I18n.t("header.title") %></h1>
     <p>Hola <%= @comment.author %>,</p>
     <p>Gracias por tomarte la molestia de dejar un comentario en la sugerencia "<%= @comment.suggestion.title %>"</p>
     <p>Para validar el comentario y hacerlo visible haz click en el siguiente enlace:</p>
@@ -14,7 +14,7 @@
     <br>
     <p>--------------------------------------------------------------</p>
     <br>
-    <h1>Mailbox UPV</h1>
+    <h1><%= I18n.t("header.title") %></h1>
     <p>Hello <%= @comment.author %>,</p>
     <p>Thank you for taking the time to comment on the suggestion "<%= @comment.suggestion.title %>"</p>
     <p>To confirm your comment and make it visible click the following link:</p>
