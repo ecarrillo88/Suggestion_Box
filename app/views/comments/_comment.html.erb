@@ -1,23 +1,22 @@
 <!-- Comment -->
 <% @suggestion.find_visible_comments.each do |comment| %>
-<% presenter comment do |comment_presenter| %>
-<div class=<%= if comment.is_a_city_council_staff_comment? then "comment-city-council-staff" else "comment" end %>>
-  <div class="header">
-    <ul class="list-inline">
-      <li class="author"><%= comment.author %></li>
-      <li class="city-council-staff"><%= "(#{t('.city_council')})" if comment.is_a_city_council_staff_comment? %></li>
-      <li class="date pull-right"><%= created_at(comment) %></li>
-      <li class=<%= comment_presenter.point_of_view_color %>><i class="<%= comment_presenter.point_of_view_icon %>"></i></li>
-    </ul>
-  </div>
-  <div class="text">
-    <%= simple_format(comment.text) %>
-  </div>
-  <ul class="list-inline">
-    <li><%= link_to "<i class=\"glyphicon glyphicon-trash\"></i>#{t('.delete_comment')}".html_safe, delete_comment_path(comment.suggestion, comment), method: :delete, class: "stealth" %></li>
-    <li class="pull-right"><%= link_to "<i class=\"glyphicon glyphicon-flag\"></i>#{t('.report_comment')}".html_safe, report_comment_path(comment), class: "stealth" %></li>
-  </ul>
-</div>
-<hr>
-<% end %>
+  <% presenter comment do |comment_presenter| %>
+    <div class=<%= if comment.is_a_city_council_staff_comment? then "comment-city-council-staff" else "comment" end %> >
+        <div class="header">
+          <ul class="list-inline">
+            <li class="author"><%= comment.author %></li>
+            <li class="city-council-staff"><%= "(#{t('.city_council')})" if comment.is_a_city_council_staff_comment? %></li>
+            <li class="date pull-right"><%= created_at(comment) %></li>
+            <li class=<%= comment_presenter.point_of_view_color %>><i class="<%= comment_presenter.point_of_view_icon %>"></i></li>
+          </ul>
+        </div>
+        <div class="text">
+          <%= simple_format(comment.text) %>
+        </div>
+        <ul class="list-inline">
+          <li><%= link_to "<i class=\"glyphicon glyphicon-flag\"></i>#{t('.report_comment')}".html_safe, report_comment_path(comment), class: "stealth" %></li>
+        </ul>
+    </div>
+    <hr>
+  <% end %>
 <% end %>
