@@ -15,6 +15,7 @@ class Suggestion < ActiveRecord::Base
   validates :email, presence: true,
                     format: { with: VALID_EMAIL_REGEX }
   validates :comment, presence: :true
+  validates :author, presence: :true
 
   def self.category
     { suggestion: 1, complaint: 2, congratulation: 3, issue: 4 }

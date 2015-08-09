@@ -107,7 +107,7 @@ es:
       email_field: "Email"
       comment_field: "Comentario"
       required_placeholder: "Obligatorio"
-      author_placeholder: "Anonymous por defecto"
+      author_placeholder: "Tu nombre de verdad"
       upload_images_title: "Adjuntar Imágenes"
       upload_images_description: "Si lo deseas puedes adjuntar imágenes que aporten más información a la sugerencia."
       geolocation_title: "Geolocaliza la sugerencia"
@@ -181,6 +181,8 @@ es:
               invalid: "Formato de email invalido"
             comment:
               blank: "El Comentario es obligatorio"
+            author:
+              blank: "Es necesario un nombre de autor"
         comment:
           attributes:
             author:

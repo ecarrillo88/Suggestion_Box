@@ -13,7 +13,7 @@ class SuggestionsController < ApplicationController
     @address = params[:address]
     @distance = params[:distance]
     @suggestions = Suggestion.search_filter(@title, @category, @status, @address, @distance)
-                             .paginate(:page => params[:page], :per_page => 10)
+      .paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html
@@ -48,28 +48,28 @@ class SuggestionsController < ApplicationController
   end
 
   private
-    def update_image(image_param, image_id)
-      return image_id if image_param.nil?
+  def update_image(image_param, image_id)
+    return image_id if image_param.nil?
 
-      if image_param.blank?
-        @image_manager.delete_image(image_id) if !image_id.nil?
-        return nil
-      end
-
+    if image_param.blank?
       @image_manager.delete_image(image_id) if !image_id.nil?
-      hash = @image_manager.upload_image(image_param)
-      return hash['public_id']
+      return nil
     end
 
-    def set_suggestion
-      @suggestion = Suggestion.friendly.find(params[:id])
-    end
+    @image_manager.delete_image(image_id) if !image_id.nil?
+    hash = @image_manager.upload_image(image_param)
+    return hash['public_id']
+  end
 
-    def new_image_manager_filter
-      @image_manager = ImageManager.new
-    end
+  def set_suggestion
+    @suggestion = Suggestion.friendly.find(params[:id])
+  end
 
-    def suggestion_params
-      params.require(:suggestion).permit(:title, :category, :author, :email, :comment, :latitude, :longitude)
-    end
+  def new_image_manager_filter
+    @image_manager = ImageManager.new
+  end
+
+  def suggestion_params
+    params.require(:suggestion).permit(:title, :category, :author, :email, :comment, :latitude, :longitude)
+  end
 end

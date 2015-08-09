@@ -8,7 +8,6 @@ class SuggestionBuilder
 
   def create (suggestion_params, img1, img2)
     @suggestion_attr = suggestion_params
-    set_anonymous_author_if_left_blank
     upload_images_to_cloudinary(img1, img2)
     @suggestion = Suggestion.new(@suggestion_attr)
     if @suggestion.save
@@ -23,10 +22,6 @@ class SuggestionBuilder
   end
 
   private
-    def set_anonymous_author_if_left_blank
-      @suggestion_attr[:author] = "Anonymous" if @suggestion_attr[:author].blank?
-    end
-
     def send_validation_email
       SuggestionMailer.suggestion_validation_email(@suggestion).deliver_later
     end

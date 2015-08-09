@@ -107,7 +107,7 @@ en:
       email_field: "Email"
       comment_field: "Comment"
       required_placeholder: "Required"
-      author_placeholder: "Anonymous by default"
+      author_placeholder: "Your real name"
       upload_images_title: "Upload images"
       upload_images_description: "If you want you can upload images to provide more information to the suggestion."
       geolocation_title: "Geolocate the suggestion"
@@ -181,6 +181,8 @@ en:
               invalid: "Invalid email format"
             comment:
               blank: "Comment is required"
+            author:
+              blank: "An author name is required"
         comment:
           attributes:
             author:
