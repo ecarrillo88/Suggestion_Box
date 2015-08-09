@@ -9,8 +9,6 @@ Rails.application.routes.draw do
     post     '/suggestions/new'                                  => 'suggestions#create',                    as: 'create_suggestion'
     patch    '/suggestions/:id/edit'                             => 'suggestions#update',                    as: 'update_suggestion'
     get      '/suggestions/:id/edit/(:token)'                    => 'suggestions#edit',                      as: 'edit_suggestion'
-    delete   '/suggestions/:id/delete/(:token)'                  => 'suggestions#destroy',                   as: 'delete_suggestion'
-    get      '/suggestions/:id/delete/:token'                    => 'suggestions#destroy'
     post     '/suggestions/:suggestion_id'                       => 'comments#create',                       as: 'create_comment'
     delete   '/suggestions/:suggestion_id/comments/:id/(:token)' => 'comments#destroy',                      as: 'delete_comment'
     get      '/suggestions/:suggestion_id/comments/:id/:token'   => 'comments#destroy'

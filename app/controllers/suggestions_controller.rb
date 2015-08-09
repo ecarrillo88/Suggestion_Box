@@ -69,30 +69,6 @@ class SuggestionsController < ApplicationController
     end
   end
 
-  def destroy
-    if !Suggestion.exists?(params[:id])
-      flash[:danger] = t('.flash_destroy_error')
-      redirect_to suggestions_url
-      return
-    end
-
-    set_suggestion
-    if params[:token].nil?
-      @suggestion.update(token_validation: ApplicationController.token_generator(10))
-      SuggestionMailer.delete_suggestion_email_validation(@suggestion).deliver_later
-      flash[:info] = t('.flash_email_info')
-    else
-      if params[:token] == @suggestion.token_validation
-        @suggestion.comments_email_list.each { |email| SuggestionMailer.info_suggestion_has_been_deleted(@suggestion, email).deliver_later }
-        @suggestion.destroy
-        flash[:info] = t('.flash_destroy_ok')
-      else
-        flash[:danger] = t('.flash_destroy_token_error')
-      end
-    end
-    redirect_to @suggestion
-  end
-
   def report
     CityCouncilResponsiblePerson.all.each do |responsible_person|
       SuggestionMailer.report_suggestion(@suggestion, responsible_person).deliver_later

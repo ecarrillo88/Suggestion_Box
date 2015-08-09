@@ -128,11 +128,6 @@ en:
       flash_email_info: "In a few moments you will receive an email to confirm the suggestion"
     update:
       flash_update_ok: "Suggestion was successfully updated"
-    destroy:
-      flash_destroy_ok: "Suggestion was successfully deleted"
-      flash_destroy_token_error: "We could not validate the request to delete the suggestion"
-      flash_destroy_error: 'The suggestion you are trying to delete does not exist'
-      flash_email_info: "In a few moments you will receive an email to confirm the deletion of the suggestion"
     report:
       flash_report_ok: "The suggestion has been reported"
   comments:
