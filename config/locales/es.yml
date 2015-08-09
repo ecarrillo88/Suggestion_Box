@@ -85,8 +85,6 @@ es:
       geolocation_title: "Geolocalización"
       comments_title: "Comentarios"
       add_comment_title: "Deja un comentario"
-      edit_button: "Editar"
-      delete_button: "Eliminar"
       text_size: "Tamaño texto"
       category_1: "Sugerencia"
       category_2: "Queja"
@@ -118,11 +116,6 @@ es:
       geolocation_description: "Pon una marca haciendo click en el mapa o busca una dirección para geolocalizar la sugerencia. Si no quieres geolocalizar la sugerencia elimina la marca del mapa."
       create_suggestion_button: "Publicar Sugerencia"
       back_button: "Volver"
-    edit:
-      header_title: "Editar Sugerencia"
-      header_description: " "
-      flash_edit_token_error: "No hemos podido validar la petición para editar la sugerencia"
-      flash_email_info: "En breves momentos recibirá un email para confirmar la edición de la sugerencia"
     create:
       flash_create_ok: "La sugerencia ha sido publicada"
       flash_email_info: "En breves momentos recibirá un email para confirmar su sugerencia"

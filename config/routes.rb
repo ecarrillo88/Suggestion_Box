@@ -7,10 +7,7 @@ Rails.application.routes.draw do
 
     root to: 'suggestions#index'
     post     '/suggestions/new'                                  => 'suggestions#create',                    as: 'create_suggestion'
-    patch    '/suggestions/:id/edit'                             => 'suggestions#update',                    as: 'update_suggestion'
-    get      '/suggestions/:id/edit/(:token)'                    => 'suggestions#edit',                      as: 'edit_suggestion'
     post     '/suggestions/:suggestion_id'                       => 'comments#create',                       as: 'create_comment'
-    delete   '/suggestions/:suggestion_id/comments/:id/(:token)' => 'comments#destroy',                      as: 'delete_comment'
     get      '/suggestions/:suggestion_id/comments/:id/:token'   => 'comments#destroy'
     get      '/suggestion_validation/:token'                     => 'email_validation#suggestion_validation'
     get      '/comment_validation/:token'                        => 'email_validation#comment_validation'

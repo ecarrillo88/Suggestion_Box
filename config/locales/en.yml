@@ -85,8 +85,6 @@ en:
       geolocation_title: "Geolocation"
       comments_title: "Comments"
       add_comment_title: "Add a comment"
-      edit_button: "Edit"
-      delete_button: "Delete"
       text_size: "Text size"
       category_1: "Suggestion"
       category_2: "Complaint"
@@ -118,11 +116,6 @@ en:
       geolocation_description: "Put a marker by clicking on the map or search address to geolocate the suggestion. If you do not want to geolocate the suggestion remove the map marker."
       create_suggestion_button: "Create Suggestion"
       back_button: "Back"
-    edit:
-      header_title: "Edit Suggestion"
-      header_description: " "
-      flash_edit_token_error: "We could not validate the request to edit the suggestion"
-      flash_email_info: "In a few moments you will receive an email to confirm the suggestion editing"
     create:
       flash_create_ok: "Suggestion was successfully published"
       flash_email_info: "In a few moments you will receive an email to confirm the suggestion"

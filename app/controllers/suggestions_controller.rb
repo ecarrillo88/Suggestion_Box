@@ -28,23 +28,6 @@ class SuggestionsController < ApplicationController
     @suggestion = Suggestion.new
   end
 
-  def edit
-    if params[:token].nil?
-      @suggestion.update(token_validation: ApplicationController.token_generator(10))
-      SuggestionMailer.edit_suggestion_email_validation(@suggestion).deliver_later
-      flash[:info] = t('.flash_email_info')
-      redirect_to @suggestion
-    else
-      if params[:token] == @suggestion.token_validation
-        @suggestion.update(token_validation: nil)
-        render 'edit'
-      else
-        flash[:danger] = t('.flash_edit_token_error')
-        redirect_to @suggestion
-      end
-    end
-  end
-
   def create
     suggestion_builder = SuggestionBuilder.new
     @suggestion = suggestion_builder.create(suggestion_params, params[:image1_id], params[:image2_id])
@@ -54,19 +37,6 @@ class SuggestionsController < ApplicationController
     flash[:info] = I18n.t('suggestions.create.flash_create_ok') if @suggestion.visible?
     flash[:info] = I18n.t('suggestions.create.flash_email_info') if !@suggestion.visible?
     redirect_to @suggestion
-  end
-
-  def update
-    images = {}
-    images[:image1_id] = update_image(params[:image1_id], @suggestion.image1_id)
-    images[:image2_id] = update_image(params[:image2_id], @suggestion.image2_id)
-
-    if @suggestion.update(suggestion_params.merge(images))
-      flash[:info] = t('.flash_update_ok')
-      redirect_to @suggestion
-    else
-      render :edit
-    end
   end
 
   def report
