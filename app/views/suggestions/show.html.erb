@@ -51,11 +51,15 @@
         </div>
         <% if @suggestion.has_image1? %>
           <% image_url = @image_manager.get_image_url(@suggestion.image1_id, 800, 600) %>
-          <%= link_to cl_image_tag(@suggestion.image1_id, width: 200, height: 150), image_url.to_s, class: 'fancybox', rel: 'group' %>
+          <a href="<%= image_url %>" class="fancybox" rel="group">
+            <img src="<%= image_url %>" width="200px"> </img>
+          </a>
         <% end %>
         <% if @suggestion.has_image2? %>
           <% image_url = @image_manager.get_image_url(@suggestion.image2_id, 800, 600) %>
-          <%= link_to cl_image_tag(@suggestion.image2_id, width: 200, height: 150), image_url.to_s, class: 'fancybox', rel: 'group' %>
+          <a href="<%= image_url %>" class="fancybox" rel="group">
+            <img src="<%= image_url %>" width="200px"> </img>
+          </a>
         <% end %>
         <br>
       </div>

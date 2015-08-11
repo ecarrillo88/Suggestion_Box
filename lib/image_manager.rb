@@ -13,7 +13,7 @@ class ImageManager
   end
 
   def upload_image(image)
-    Cloudinary::Uploader.upload(image)
+    Cloudinary::Uploader.upload(image)['public_id']
   end
 
   def delete_image(image_id)
