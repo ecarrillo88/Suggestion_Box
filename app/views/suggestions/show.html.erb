@@ -76,7 +76,7 @@
 
     <!-- Show comments -->
     <% if @suggestion.has_comments? %>
-      <h3><%= t('.comments_title') %></h3>
+      <h3 id="comments"><%= t('.comments_title') %></h3>
       <hr>
       <%= render 'comments/comment' %>
     <% end %>
