@@ -52,13 +52,13 @@
         <% if @suggestion.has_image1? %>
           <% image_url = @image_manager.get_image_url(@suggestion.image1_id, 800, 600) %>
           <a href="<%= image_url %>" class="fancybox" rel="group">
-            <img src="<%= image_url %>" width="200px"> </img>
+            <img src="<%= image_url %>" width="200px" class="suggestion_img"> </img>
           </a>
         <% end %>
         <% if @suggestion.has_image2? %>
           <% image_url = @image_manager.get_image_url(@suggestion.image2_id, 800, 600) %>
           <a href="<%= image_url %>" class="fancybox" rel="group">
-            <img src="<%= image_url %>" width="200px"> </img>
+            <img src="<%= image_url %>" width="200px" class="suggestion_img"> </img>
           </a>
         <% end %>
         <br>

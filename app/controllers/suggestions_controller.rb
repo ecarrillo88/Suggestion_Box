@@ -1,5 +1,3 @@
-require 'image_manager.rb'
-
 class SuggestionsController < ApplicationController
   protect_from_forgery except: :index
 
@@ -48,6 +46,7 @@ class SuggestionsController < ApplicationController
   end
 
   private
+
   def update_image(image_param, image_id)
     return image_id if image_param.nil?
 
@@ -66,7 +65,7 @@ class SuggestionsController < ApplicationController
   end
 
   def new_image_manager_filter
-    @image_manager = ImageManager.new
+    @image_manager = ImageManagerFactory.create.new
   end
 
   def suggestion_params
