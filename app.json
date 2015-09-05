@@ -1,0 +1,12 @@
+{
+  "name": "Buzón de Sugerencias",
+  "description": "Issue reporting tool for small communities",
+  "repository": "https://github.com/desarrollolocal/Suggestion_Box.git",
+  "addons": [
+    "cloudinary",
+  "papertrail"
+    ],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  }
+}
