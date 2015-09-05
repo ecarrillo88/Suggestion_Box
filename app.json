@@ -4,7 +4,8 @@
   "repository": "https://github.com/desarrollolocal/Suggestion_Box.git",
   "addons": [
     "cloudinary",
-  "papertrail"
+    "papertrail",
+    "sendgrid"
     ],
   "scripts": {
     "postdeploy": "bundle exec rake db:migrate"

@@ -51,3 +51,11 @@ $ bundle exec rails s
 
 ## Instalación en Heroku
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+### CLI
+  - [heroku toolbelt](https://toolbelt.heroku.com/)
+  - [Deploy Rails apps in heroku](https://devcenter.heroku.com/articles/getting-started-with-rails4)
+  - Addons: [app.json](https://github.com/desarrollolocal/Suggestion_Box/blob/master/app.json)
+
+
+
