@@ -33,5 +33,20 @@ el sistema le permite comentar una vez la sugerencia esta archivada.
 
 3. Si no ha habido respuesta al primer aviso en el plazo de 7 días, **la sugerencia se archiva**: archivar quiere decir que solo pueden añadir comentarios los miembros identificados como de la organización. Una sugerencia archivada sigue siendo visible en la página principal, aunque la cantidad de actividad que recibe será muy limitada.
 
-## Instalación en Desarrollo
+## Instalación en Desarrollo Linux
+
+### Requisitos
+ - Ruby 2.2.2
+ - Git
+ - Bundler
+
+```bash
+$ git clone git@github.com:desarrollolocal/Suggestion_Box.git
+$ cd Suggestion_Box/
+$ bundle install --without production
+$ bundle exec rake db:setup
+$ bundle exec rake db:seed
+$ bundle exec rails s
+```
+
 ## Instalación en Heroku
