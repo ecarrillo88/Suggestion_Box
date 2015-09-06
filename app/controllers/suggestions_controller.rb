@@ -2,7 +2,7 @@ class SuggestionsController < ApplicationController
   protect_from_forgery except: :index
 
   before_action :set_suggestion, only: [:show, :edit, :edit_request, :update, :report]
-  before_action :new_image_manager_filter, only: [:show, :edit, :update]
+  before_action :new_image_manager_filter, only: [:show, :edit, :update, :new]
 
   def index
     @title = params[:title]
