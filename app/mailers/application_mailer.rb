@@ -3,10 +3,7 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   def get_host
-    if Rails.env == "production"
-      return "https://tfg-suggestion-box.herokuapp.com/#{locale}/"
-    else
-      return "http://localhost:3000/#{locale}/"
-    end
+    host = ENV['APP_HOST'] || "http://localhost:3000"
+    "#{host}/#{locale}/"
   end
 end

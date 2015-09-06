@@ -9,5 +9,11 @@
     ],
   "scripts": {
     "postdeploy": "bundle exec rake db:migrate"
+  },
+  "env": {
+    "APP_HOST": {
+      "description": "used within the application to generate absolute urls where needed",
+      "value": "http://changemetothecurrenthost.now"
+    }
   }
 }
