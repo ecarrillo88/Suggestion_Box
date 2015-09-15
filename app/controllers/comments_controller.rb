@@ -35,29 +35,6 @@ class CommentsController < ApplicationController
   def update
   end
 
-  def destroy
-    if !Comment.exists?(params[:id])
-      flash[:danger] = t('.flash_destroy_error')
-      redirect_to suggestion_path(params[:suggestion_id])
-      return
-    end
-
-    set_comment
-    if params[:token].nil?
-      @comment.update(token_validation: ApplicationController.token_generator(10))
-      CommentMailer.delete_comment_email_validation(@comment).deliver_later
-      flash[:info] = t('.flash_email_info')
-    else
-      if params[:token] == @comment.token_validation
-        @comment.destroy
-        flash[:info] = t('.flash_destroy_ok')
-      else
-        flash[:danger] = t('.flash_destroy_token_error')
-      end
-    end
-    redirect_to @comment.suggestion
-  end
-
   def report
     CityCouncilResponsiblePerson.all.each do |responsible_person|
       CommentMailer.report_comment(@comment, responsible_person).deliver_later
@@ -67,11 +44,11 @@ class CommentsController < ApplicationController
   end
 
   private
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
-    def comment_params
-      params.require(:comment).permit(:author, :text, :email, :vote)
-    end
+  def comment_params
+    params.require(:comment).permit(:author, :text, :email, :vote)
+  end
 end

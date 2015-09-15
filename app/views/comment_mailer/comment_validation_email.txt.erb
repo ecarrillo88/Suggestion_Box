@@ -1,18 +1,18 @@
 
-Bienvenido al Buzón UPV, <%= @comment.author %>
+Bienvenido al <%= I18n.t("header.title") %>, <%= @comment.author %>
 =================================================
 
 Has creado un nuevo comentario. Para que sea visible debes validarlo pulsando el siguiente enlace:
 <%= link_to 'Enlace de validacion', @url %>
 
-Gracias por utilizar el Buzón UPV
+Gracias por utilizar el <%= I18n.t("header.title") %>
 
 --------------------------------------------------------------
 
-Welcome to Mailbox UPV, <%= @comment.author %>
+Welcome to <%= I18n.t("header.title") %>, <%= @comment.author %>
 ==================================================
 
 You have successfully created a comment. To make it visible you must validate it by clicking the following link:
 <%= link_to 'Validation link', @url %>
 
-Thanks for using the Mailbox UPV
+Thanks for using the <%= I18n.t("header.title") %>

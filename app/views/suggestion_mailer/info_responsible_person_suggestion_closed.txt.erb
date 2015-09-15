@@ -1,23 +1,23 @@
-Buzón UPV
+<%= I18n.t("header.title") %>
 ===========
 
 Hola <%= @responsible_person.name %>,
 Te informamos que la sugerencia "<%= @suggestion.title %>" se ha cerrado por inactividad.
-A partir de este momento solo se permite comentar al personal de la UPV.
+A partir de este momento solo se permite comentar al personal de la organizacion.
 
 <%= link_to 'Ir a la sugerencia', @url %>
 
-Gracias por utilizar el Buzón UPV
+Gracias por utilizar el <%= I18n.t("header.title") %>
 
 --------------------------------------------------------------
 
-Mailbox UPV
+<%= I18n.t("header.title") %>
 ===========
 
 Hello <%= @responsible_person.name %>,
 We inform you that the suggestion "<%= @suggestion.title %>" was closed for inactivity.
-From now only allowed to publish new comments to the UPV staff.
+From now only allowed to publish new comments to the organization staff.
 
 <%= link_to 'Go to suggestion', @url %>
 
-Thank you for using the Mailbox UPV
+Thank you for using the <%= I18n.t("header.title") %>

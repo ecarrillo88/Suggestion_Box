@@ -16,7 +16,7 @@
         <div class="col-xs-8">
           <ul class="list-inline">
             <h4><%= t('.information_title') %></h4>
-            <li><%= link_to t('.contact_link'), 'mailto:buzon_upv@upv.es' %></li>
+            <li><%= link_to t('.contact_link'), 'mailto:buzon@buzon.es' %></li>
             <li><%= link_to t('.about_link'), 'about', id: 'link-about' %></li>
             <div id="modal-about" class="pop-up-display-content">
               <h2><%= t('.about_title') %></h2>
@@ -39,17 +39,17 @@
         <div class="col-md-12">
           <ul class="list-inline">
             <li>
-              <a href="https://www.facebook.com/UPV" class="footer-icon-container" target="_blank">
+              <a href="https://www.facebook.com/" class="footer-icon-container" target="_blank">
                 <i class="footer-icon fa fa-facebook"></i>
               </a>
             </li>
             <li>
-              <a href="https://plus.google.com/+UPV/posts" class="footer-icon-container" target="_blank">
+              <a href="https://plus.google.com/+/posts" class="footer-icon-container" target="_blank">
                 <i class="footer-icon fa fa-google-plus"></i>
               </a>
             </li>
             <li>
-              <a href="https://twitter.com/upv" class="footer-icon-container" target="_blank">
+              <a href="https://twitter.com/" class="footer-icon-container" target="_blank">
                 <i class="footer-icon fa fa-twitter"></i>
               </a>
             </li>
@@ -59,14 +59,14 @@
               </a>
             </li>
             <li>
-              <a href="https://instagram.com/instaupv/" class="footer-icon-container" target="_blank">
+              <a href="https://instagram.com//" class="footer-icon-container" target="_blank">
                 <i class="footer-icon fa fa-instagram"></i>
               </a>
             </li>
           </ul>
           <div id="copyleft">
             <p id="copyleft-icon">©</p>
-            <p>Buzón UPV, All rights reversed</p>
+            <p><%= I18n.t('header.title') %>, All rights reversed</p>
           </div>
         </div>
       </div>

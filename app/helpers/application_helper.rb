@@ -7,7 +7,7 @@ module ApplicationHelper
   end
 
   def set_header_logo(header_logo)
-    return image_tag 'logo-upv.png', width: 160, heiht: 160 if header_logo.empty?
+    return image_tag 'logo.png', width: 160, heiht: 160 if header_logo.empty?
     return "" if header_logo == 'no'
     return header_logo
   end

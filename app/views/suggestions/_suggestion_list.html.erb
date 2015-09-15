@@ -19,7 +19,18 @@
             <li><i class="glyphicon glyphicon-info-sign"></i> <%= t(".category_#{suggestion.category}") %></li>
             <li><i class="glyphicon glyphicon-user"></i> <%= suggestion.author %></li>
             <li><i class="glyphicon glyphicon-calendar"></i> <%= created_at(suggestion) %></li>
-            <li><i class="glyphicon glyphicon-comment"></i> <%= pluralize(suggestion.number_of_comments, t('.comment')) %></li>
+
+            <li>
+            <i class="glyphicon glyphicon-comment"></i>
+            <% if suggestion.has_comments? %>
+              <a href="<%= suggestion_path(suggestion) %>#comments">
+                <%= pluralize(suggestion.number_of_comments, t('.comment')) %>
+              </a>
+            <% else %>
+              <%= pluralize(suggestion.number_of_comments, t('.comment')) %>
+            <% end %>
+            </li>
+
             <li><i class="glyphicon glyphicon-edit"></i> <%= pluralize(suggestion.number_of_supporters, t('.support')) %></li>
           </ul>
       </div>

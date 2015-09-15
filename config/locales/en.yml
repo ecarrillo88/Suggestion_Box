@@ -21,7 +21,7 @@
 
 en:
   header:
-    title: "Mailbox UPV"
+    title: "Suggestion Mailbox"
     description: "Drop your suggestions, comments, requests and complaints"
     new_suggestion_button: "Create a new suggestion"
   will_paginate:
@@ -29,16 +29,16 @@ en:
     next_label: "Next"
   layouts:
     application:
-      title: "Mailbox UPV"
+      title: "Suggestion Mailbox"
     footer:
       change_language: "Change language"
       spanish_language: "Spanish"
       english_language: "English"
       information_title: "Information"
       contact_link: "Contact"
-      about_link: "About Mailbox UPV"
-      about_title: "Welcome to Mailbox UPV"
-      about_p1: "The Mailbox UPV is a participatory tool that the Polytechnic University of Valencia puts at the service of the university community, with the purpose of responding to inquiries, complaints, proposals and suggestions for the university and its services."
+      about_link: "About Suggestion Mailbox"
+      about_title: "Welcome to Suggestion Mailbox"
+      about_p1: "The Suggestion Mailbox is a participatory tool that the organization puts at the service of the university community, with the purpose of responding to inquiries, complaints, proposals and suggestions for the university and its services."
       about_p2: "In this way, you can help in the development of improvements relating to the university through this simple tool. We encourage you to actively participate and make us get your opinion or your questions about aspects that you consider important."
       conditions_link: "Conditions and privacy"
       conditions_title: "Conditions and privacy"
@@ -85,14 +85,12 @@ en:
       geolocation_title: "Geolocation"
       comments_title: "Comments"
       add_comment_title: "Add a comment"
-      edit_button: "Edit"
-      delete_button: "Delete"
       text_size: "Text size"
       category_1: "Suggestion"
       category_2: "Complaint"
       category_3: "Congratulations"
       category_4: "Issue"
-      info_suggestion_closed: "The suggestion is closed and only allows comments from UPV staff"
+      info_suggestion_closed: "The suggestion is closed and only allows comments from staff"
       report_suggestion: "Report"
     new:
       header_title: "New Suggestion"
@@ -109,7 +107,7 @@ en:
       email_field: "Email"
       comment_field: "Comment"
       required_placeholder: "Required"
-      author_placeholder: "Anonymous by default"
+      author_placeholder: "Your real name"
       upload_images_title: "Upload images"
       upload_images_description: "If you want you can upload images to provide more information to the suggestion."
       geolocation_title: "Geolocate the suggestion"
@@ -118,21 +116,11 @@ en:
       geolocation_description: "Put a marker by clicking on the map or search address to geolocate the suggestion. If you do not want to geolocate the suggestion remove the map marker."
       create_suggestion_button: "Create Suggestion"
       back_button: "Back"
-    edit:
-      header_title: "Edit Suggestion"
-      header_description: " "
-      flash_edit_token_error: "We could not validate the request to edit the suggestion"
-      flash_email_info: "In a few moments you will receive an email to confirm the suggestion editing"
     create:
       flash_create_ok: "Suggestion was successfully published"
       flash_email_info: "In a few moments you will receive an email to confirm the suggestion"
     update:
       flash_update_ok: "Suggestion was successfully updated"
-    destroy:
-      flash_destroy_ok: "Suggestion was successfully deleted"
-      flash_destroy_token_error: "We could not validate the request to delete the suggestion"
-      flash_destroy_error: 'The suggestion you are trying to delete does not exist'
-      flash_email_info: "In a few moments you will receive an email to confirm the deletion of the suggestion"
     report:
       flash_report_ok: "The suggestion has been reported"
   comments:
@@ -149,15 +137,15 @@ en:
       comment_button: "Comment"
       comment_and_support_button: "Comment & Support"
     comment:
-      city_council: "UPV Staff"
+      city_council: "Staff"
       delete_comment: "Delete"
       report_comment: "Report"
     create:
       flash_support_error: "Only one support per person is allowed"
-      flash_city_council_staff_support_error: "The UPV staff can not support suggestions"
+      flash_city_council_staff_support_error: "The staff can not support suggestions"
       flash_create_ok: "Comment was successfully published"
       flash_email_info: "In a few moments you will receive an email to confirm your comment"
-      flash_suggestion_closed: "The suggestion is closed and only allows comments from UPV staff"
+      flash_suggestion_closed: "The suggestion is closed and only allows comments from staff"
     destroy:
       flash_destroy_ok: "Comment was successfully destroyed"
       flash_destroy_token_error: "We could not validate the request to delete the comment"
@@ -193,6 +181,8 @@ en:
               invalid: "Invalid email format"
             comment:
               blank: "Comment is required"
+            author:
+              blank: "An author name is required"
         comment:
           attributes:
             author:

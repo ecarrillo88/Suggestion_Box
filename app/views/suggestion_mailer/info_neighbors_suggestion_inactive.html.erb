@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Buzón UPV</h1>
+    <h1><%= I18n.t("header.title") %></h1>
     <p>Estimado usuario,</p>
     <p>Le informamos que la sugerencia "<%= @suggestion.title %>" lleva más de 30 días de inactividad.<p>
     <p>Este es un resumen de la sugerencia:</p>
@@ -18,11 +18,11 @@
     <p>Si lo deseas puedes seguir comentando con el fin de que los votos positivos aumenten.</p>
     <p>Si pasados 7 días desde este aviso no hay nuevos comentarios la sugerencia se dará por concluida.</p>
     <p><%= link_to 'Ir a la sugerencia', @url %></p>
-    <p>Gracias por utilizar el Buzón UPV</p>
+    <p>Gracias por utilizar el <%= I18n.t("header.title") %></p>
     <br>
     <p>--------------------------------------------------------------</p>
     <br>
-    <h1>Mailbox UPV</h1>
+    <h1><%= I18n.t("header.title") %></h1>
     <p>Dear user,</p>
     <p>We inform you that the suggestion "<%= @suggestion.title %>" has more than 30 days of inactivity.<p>
     <p>This is a summary of the suggestion:</p>
@@ -36,6 +36,6 @@
     <p>if you wish you can continue to discuss in order to increase the positive comments.</p>
     <p>After 7 days of this notice, if no new comment posted on the suggestion, it will be terminated.</p>
     <p><%= link_to 'Go to suggestion', @url %></p>
-    <p>Thank you for using the Mailbox UPV</p>
+    <p>Thank you for using the <%= I18n.t("header.title") %></p>
   </body>
 </html>

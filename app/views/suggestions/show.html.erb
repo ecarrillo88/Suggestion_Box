@@ -34,8 +34,6 @@
         <p><%= simple_format(@suggestion.comment) %></p>
       </div>
       <br>
-      <%= link_to t('.edit_button'), edit_suggestion_path(@suggestion), class: "btn btn-default" %>
-      <%= link_to t('.delete_button'), delete_suggestion_path(@suggestion), method: :delete, class: "btn btn-red" %>
       <ul class="list-inline pull-right">
         <li>
           <a href="#" id="decrease_text_size" class="zoom"><i class="glyphicon glyphicon-zoom-out"></i></a>
@@ -53,11 +51,15 @@
         </div>
         <% if @suggestion.has_image1? %>
           <% image_url = @image_manager.get_image_url(@suggestion.image1_id, 800, 600) %>
-          <%= link_to cl_image_tag(@suggestion.image1_id, width: 200, height: 150), image_url.to_s, class: 'fancybox', rel: 'group' %>
+          <a href="<%= image_url %>" class="fancybox" rel="group">
+            <img src="<%= image_url %>" width="200px" class="suggestion_img"> </img>
+          </a>
         <% end %>
         <% if @suggestion.has_image2? %>
           <% image_url = @image_manager.get_image_url(@suggestion.image2_id, 800, 600) %>
-          <%= link_to cl_image_tag(@suggestion.image2_id, width: 200, height: 150), image_url.to_s, class: 'fancybox', rel: 'group' %>
+          <a href="<%= image_url %>" class="fancybox" rel="group">
+            <img src="<%= image_url %>" width="200px" class="suggestion_img"> </img>
+          </a>
         <% end %>
         <br>
       </div>
@@ -74,7 +76,7 @@
 
     <!-- Show comments -->
     <% if @suggestion.has_comments? %>
-      <h3><%= t('.comments_title') %></h3>
+      <h3 id="comments"><%= t('.comments_title') %></h3>
       <hr>
       <%= render 'comments/comment' %>
     <% end %>

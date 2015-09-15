@@ -5,7 +5,7 @@
   </head>
   <body>
     <% supporters = @suggestion.comments.where(visible: true, support: true).size %>
-    <h1>Buzón UPV</h1>
+    <h1><%= I18n.t("header.title") %></h1>
     <p>Nuevo comentario en la sugerencia "<i><%= @suggestion.title %></i>" (<%= pluralize(supporters, 'Firma') %>)</p>
     <p><b>Nombre:</b> <%= @comment.author %></p>
     <p><b>Comentario:</b> <%= @comment.text %></p>
@@ -15,7 +15,7 @@
     <br>
     <p>--------------------------------------------------------------</p>
     <br>
-    <h1>Mailbox UPV</h1>
+    <h1><%= I18n.t("header.title") %></h1>
     <p>New comment on the suggestion "<i><%= @suggestion.title %></i>" (<%= pluralize(supporters, 'Support') %>)</p>
     <p><b>Name:</b> <%= @comment.author %></p>
     <p><b>Comment:</b> <%= @comment.text %></p>

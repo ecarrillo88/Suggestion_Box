@@ -1,0 +1,19 @@
+{
+  "name": "Buzón de Sugerencias",
+  "description": "Issue reporting tool for small communities",
+  "repository": "https://github.com/desarrollolocal/Suggestion_Box.git",
+  "addons": [
+    "cloudinary",
+    "papertrail",
+    "sendgrid"
+    ],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "env": {
+    "APP_HOST": {
+      "description": "used within the application to generate absolute urls where needed",
+      "value": "http://changemetothecurrenthost.now"
+    }
+  }
+}

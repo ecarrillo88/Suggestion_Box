@@ -4,18 +4,18 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Buzón UPV</h1>
+    <h1><%= I18n.t("header.title") %></h1>
     <p>Le informamos que la sugerencia "<%= @suggestion.title %>" se ha cerrado después de más de 30 días de inactividad.</p>
     <p>A partir de este momento solo se permite comentar a los responsables del ayuntamiento.<p>
     <p><%= link_to 'Ir a la sugerencia', @url %></p>
-    <p>Gracias por utilizar el Buzón UPV</p>
+    <p>Gracias por utilizar el <%= I18n.t("header.title") %></p>
     <br>
     <p>--------------------------------------------------------------</p>
     <br>
-    <h1>Mailbox UPV</h1>
+    <h1><%= I18n.t("header.title") %></h1>
     <p>We inform you that the suggestion "<%= @suggestion.title %>" was closed after more than 30 days of inactivity.</p>
     <p>From now only allowed to publish new comments to the city council staff.<p>
     <p><%= link_to 'Go to suggestion', @url %></p>
-    <p>Thank you for using the Mailbox UPV</p>
+    <p>Thank you for using the <%= I18n.t("header.title") %></p>
   </body>
 </html>

@@ -21,7 +21,7 @@
 
 es:
   header:
-    title: "Buzón UPV"
+    title: "Buzón de Sugerencias"
     description: "Deja tus sugerencias, comentarios, peticiones y quejas"
     new_suggestion_button: "Publica una sugerencia"
   will_paginate:
@@ -29,16 +29,16 @@ es:
     next_label: "Siguiente"
   layouts:
     application:
-      title: "Buzón UPV"
+      title: "Buzón de Sugerencias"
     footer:
       change_language: "Cambiar idioma"
       spanish_language: "Español"
       english_language: "Inglés"
       information_title: "Información"
       contact_link: "Contacto"
-      about_link: "Sobre el Buzón UPV"
-      about_title: "Bienvenido al buzón UPV"
-      about_p1: "El Buzón UPV es una herramienta de participación que la Universitat Politècnica de València pone al servicio de la comunidad universitaria, con la finalidad de dar respuesta a las consultas, quejas, propuestas o sugerencias relativas a la universidad y sus servicios."
+      about_link: "Sobre el Buzón de Sugerencias"
+      about_title: "Bienvenido al buzón de sugerencias"
+      about_p1: "El Buzón de sugerenias es una herramienta de participación que pone al servicio del ciudadano, con la finalidad de dar respuesta a las consultas, quejas, propuestas o sugerencias relativas a la universidad y sus servicios."
       about_p2: "De esta manera, puedes colaborar en el desarrollo de mejoras relativas a la universidad a través de esta sencilla herramienta. Te animamos a que participes activamente y nos hagas llegar tu opinión o duda sobre aquellos aspectos que consideres."
       conditions_link: "Condiciones y privacidad"
       conditions_title: "Condiciones y privacidad"
@@ -85,14 +85,12 @@ es:
       geolocation_title: "Geolocalización"
       comments_title: "Comentarios"
       add_comment_title: "Deja un comentario"
-      edit_button: "Editar"
-      delete_button: "Eliminar"
       text_size: "Tamaño texto"
       category_1: "Sugerencia"
       category_2: "Queja"
       category_3: "Felicitaciones"
       category_4: "Incidencia"
-      info_suggestion_closed: "La sugerencia está cerrada y solo se permite comentar al personal de la UPV"
+      info_suggestion_closed: "La sugerencia está cerrada y solo se permite comentar al personal"
       report_suggestion: "Reportar"
     new:
       header_title: "Nueva Sugerencia"
@@ -109,7 +107,7 @@ es:
       email_field: "Email"
       comment_field: "Comentario"
       required_placeholder: "Obligatorio"
-      author_placeholder: "Anonymous por defecto"
+      author_placeholder: "Tu nombre de verdad"
       upload_images_title: "Adjuntar Imágenes"
       upload_images_description: "Si lo deseas puedes adjuntar imágenes que aporten más información a la sugerencia."
       geolocation_title: "Geolocaliza la sugerencia"
@@ -118,21 +116,11 @@ es:
       geolocation_description: "Pon una marca haciendo click en el mapa o busca una dirección para geolocalizar la sugerencia. Si no quieres geolocalizar la sugerencia elimina la marca del mapa."
       create_suggestion_button: "Publicar Sugerencia"
       back_button: "Volver"
-    edit:
-      header_title: "Editar Sugerencia"
-      header_description: " "
-      flash_edit_token_error: "No hemos podido validar la petición para editar la sugerencia"
-      flash_email_info: "En breves momentos recibirá un email para confirmar la edición de la sugerencia"
     create:
       flash_create_ok: "La sugerencia ha sido publicada"
       flash_email_info: "En breves momentos recibirá un email para confirmar su sugerencia"
     update:
       flash_update_ok: "La sugerencia ha sido actualizada"
-    destroy:
-      flash_destroy_ok: "La sugerencia ha sido eliminada"
-      flash_destroy_token_error: "No hemos podido validar la petición para eliminar la sugerencia"
-      flash_destroy_error: 'La sugerencia que estás tratando de eliminar no existe'
-      flash_email_info: "En breves momentos recibirá un email para confirmar la eliminación de la sugerencia"
     report:
       flash_report_ok: "La sugerencia ha sido reportada"
   comments:
@@ -149,15 +137,15 @@ es:
       comment_button: "Comenta"
       comment_and_support_button: "Firma y comenta"
     comment:
-      city_council: "Personal UPV"
+      city_council: "Personal"
       delete_comment: "Eliminar"
       report_comment: "Reportar"
     create:
       flash_support_error: "Solo se permite una firma por persona"
-      flash_city_council_staff_support_error: "El personal de la UPV no puede firmar sugerencias"
+      flash_city_council_staff_support_error: "El personal no puede firmar sugerencias"
       flash_create_ok: "El comentario ha sido publicado"
       flash_email_info: "En breves momentos recibirá un email para confirmar su comentario"
-      flash_suggestion_closed: "La sugerencia está cerrada y solo se permite comentar al personal de la UPV"
+      flash_suggestion_closed: "La sugerencia está cerrada y solo se permite comentar al personal"
     destroy:
       flash_destroy_ok: "El comentario ha sido eliminado"
       flash_destroy_token_error: "No hemos podido validar la petición para eliminar el comentario"
@@ -193,6 +181,8 @@ es:
               invalid: "Formato de email invalido"
             comment:
               blank: "El Comentario es obligatorio"
+            author:
+              blank: "Es necesario un nombre de autor"
         comment:
           attributes:
             author:
