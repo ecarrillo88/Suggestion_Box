@@ -5,7 +5,8 @@
   "addons": [
     "cloudinary",
     "papertrail",
-    "sendgrid"
+    "sendgrid",
+    "scheduler"
     ],
   "scripts": {
     "postdeploy": "bundle exec rake db:migrate"
