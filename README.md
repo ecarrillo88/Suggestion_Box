@@ -1,4 +1,4 @@
-# Buzón Sugerencias
+# Buzón
 
 ##Características
 
