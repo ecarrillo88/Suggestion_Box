@@ -1,0 +1,16 @@
+<% content_for :header_logo, 'no' %>
+<% content_for :header_title, "<h2>#{t('.header_title')}</h2>".html_safe %>
+<% content_for :header_description, t('.header_description') %>
+<% content_for :header_button, 'no' %>
+
+<%= render 'search_filter' %>
+
+<div id="suggestion_list">
+  <center>
+    <i class="glyphicon glyphicon-arrow-up"></i>
+    <i class="glyphicon glyphicon-arrow-up"></i>
+    <i class="glyphicon glyphicon-arrow-up"></i>
+    <h3><%= t('.info') %></h3>
+  </center>
+  <br><br>
+</div>

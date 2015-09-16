@@ -5,18 +5,9 @@ class SuggestionsController < ApplicationController
   before_action :new_image_manager_filter, only: [:show, :edit, :update, :new]
 
   def index
-    @title = params[:title]
-    @category = params[:category]
-    @status = params[:status]
-    @address = params[:address]
-    @distance = params[:distance]
-    @suggestions = Suggestion.search_filter(@title, @category, @status, @address, @distance)
+    @suggestions = Suggestion.all
+      .order(created_at: :desc)
       .paginate(:page => params[:page], :per_page => 10)
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def show
@@ -35,6 +26,21 @@ class SuggestionsController < ApplicationController
     flash[:info] = I18n.t('suggestions.create.flash_create_ok') if @suggestion.visible?
     flash[:info] = I18n.t('suggestions.create.flash_email_info') if !@suggestion.visible?
     redirect_to @suggestion
+  end
+
+  def advanced_search
+    @title = params[:title]
+    @category = params[:category]
+    @status = params[:status]
+    @address = params[:address]
+    @distance = params[:distance]
+    @suggestions = Suggestion.search_filter(@title, @category, @status, @address, @distance)
+      .paginate(:page => params[:page], :per_page => 10)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def report
