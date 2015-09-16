@@ -52,10 +52,12 @@ $ bundle exec rails s
 ## Instalación en Heroku
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
+### Tareas post-despliegue:
+  1. Cambiar el valor de la variable de entorno APP_HOST por la url de la nueva aplicación creada.
+  2. Programar diariamente los trabajos definidos en [lib/tasks/scheduler.rake](https://github.com/desarrollolocal/Suggestion_Box/blob/master/lib/tasks/scheduler.rake) en el add-on Scheduler.
+
+
 ### CLI
   - [heroku toolbelt](https://toolbelt.heroku.com/)
   - [Deploy Rails apps in heroku](https://devcenter.heroku.com/articles/getting-started-with-rails4)
   - Addons: [app.json](https://github.com/desarrollolocal/Suggestion_Box/blob/master/app.json)
-
-
-
