@@ -21,25 +21,25 @@
 
 en:
   header:
-    title: "Suggestion Mailbox"
+    title: "Alerta Ciclista"
     description: "Drop your suggestions, comments, requests and complaints"
-    new_suggestion_button: "Create a new suggestion"
+    new_suggestion_button: "Create a new alert"
   will_paginate:
     previous_label: "Previous"
     next_label: "Next"
   layouts:
     application:
-      title: "Suggestion Mailbox"
+      title: "Alerta Ciclista"
     footer:
       change_language: "Change language"
       spanish_language: "Spanish"
       english_language: "English"
       information_title: "Information"
       contact_link: "Contact"
-      about_link: "About Suggestion Mailbox"
-      about_title: "Welcome to Suggestion Mailbox"
-      about_p1: "The Suggestion Mailbox is a participatory tool that the organization puts at the service of the university community, with the purpose of responding to inquiries, complaints, proposals and suggestions for the university and its services."
-      about_p2: "In this way, you can help in the development of improvements relating to the university through this simple tool. We encourage you to actively participate and make us get your opinion or your questions about aspects that you consider important."
+      about_link: "About Alerta Ciclista"
+      about_title: "Welcome to Alerta Ciclista"
+      about_p1: "Alerta Ciclista is a participatory tool that the organization puts at the service of the valencian cycling community, with the purpose of responding to inquiries, complaints, proposals and suggestions for the urban cycling safety in Valencia city"
+      about_p2: "In this way, you can help in the development of improvements relating to the bike roads through this simple tool. We encourage you to actively participate and make us get your opinion or your questions about aspects that you consider important."
       conditions_link: "Conditions and privacy"
       conditions_title: "Conditions and privacy"
       conditions_title2: "Conditions"
@@ -75,8 +75,8 @@ en:
       category_3: "Congratulations"
       category_4: "Issue"
     show:
-      header_title: "Showing Suggestion"
-      header_description: "If you think the suggestion is important, you can leave a comment or support it"
+      header_title: "Showing Alert"
+      header_description: "If you think the alert is important, you can leave a comment or support it"
       comment: "Comment"
       support: "Support"
       vote_in_favour_tooltip: "Votes in favour"
@@ -90,15 +90,15 @@ en:
       category_2: "Complaint"
       category_3: "Congratulations"
       category_4: "Issue"
-      info_suggestion_closed: "The suggestion is closed and only allows comments from staff"
+      info_suggestion_closed: "The alert is closed and only allows comments from staff"
       report_suggestion: "Report"
     new:
-      header_title: "New Suggestion"
+      header_title: "New Alert"
       header_description: "Create a new suggestion about a problem, a request, a complaint... or anything you think is important"
     form:
       title_field: "Title"
       type_field: "Type"
-      default_option: "Select the type of suggestion"
+      default_option: "Select the type of alert"
       suggestion_option: "Suggestion"
       complaint_option: "Complaint"
       congratulation_option: "Congratulation"
@@ -109,27 +109,27 @@ en:
       required_placeholder: "Required"
       author_placeholder: "Your real name"
       upload_images_title: "Upload images"
-      upload_images_description: "If you want you can upload images to provide more information to the suggestion."
-      geolocation_title: "Geolocate the suggestion"
+      upload_images_description: "If you want you can upload images to provide more information to the alert."
+      geolocation_title: "Geolocate the alert"
       search_placeholder: "Search address"
       clear_marker_button: "Clear Marker"
-      geolocation_description: "Put a marker by clicking on the map or search address to geolocate the suggestion. If you do not want to geolocate the suggestion remove the map marker."
-      create_suggestion_button: "Create Suggestion"
+      geolocation_description: "Put a marker by clicking on the map or search address to geolocate the alert. If you do not want to geolocate the alert remove the map marker."
+      create_suggestion_button: "Create Alert"
       back_button: "Back"
     create:
-      flash_create_ok: "Suggestion was successfully published"
-      flash_email_info: "In a few moments you will receive an email to confirm the suggestion"
+      flash_create_ok: "Alert was successfully published"
+      flash_email_info: "In a few moments you will receive an email to confirm the alert"
     update:
-      flash_update_ok: "Suggestion was successfully updated"
+      flash_update_ok: "Alert was successfully updated"
     report:
-      flash_report_ok: "The suggestion has been reported"
+      flash_report_ok: "The alert has been reported"
   comments:
     form:
       name_field: "Name"
       email_field: "Email"
       comment_field: "Comment"
-      vote_title: "Vote this suggestion"
-      vote_info: "Vote this suggestion to give your opinion. Support implies being in favor regardless of the selected option."
+      vote_title: "Vote this alert"
+      vote_info: "Vote this alert to give your opinion. Support implies being in favor regardless of the selected option."
       option_default: "Select an option"
       option_in_favour: "In favour"
       option_abstention: "Abstention"
@@ -142,10 +142,10 @@ en:
       report_comment: "Report"
     create:
       flash_support_error: "Only one support per person is allowed"
-      flash_city_council_staff_support_error: "The staff can not support suggestions"
+      flash_city_council_staff_support_error: "The staff can not support alert"
       flash_create_ok: "Comment was successfully published"
       flash_email_info: "In a few moments you will receive an email to confirm your comment"
-      flash_suggestion_closed: "The suggestion is closed and only allows comments from staff"
+      flash_suggestion_closed: "The alert is closed and only allows comments from staff"
     destroy:
       flash_destroy_ok: "Comment was successfully destroyed"
       flash_destroy_token_error: "We could not validate the request to delete the comment"
@@ -155,8 +155,8 @@ en:
       flash_report_ok: "The comment has been reported"
   email_validation:
     suggestion_validation:
-      flash_suggestion_validation_success: 'Your suggestion has been activated and published'
-      flash_suggestion_validation_failed: 'We could not validate your suggestion'
+      flash_suggestion_validation_success: 'Your alert has been activated and published'
+      flash_suggestion_validation_failed: 'We could not validate your alert'
     comment_validation:
       flash_comment_validation_success: 'Your comment has been activated and published'
       flash_comment_validation_failed: 'We could not validate your comment'

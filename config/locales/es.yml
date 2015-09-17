@@ -21,25 +21,25 @@
 
 es:
   header:
-    title: "Buzón de Sugerencias"
+    title: "Alerta Ciclista"
     description: "Deja tus sugerencias, comentarios, peticiones y quejas"
-    new_suggestion_button: "Publica una sugerencia"
+    new_suggestion_button: "Publica una alerta"
   will_paginate:
     previous_label: "Anterior"
     next_label: "Siguiente"
   layouts:
     application:
-      title: "Buzón de Sugerencias"
+      title: "Alerta Ciclista"
     footer:
       change_language: "Cambiar idioma"
       spanish_language: "Español"
       english_language: "Inglés"
       information_title: "Información"
       contact_link: "Contacto"
-      about_link: "Sobre el Buzón de Sugerencias"
-      about_title: "Bienvenido al buzón de sugerencias"
-      about_p1: "El Buzón de sugerenias es una herramienta de participación que pone al servicio del ciudadano, con la finalidad de dar respuesta a las consultas, quejas, propuestas o sugerencias relativas a la universidad y sus servicios."
-      about_p2: "De esta manera, puedes colaborar en el desarrollo de mejoras relativas a la universidad a través de esta sencilla herramienta. Te animamos a que participes activamente y nos hagas llegar tu opinión o duda sobre aquellos aspectos que consideres."
+      about_link: "Sobre Alerta Ciclista"
+      about_title: "Bienvenido a Alerta Ciclista"
+      about_p1: "Alerta Ciclista es una herramienta de participación que pone al servicio del ciudadano, con la finalidad de dar respuesta a las consultas, quejas, propuestas o sugerencias relativas al uso de la bicicleta en Valencia ciudad"
+      about_p2: "De esta manera, puedes colaborar en el desarrollo de mejoras relativas a la seguridad vial a través de esta sencilla herramienta. Te animamos a que participes activamente y nos hagas llegar tu opinión o duda sobre aquellos aspectos que consideres."
       conditions_link: "Condiciones y privacidad"
       conditions_title: "Condiciones y privacidad"
       conditions_title2: "Condiciones"
@@ -75,8 +75,8 @@ es:
       category_3: "Felicitaciones"
       category_4: "Incidencia"
     show:
-      header_title: "Sugerencia"
-      header_description: "Si piensas que la sugerencia es importante, deja una firma o un comentario"
+      header_title: "Alerta"
+      header_description: "Si piensas que la alerta es importante, deja una firma o un comentario"
       comment: "Comentario"
       support: "Firma"
       vote_in_favour_tooltip: "Votos a favor"
@@ -90,15 +90,15 @@ es:
       category_2: "Queja"
       category_3: "Felicitaciones"
       category_4: "Incidencia"
-      info_suggestion_closed: "La sugerencia está cerrada y solo se permite comentar al personal"
+      info_suggestion_closed: "La alerta está cerrada y solo se permite comentar al personal"
       report_suggestion: "Reportar"
     new:
-      header_title: "Nueva Sugerencia"
-      header_description: "Crea una nueva sugerencia sobre un problema, una solicitud, una queja... o cualquier cosa que creas que es importante"
+      header_title: "Nueva Alerta"
+      header_description: "Crea una nueva alerta sobre un problema, una solicitud, una queja... o cualquier cosa que creas que es importante"
     form:
       title_field: "Título"
       type_field: "Tipo"
-      default_option: "Selecciona el tipo de la sugerencia"
+      default_option: "Selecciona el tipo de la alerta"
       suggestion_option: "Sugerencia"
       complaint_option: "Queja"
       congratulation_option: "Felicitaciones"
@@ -109,27 +109,27 @@ es:
       required_placeholder: "Obligatorio"
       author_placeholder: "Tu nombre de verdad"
       upload_images_title: "Adjuntar Imágenes"
-      upload_images_description: "Si lo deseas puedes adjuntar imágenes que aporten más información a la sugerencia."
-      geolocation_title: "Geolocaliza la sugerencia"
+      upload_images_description: "Si lo deseas puedes adjuntar imágenes que aporten más información a la alerta."
+      geolocation_title: "Geolocaliza la alerta"
       search_placeholder: "Buscar dirección"
       clear_marker_button: "Quitar Marca"
-      geolocation_description: "Pon una marca haciendo click en el mapa o busca una dirección para geolocalizar la sugerencia. Si no quieres geolocalizar la sugerencia elimina la marca del mapa."
-      create_suggestion_button: "Publicar Sugerencia"
+      geolocation_description: "Pon una marca haciendo click en el mapa o busca una dirección para geolocalizar la alerta. Si no quieres geolocalizar la alerta elimina la marca del mapa."
+      create_suggestion_button: "Publicar Alerta"
       back_button: "Volver"
     create:
-      flash_create_ok: "La sugerencia ha sido publicada"
-      flash_email_info: "En breves momentos recibirá un email para confirmar su sugerencia"
+      flash_create_ok: "La alerta ha sido publicada"
+      flash_email_info: "En breves momentos recibirá un email para confirmar su alerta"
     update:
-      flash_update_ok: "La sugerencia ha sido actualizada"
+      flash_update_ok: "La alerta ha sido actualizada"
     report:
-      flash_report_ok: "La sugerencia ha sido reportada"
+      flash_report_ok: "La alerta ha sido reportada"
   comments:
     form:
       name_field: "Nombre"
       email_field: "Email"
       comment_field: "Comentario"
-      vote_title: "Vota la sugerencia"
-      vote_info: "Vota la sugerencia para dar tu opinión acerca de la misma. Firmar implica estar a favor independientemente de la opción marcada."
+      vote_title: "Vota la alerta"
+      vote_info: "Vota la alerta para dar tu opinión acerca de la misma. Firmar implica estar a favor independientemente de la opción marcada."
       option_default: "Seleccione una opción"
       option_in_favour: "A favor"
       option_abstention: "Abstenerse"
@@ -142,10 +142,10 @@ es:
       report_comment: "Reportar"
     create:
       flash_support_error: "Solo se permite una firma por persona"
-      flash_city_council_staff_support_error: "El personal no puede firmar sugerencias"
+      flash_city_council_staff_support_error: "El personal no puede firmar alerta"
       flash_create_ok: "El comentario ha sido publicado"
       flash_email_info: "En breves momentos recibirá un email para confirmar su comentario"
-      flash_suggestion_closed: "La sugerencia está cerrada y solo se permite comentar al personal"
+      flash_suggestion_closed: "La alerta está cerrada y solo se permite comentar al personal"
     destroy:
       flash_destroy_ok: "El comentario ha sido eliminado"
       flash_destroy_token_error: "No hemos podido validar la petición para eliminar el comentario"
@@ -155,8 +155,8 @@ es:
       flash_report_ok: "El comentario ha sido reportado"
   email_validation:
     suggestion_validation:
-      flash_suggestion_validation_success: 'La sugerencia ha sido validada y publicada'
-      flash_suggestion_validation_failed: 'No se ha podido validar la sugerencia'
+      flash_suggestion_validation_success: 'La alerta ha sido validada y publicada'
+      flash_suggestion_validation_failed: 'No se ha podido validar la alerta'
     comment_validation:
       flash_comment_validation_success: 'El comentario ha sido validado y publicado'
       flash_comment_validation_failed: 'No se ha podido validar el comentario'
