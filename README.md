@@ -61,3 +61,5 @@ $ bundle exec rails s
   - [heroku toolbelt](https://toolbelt.heroku.com/)
   - [Deploy Rails apps in heroku](https://devcenter.heroku.com/articles/getting-started-with-rails4)
   - Addons: [app.json](https://github.com/desarrollolocal/Suggestion_Box/blob/master/app.json)
+
+[![Build Status](https://travis-ci.org/devscola/alerta_ciclista.svg?branch=master)](https://travis-ci.org/devscola/alerta_ciclista)
