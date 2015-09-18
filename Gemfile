@@ -49,6 +49,12 @@ group :development, :test do
   gem 'rspec-rails'
   # Capybara is an integration testing tool for rack based web applications. It simulates how a user would interact with a website
   gem 'capybara'
+  # Headless Webkit driver for Capybara
+  gem 'capybara-webkit', '~> 1.7.0'
+  # WebDriver is a tool for writing automated tests of websites. It aims to mimic the behaviour of a real user, and as such interacts with the HTML of the application.
+  gem 'selenium-webdriver', '~> 2.47.1'
+  # Strategies for cleaning databases. Can be used to ensure a clean state for testing.
+  gem 'database_cleaner', '~> 1.5.0'
 end
 
 group :production do
