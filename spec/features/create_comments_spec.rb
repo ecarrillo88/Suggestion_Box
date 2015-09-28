@@ -10,7 +10,7 @@ RSpec.feature "CreateComments", type: :feature do
 
   scenario 'Create a new comment as a neighbor' do
     visit suggestion_path(@suggestion, locale: :en)
-    expect(page).to have_text I18n.t('suggestions.show.header_title')
+    expect(page).to have_text I18n.t('suggestions.show.header_description')
     expect(page).to have_text 'Awesome Suggestion'
 
     fill_in I18n.t('comments.form.name_field'),       with: 'Invisible Woman'
@@ -19,7 +19,7 @@ RSpec.feature "CreateComments", type: :feature do
     select  I18n.t('comments.form.option_in_favour'), from: 'comment_vote'
     click_button I18n.t('comments.form.comment_button')
 
-    expect(page).to have_text I18n.t('suggestions.show.header_title')
+    expect(page).to have_text I18n.t('suggestions.show.header_description')
     expect(page).to have_text 'Awesome Suggestion'
     expect(page).to have_text 'Aenean commodo ligula eget dolor'
     expect(page).to have_css 'div.comment'
@@ -27,7 +27,7 @@ RSpec.feature "CreateComments", type: :feature do
 
   scenario 'Supporting the suggestion as a neighbor' do
     visit suggestion_path(@suggestion, locale: :en)
-    expect(page).to have_text I18n.t('suggestions.show.header_title')
+    expect(page).to have_text I18n.t('suggestions.show.header_description')
     expect(page).to have_text 'Awesome Suggestion'
 
     fill_in I18n.t('comments.form.name_field'),     with: 'Human Torch'
@@ -36,7 +36,7 @@ RSpec.feature "CreateComments", type: :feature do
     select  I18n.t('comments.form.option_against'), from: 'comment_vote'
     click_button I18n.t('comments.form.comment_and_support_button')
 
-    expect(page).to have_text I18n.t('suggestions.show.header_title')
+    expect(page).to have_text I18n.t('suggestions.show.header_description')
     expect(page).to have_text 'Awesome Suggestion'
     expect(page).to have_text 'Nobis tation quo et, partem senserit sed in'
     expect(page).to have_css 'div.comment'
@@ -49,10 +49,10 @@ RSpec.feature "CreateComments", type: :feature do
 
   scenario 'Check comment created by city council staff when already validated' do
     visit suggestion_path(@suggestion, locale: :en)
-    expect(page).to have_text I18n.t('suggestions.show.header_title')
+    expect(page).to have_text I18n.t('suggestions.show.header_description')
     expect(page).to have_text 'Awesome Suggestion'
 
-    expect(page).to have_text I18n.t('suggestions.show.header_title')
+    expect(page).to have_text I18n.t('suggestions.show.header_description')
     expect(page).to have_text 'Awesome Suggestion'
     expect(page).to have_text 'The Thing'
     expect(page).to have_css 'div.comment-city-council-staff'

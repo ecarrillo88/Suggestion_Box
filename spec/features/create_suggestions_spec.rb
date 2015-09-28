@@ -8,7 +8,7 @@ RSpec.feature "CreateSuggestions", type: :feature do
   scenario 'Create a new suggestion' do
     visit root_path(locale: :en)
     first(:link, I18n.t('header.new_suggestion_button')).click
-    expect(page).to have_text I18n.t('suggestions.new.header_title')
+    expect(page).to have_text I18n.t('suggestions.new.header_description')
 
     fill_in 'suggestion_title',   with: 'Fantastic Suggestion'
     select  'Suggestion',         from: 'suggestion_category'
@@ -17,7 +17,7 @@ RSpec.feature "CreateSuggestions", type: :feature do
     fill_in 'suggestion_comment', with: 'Lorem ipsum dolor sit amet'
     click_button I18n.t('suggestions.form.create_suggestion_button')
 
-    expect(page).to have_text I18n.t('suggestions.show.header_title')
+    expect(page).to have_text I18n.t('suggestions.show.header_description')
     expect(page).to have_text I18n.t('suggestions.create.flash_create_ok')
     expect(page).to have_text 'Fantastic Suggestion'
 

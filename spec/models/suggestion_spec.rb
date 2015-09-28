@@ -5,22 +5,23 @@ RSpec.describe Suggestion, type: :model do
 
   context 'A suggestion without author' do
     it 'has error' do
-    suggestion = Suggestion.create({category: Suggestion.category[:issue], title: 'Issue', author: nil, email: 'my_email@email.com', comment: 'An Issue', latitude: nil, longitude: nil, visible: true, closed: 1})
+      suggestion = Suggestion.create({category: Suggestion.category[:issue], title: 'Issue', author: nil, email: 'my_email@email.com', comment: 'An Issue', latitude: nil, longitude: nil, visible: true, closed: 1})
 
-    suggestion.valid?
+      suggestion.valid?
 
-    expect(suggestion.errors.messages).to eql(author: ["An author name is required"])
+      expect(suggestion.errors.has_key?(:author)).to eql(true)
     end
 
   end
 
   context "search_filter" do
-  before(:each) do
-    @suggestion1 = Suggestion.create({category: Suggestion.category[:suggestion], title: 'Suggestion of the year', author: 'Anonymous', email: 'my_email@email.com', comment: 'My suggestion!', latitude: nil, longitude: nil, visible: true, closed: 0})
-    @suggestion2 = Suggestion.create({category: Suggestion.category[:complaint], title: 'Complaint', author: 'Anonymous', email: 'my_email@email.com', comment: 'My complaint!', latitude: nil, longitude: nil, visible: true, closed: 0})
-    @suggestion3 = Suggestion.create({category: Suggestion.category[:suggestion], title: 'Suggestion', author: 'Anonymous', email: 'my_email@email.com', comment: 'Another suggestion', latitude: nil, longitude: nil, visible: true, closed: 0})
-    @suggestion4 = Suggestion.create({category: Suggestion.category[:issue], title: 'Issue', author: 'Anonymous', email: 'my_email@email.com', comment: 'An Issue', latitude: nil, longitude: nil, visible: true, closed: 1})
-  end
+    before(:each) do
+      @suggestion1 = Suggestion.create({category: Suggestion.category[:suggestion], title: 'Suggestion of the year', author: 'Anonymous', email: 'my_email@email.com', comment: 'My suggestion!', latitude: nil, longitude: nil, visible: true, closed: 0})
+      @suggestion2 = Suggestion.create({category: Suggestion.category[:complaint], title: 'Complaint', author: 'Anonymous', email: 'my_email@email.com', comment: 'My complaint!', latitude: nil, longitude: nil, visible: true, closed: 0})
+      @suggestion3 = Suggestion.create({category: Suggestion.category[:suggestion], title: 'Suggestion', author: 'Anonymous', email: 'my_email@email.com', comment: 'Another suggestion', latitude: nil, longitude: nil, visible: true, closed: 0})
+      @suggestion4 = Suggestion.create({category: Suggestion.category[:issue], title: 'Issue', author: 'Anonymous', email: 'my_email@email.com', comment: 'An Issue', latitude: nil, longitude: nil, visible: true, closed: 1})
+    end
+
     it "should show all suggestions" do
       title = nil
       category = nil
