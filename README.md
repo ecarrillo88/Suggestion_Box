@@ -11,6 +11,7 @@
 $ git clone git@github.com:devscola/alerta_ciclista.git
 $ cd alerta_ciclista
 $ bundle install --without production
+$ cp config/examples/* config
 $ bundle exec rake db:setup
 $ bundle exec rails s
 ```
