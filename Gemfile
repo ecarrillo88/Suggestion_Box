@@ -55,6 +55,8 @@ group :development, :test do
   gem 'selenium-webdriver', '~> 2.47.1'
   # Strategies for cleaning databases. Can be used to ensure a clean state for testing.
   gem 'database_cleaner', '~> 1.5.0'
+  # Poltergeist is a driver for Capybara that allows you to run your tests on a headless WebKit browser, provided by PhantomJS.
+  gem 'poltergeist'
 end
 
 group :production do
