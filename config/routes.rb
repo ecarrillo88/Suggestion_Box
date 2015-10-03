@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     get      '/suggestions/:suggestion_id/comments/:id/:token'   => 'comments#destroy'
     get      '/suggestion_validation/:token'                     => 'email_validation#suggestion_validation'
     get      '/comment_validation/:token'                        => 'email_validation#comment_validation'
-    post     '/'                                                 => 'suggestions#index'
     get      '/comments/report/:id'                              => 'comments#report',                       as: 'report_comment'
     get      '/suggestions/report/:id'                           => 'suggestions#report',                    as: 'report_suggestion'
+    get      '/advanced_search'                                  => 'suggestions#advanced_search',           as: 'advanced_search'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
